@@ -19,11 +19,17 @@ var mouseLookDelta := Vector2.ZERO
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 			mouseLookDelta += event.relative
+	
+	if Input.is_action_just_pressed("ui_pause"):
+		get_tree().quit(0)
 
 func _physics_process(delta: float) -> void:
 	handle_camera_rotation(delta)
 	var direction := get_movement_direction()
 	handle_movement(direction, delta)
+	
+	if Input.is_action_just_pressed("jump") && is_on_floor():
+		velocity.y = JUMP_VELOCITY
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -66,15 +72,5 @@ func get_movement_direction()-> Vector3:
 	return (forward * input_dir.y + right * input_dir.x).normalized()
 
 func handle_movement(direction: Vector3, delta: float) -> void:
-	#var inputDir := Vector2(
-		#Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
-		#Input.get_action_strength("move_forward") - Input.get_action_strength("move_backward")
-		#)
-	#var inputDir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-	
-	#if inputDir.length() > 1.0:
-		#inputDir = inputDir.normalized()
-		
-	#var direction := (transform.basis * Vector3(inputDir.x, 0, inputDir.y)).normalized()
 	velocity.x = direction.x * moveSpeed
 	velocity.z = direction.z * moveSpeed
