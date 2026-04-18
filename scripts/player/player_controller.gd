@@ -11,6 +11,7 @@ var mouseLookDelta := Vector2.ZERO
 @export var min_vertical_boundary: float = -60
 @export var max_vertical_boundary: float = 17
 @export var moveSpeed := 4.0
+@export var runSpeed := 6.0
 
 @onready var rig_yaw_pivot: Node3D = $RigYawPivot
 @onready var camera_yaw_pivot: Node3D = $CameraYawPivot
@@ -72,5 +73,12 @@ func get_movement_direction()-> Vector3:
 	return (forward * input_dir.y + right * input_dir.x).normalized()
 
 func handle_movement(direction: Vector3, delta: float) -> void:
-	velocity.x = direction.x * moveSpeed
-	velocity.z = direction.z * moveSpeed
+	var is_running: bool = Input.is_action_pressed("run")
+	
+	if direction != Vector3.ZERO:
+		var speed = runSpeed if is_running else moveSpeed
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
+	else:
+		velocity.x = move_toward(velocity.x, 0, moveSpeed * 4.0 * delta)
+		velocity.z = move_toward(velocity.z, 0, moveSpeed * 4.0 * delta)
