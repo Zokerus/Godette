@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://b10to1hqk8aqg"]
 
-[ext_resource type="Texture2D" uid="uid://csgruele0lfow" path="res://assets/textures/knight_texture.png" id="1_b560w"]
+[ext_resource type="Texture2D" uid="uid://pj2kqmt8wc7b" path="res://assets/character/Knight_knight_texture.png" id="1_b560w"]
 
 [resource]
 resource_name = "knight"
