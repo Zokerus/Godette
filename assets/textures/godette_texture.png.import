@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5bvkwrop0raj"
-path.s3tc="res://.godot/imported/godette_godette_texture.png-8932f301a322e1f9786bcc38256afe10.s3tc.ctex"
+uid="uid://drcs7f3gtmw2c"
+path.s3tc="res://.godot/imported/godette_texture.png-34e30d573696e42cdafe3e4f6763b987.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://assets/character/godette_godette_texture.png"
-dest_files=["res://.godot/imported/godette_godette_texture.png-8932f301a322e1f9786bcc38256afe10.s3tc.ctex"]
+source_file="res://assets/textures/godette_texture.png"
+dest_files=["res://.godot/imported/godette_texture.png-34e30d573696e42cdafe3e4f6763b987.s3tc.ctex"]
 
 [params]
 
