@@ -5,6 +5,7 @@ const JUMP_VELOCITY = 4.5
 
 #Stores the x/y direction the player is trying to look in
 var mouseLookDelta := Vector2.ZERO
+var isJumpPreparing := false
 
 @export var mouseSensitivity := 0.002
 @export var padLookSensitivity := 2.0
@@ -96,5 +97,12 @@ func look_toward_direction(direction: Vector3, delta: float)-> void:
 
 func handle_jump(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") && is_on_floor():
-		velocity.y = JUMP_VELOCITY
+		
+		isJumpPreparing = true
 		rig.travel("Jump")
+
+func _on_jump_takeoff_requested() -> void:
+	if isJumpPreparing == false:
+		return
+	velocity.y = JUMP_VELOCITY
+	isJumpPreparing = false
