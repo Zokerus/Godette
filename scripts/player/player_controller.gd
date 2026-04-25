@@ -13,16 +13,21 @@ var mouseLookDelta := Vector2.ZERO
 @export var moveSpeed := 4.0
 @export var runSpeed := 6.0
 
+@onready var rig: PlayerRig = $RigYawPivot/Godette
 @onready var rig_yaw_pivot: Node3D = $RigYawPivot
 @onready var camera_yaw_pivot: Node3D = $CameraYawPivot
 @onready var camera_pitch_pivot: Node3D = $CameraYawPivot/CameraPitchPivot
+
+func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 			mouseLookDelta += event.relative
 	
 	if Input.is_action_just_pressed("ui_pause"):
-		get_tree().quit(0)
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _physics_process(delta: float) -> void:
 	handle_camera_rotation(delta)
@@ -70,6 +75,7 @@ func get_movement_direction()-> Vector3:
 	
 	var direction = (forward * input_dir.y + right * input_dir.x).normalized()
 	return direction
+	
 
 func handle_movement(direction: Vector3, delta: float) -> void:
 	var is_running: bool = Input.is_action_pressed("run")
@@ -79,9 +85,11 @@ func handle_movement(direction: Vector3, delta: float) -> void:
 		look_toward_direction(direction, delta)
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
+		rig.travel("Running_A")
 	else:
 		velocity.x = move_toward(velocity.x, 0, moveSpeed * 4.0 * delta)
 		velocity.z = move_toward(velocity.z, 0, moveSpeed * 4.0 * delta)
+		rig.travel("Idle_A")
 		
 func look_toward_direction(direction: Vector3, delta: float)-> void:
 	var target_transform:= rig_yaw_pivot.global_transform.looking_at(rig_yaw_pivot.global_position - direction, Vector3.UP, true)

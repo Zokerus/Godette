@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bhoco1a6usaf3"]
 
 [ext_resource type="PackedScene" uid="uid://c7ahnd40lu3h0" path="res://assets/character/godette.glb" id="1_m08ws"]
+[ext_resource type="Script" uid="uid://cirswcmmduhyk" path="res://scripts/player/godette.gd" id="2_i3tny"]
 [ext_resource type="Animation" uid="uid://bm82v3pqufsrm" path="res://assets/animations/character/medium/general/Death_A.res" id="2_n05ve"]
 [ext_resource type="Animation" uid="uid://bnmu73vrgpuxn" path="res://assets/animations/character/medium/general/Death_A_Pose.res" id="3_7iv7b"]
 [ext_resource type="Animation" uid="uid://wfak2oxolllc" path="res://assets/animations/character/medium/general/Death_B.res" id="4_mqu5r"]
@@ -60,39 +61,34 @@ _data = {
 &"Walking_C": ExtResource("26_q205j")
 }
 
-[node name="Godette" unique_id=1658511372 instance=ExtResource("1_m08ws")]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uljh4"]
+animation = &"general/Idle_A"
 
-[node name="GeneralSkeleton" parent="Rig" parent_id_path=PackedInt32Array(1926860781) index="0" unique_id=31224677]
-bones/0/rotation = Quaternion(0, 1.19209275e-07, 0, 1)
-bones/1/position = Vector3(0, 0.31582928, 0)
-bones/1/rotation = Quaternion(0.09584579, -1.1866047e-07, 1.1425707e-08, 0.99539626)
-bones/2/rotation = Quaternion(0.038484517, -0.06530843, 0.048401237, 0.9959473)
-bones/3/rotation = Quaternion(0.05485472, -2.2491062e-09, -1.0278342e-09, 0.99849445)
-bones/4/position = Vector3(0.21200739, 0.13961041, 0.028182182)
-bones/4/rotation = Quaternion(-0.78659624, -0.14619876, -0.49259943, 0.34240064)
-bones/5/rotation = Quaternion(5.1415167e-08, -6.1189766e-08, -0.71050304, 0.70369416)
-bones/6/rotation = Quaternion(1.5145671e-08, -7.3584383e-09, 0.0266581, 0.99964464)
-bones/6/scale = Vector3(1.0000001, 1, 1)
-bones/7/rotation = Quaternion(-0.16025974, -0.4043725, -0.15222487, 0.8874837)
-bones/8/rotation = Quaternion(-0.04990947, 0.026307005, -0.6118784, 0.7889371)
-bones/9/position = Vector3(-0.21200739, 0.1286543, -0.028182022)
-bones/9/rotation = Quaternion(-0.67752004, -0.19146709, 0.4190381, 0.573336)
-bones/10/rotation = Quaternion(-4.2160806e-08, 6.979874e-08, 0.7025191, 0.7116649)
-bones/11/rotation = Quaternion(2.2497533e-10, 6.8246844e-09, -0.026658092, 0.99964464)
-bones/11/scale = Vector3(0.99999994, 0.99999994, 1)
-bones/12/rotation = Quaternion(-0.2614052, 0.08272916, 0.21493894, 0.9373497)
-bones/13/rotation = Quaternion(0.011124222, 0.07092462, 0.4532215, 0.88850224)
-bones/14/rotation = Quaternion(-0.15750977, 0.09052211, -0.006124581, 0.98334074)
-bones/15/position = Vector3(0.17094508, 0.113587305, -0.062120255)
-bones/15/rotation = Quaternion(0.99868464, -5.0678136e-07, 1.9985058e-09, -0.051274043)
-bones/16/rotation = Quaternion(0.8879951, 3.17495e-08, -6.1668163e-07, 0.45985287)
-bones/17/rotation = Quaternion(-0.6493922, -2.200747e-07, 5.3599643e-07, 0.76045364)
-bones/18/rotation = Quaternion(2.06676e-08, 0.9201495, -0.3915673, 6.472782e-08)
-bones/19/position = Vector3(-0.17094505, 0.1149956, 0.062071327)
-bones/19/rotation = Quaternion(0.85181904, 2.5276728e-07, -7.885164e-08, 0.5238363)
-bones/20/rotation = Quaternion(0.6448844, -5.2768133e-08, 4.4784994e-07, 0.76428014)
-bones/21/rotation = Quaternion(-0.7507446, 2.399949e-07, -2.5698287e-07, 0.6605927)
-bones/22/rotation = Quaternion(5.2144644e-09, 0.9203837, -0.3910165, 7.213584e-08)
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eimm2"]
+animation = &"movement_basic/Running_A"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c3q8m"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iauud"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i3tny"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_oumc5"]
+states/End/position = Vector2(1558, 125)
+states/Idle_A/node = SubResource("AnimationNodeAnimation_uljh4")
+states/Idle_A/position = Vector2(408, 100)
+states/Running_A/node = SubResource("AnimationNodeAnimation_eimm2")
+states/Running_A/position = Vector2(845, 100)
+transitions = ["Start", "Idle_A", SubResource("AnimationNodeStateMachineTransition_c3q8m"), "Running_A", "Idle_A", SubResource("AnimationNodeStateMachineTransition_iauud"), "Idle_A", "Running_A", SubResource("AnimationNodeStateMachineTransition_i3tny")]
+
+[node name="Godette" unique_id=1658511372 instance=ExtResource("1_m08ws")]
+script = ExtResource("2_i3tny")
+
+[node name="Rig" parent="." index="0" unique_id=1926860781]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="GeneralSkeleton" parent="Rig" index="0" unique_id=31224677]
 bones/23/rotation = Quaternion(0.7071068, -2.2930234e-07, -4.6055177e-08, 0.7071068)
 bones/24/position = Vector3(0.21391787, 0.025990263, 0.17386575)
 bones/24/rotation = Quaternion(-0.70509243, 0.05333549, 0.05333548, 0.70509243)
@@ -131,3 +127,7 @@ bones/40/scale = Vector3(1, 1.0000001, 1)
 libraries/general = SubResource("AnimationLibrary_iauud")
 libraries/movement_basic = SubResource("AnimationLibrary_pdbvf")
 autoplay = &"general/Idle_A"
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="3" unique_id=1121628172]
+tree_root = SubResource("AnimationNodeStateMachine_oumc5")
+anim_player = NodePath("../AnimationPlayer2")
