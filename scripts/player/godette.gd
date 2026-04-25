@@ -9,7 +9,6 @@ signal jumpTakeoffRequested
 func travel(animation_name: String)-> void:
 	if playback.get_current_node() != animation_name:
 		playback.travel(animation_name)
-		print(animation_name)
 
 func requestJumpTakeoff() -> void:
 	jumpTakeoffRequested.emit()

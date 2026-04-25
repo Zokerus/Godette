@@ -36,11 +36,8 @@ func _physics_process(delta: float) -> void:
 	var direction := get_movement_direction()
 	handle_movement(direction, delta)
 	handle_jump(delta)
-	
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-		ignoreGroundAnimationUntilAirborne = false
+	handle_fall(delta)
+
 
 	move_and_slide()
 
@@ -102,7 +99,7 @@ func look_toward_direction(direction: Vector3, delta: float)-> void:
 	
 	rig_yaw_pivot.global_transform = rig_yaw_pivot.global_transform.interpolate_with(target_transform,  1.0 - exp(-10 * delta))
 
-func handle_jump(delta: float) -> void:
+func handle_jump(_delta: float) -> void:
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		
 		isJumpPreparing = true
@@ -114,3 +111,12 @@ func _on_jump_takeoff_requested() -> void:
 	velocity.y = JUMP_VELOCITY
 	ignoreGroundAnimationUntilAirborne = true
 	isJumpPreparing = false
+
+func handle_fall(delta: float) -> void:
+		# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+		ignoreGroundAnimationUntilAirborne = false
+		if velocity.y <= 0:
+			rig.travel("Fall")
+		
