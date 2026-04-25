@@ -33,9 +33,7 @@ func _physics_process(delta: float) -> void:
 	handle_camera_rotation(delta)
 	var direction := get_movement_direction()
 	handle_movement(direction, delta)
-	
-	if Input.is_action_just_pressed("jump") && is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	handle_jump(delta)
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -75,23 +73,28 @@ func get_movement_direction()-> Vector3:
 	
 	var direction = (forward * input_dir.y + right * input_dir.x).normalized()
 	return direction
-	
 
 func handle_movement(direction: Vector3, delta: float) -> void:
 	var is_running: bool = Input.is_action_pressed("run")
 	
-	if direction != Vector3.ZERO:
-		var speed = runSpeed if is_running else moveSpeed
-		look_toward_direction(direction, delta)
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
-		rig.travel("Running_A")
-	else:
-		velocity.x = move_toward(velocity.x, 0, moveSpeed * 4.0 * delta)
-		velocity.z = move_toward(velocity.z, 0, moveSpeed * 4.0 * delta)
-		rig.travel("Idle_A")
+	if is_on_floor():
+		if direction != Vector3.ZERO:
+			var speed = runSpeed if is_running else moveSpeed
+			look_toward_direction(direction, delta)
+			velocity.x = direction.x * speed
+			velocity.z = direction.z * speed
+			rig.travel("Running_A")
+		else:
+			velocity.x = move_toward(velocity.x, 0, moveSpeed * 4.0 * delta)
+			velocity.z = move_toward(velocity.z, 0, moveSpeed * 4.0 * delta)
+			rig.travel("Idle_A")
 		
 func look_toward_direction(direction: Vector3, delta: float)-> void:
 	var target_transform:= rig_yaw_pivot.global_transform.looking_at(rig_yaw_pivot.global_position - direction, Vector3.UP, true)
 	
 	rig_yaw_pivot.global_transform = rig_yaw_pivot.global_transform.interpolate_with(target_transform,  1.0 - exp(-10 * delta))
+
+func handle_jump(delta: float) -> void:
+	if Input.is_action_just_pressed("jump") && is_on_floor():
+		velocity.y = JUMP_VELOCITY
+		rig.travel("Jump")
