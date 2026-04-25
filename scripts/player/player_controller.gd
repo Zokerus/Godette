@@ -6,6 +6,7 @@ const JUMP_VELOCITY = 4.5
 #Stores the x/y direction the player is trying to look in
 var mouseLookDelta := Vector2.ZERO
 var isJumpPreparing := false
+var ignoreGroundAnimationUntilAirborne := false
 
 @export var mouseSensitivity := 0.002
 @export var padLookSensitivity := 2.0
@@ -39,6 +40,7 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+		ignoreGroundAnimationUntilAirborne = false
 
 	move_and_slide()
 
@@ -78,7 +80,12 @@ func get_movement_direction()-> Vector3:
 func handle_movement(direction: Vector3, delta: float) -> void:
 	var is_running: bool = Input.is_action_pressed("run")
 	
-	if is_on_floor():
+	if isJumpPreparing or !is_on_floor():
+		velocity.x = move_toward(velocity.x, 0, moveSpeed * 4.0 * delta)
+		velocity.z = move_toward(velocity.z, 0, moveSpeed * 4.0 * delta)
+		return
+	
+	if is_on_floor() and !ignoreGroundAnimationUntilAirborne:
 		if direction != Vector3.ZERO:
 			var speed = runSpeed if is_running else moveSpeed
 			look_toward_direction(direction, delta)
@@ -105,4 +112,5 @@ func _on_jump_takeoff_requested() -> void:
 	if isJumpPreparing == false:
 		return
 	velocity.y = JUMP_VELOCITY
+	ignoreGroundAnimationUntilAirborne = true
 	isJumpPreparing = false

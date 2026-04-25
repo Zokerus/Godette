@@ -7,7 +7,9 @@ signal jumpTakeoffRequested
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
 
 func travel(animation_name: String)-> void:
-	playback.travel(animation_name)
+	if playback.get_current_node() != animation_name:
+		playback.travel(animation_name)
+		print(animation_name)
 
 func requestJumpTakeoff() -> void:
 	jumpTakeoffRequested.emit()
