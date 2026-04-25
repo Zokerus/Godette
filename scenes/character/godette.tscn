@@ -71,8 +71,10 @@ animation = &"movement_basic/Running_A"
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iauud"]
+xfade_time = 0.2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i3tny"]
+xfade_time = 0.2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_oumc5"]
 states/End/position = Vector2(1558, 125)
