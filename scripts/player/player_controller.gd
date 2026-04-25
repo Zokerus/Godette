@@ -78,8 +78,8 @@ func handle_movement(direction: Vector3, delta: float) -> void:
 	var is_running: bool = Input.is_action_pressed("run")
 	
 	if isJumpPreparing or !is_on_floor():
-		velocity.x = move_toward(velocity.x, 0, moveSpeed * 4.0 * delta)
-		velocity.z = move_toward(velocity.z, 0, moveSpeed * 4.0 * delta)
+		#velocity.x = move_toward(velocity.x, 0, moveSpeed * 4.0 * delta)
+		#velocity.z = move_toward(velocity.z, 0, moveSpeed * 4.0 * delta)
 		return
 	
 	if is_on_floor() and !ignoreGroundAnimationUntilAirborne:
@@ -100,10 +100,14 @@ func look_toward_direction(direction: Vector3, delta: float)-> void:
 	rig_yaw_pivot.global_transform = rig_yaw_pivot.global_transform.interpolate_with(target_transform,  1.0 - exp(-10 * delta))
 
 func handle_jump(_delta: float) -> void:
+	var tempVelocity: Vector3 = velocity
+	tempVelocity.y = 0
 	if Input.is_action_just_pressed("jump") && is_on_floor():
-		
 		isJumpPreparing = true
-		rig.travel("Jump")
+		if tempVelocity == Vector3.ZERO:
+			rig.travel("Jump")
+		else:
+			_on_jump_takeoff_requested()
 
 func _on_jump_takeoff_requested() -> void:
 	if isJumpPreparing == false:
@@ -113,10 +117,13 @@ func _on_jump_takeoff_requested() -> void:
 	isJumpPreparing = false
 
 func handle_fall(delta: float) -> void:
-		# Add the gravity.
+	var tempVelocity: Vector3 = velocity
+	tempVelocity.y = 0
+	
+	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		ignoreGroundAnimationUntilAirborne = false
-		if velocity.y <= 0:
+		if velocity.y <= 0 or tempVelocity != Vector3.ZERO:
 			rig.travel("Fall")
 		
