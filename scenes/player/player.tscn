@@ -38,5 +38,3 @@ target = NodePath("..")
 target_position = Vector3(0, 0, 5)
 
 [node name="Camera3D" type="Camera3D" parent="CameraYawPivot/CameraPitchPivot/CameraSpringArm" unique_id=1193967741]
-
-[connection signal="jumpTakeoffRequested" from="RigYawPivot/Godette" to="." method="_on_jump_takeoff_requested"]

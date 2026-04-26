@@ -15,7 +15,7 @@ var ignoreGroundAnimationUntilAirborne := false
 @export var moveSpeed := 4.0
 @export var runSpeed := 6.0
 
-@onready var rig: PlayerRig = $RigYawPivot/Godette
+@onready var rig: CharacterRig = $RigYawPivot/Godette
 @onready var rig_yaw_pivot: Node3D = $RigYawPivot
 @onready var camera_yaw_pivot: Node3D = $CameraYawPivot
 @onready var camera_pitch_pivot: Node3D = $CameraYawPivot/CameraPitchPivot
@@ -37,7 +37,7 @@ func _physics_process(delta: float) -> void:
 	handle_movement(direction, delta)
 	handle_jump(delta)
 	handle_fall(delta)
-
+	ability_logic()
 
 	move_and_slide()
 
@@ -126,4 +126,7 @@ func handle_fall(delta: float) -> void:
 		ignoreGroundAnimationUntilAirborne = false
 		if velocity.y <= 0 or tempVelocity != Vector3.ZERO:
 			rig.travel("Fall")
-		
+
+func ability_logic() -> void:
+	if Input.is_action_just_pressed("attack"):
+		rig.attack()
