@@ -15,3 +15,6 @@ func requestJumpTakeoff() -> void:
 
 func attack()-> void:
 	animation_tree.set("parameters/AttackOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+
+func defend(forward: bool)-> void:
+	pass
