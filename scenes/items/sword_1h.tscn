@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bs7afbfkjmxpg"]
+
+[ext_resource type="PackedScene" uid="uid://bjglp4s0d1mpx" path="res://assets/items/sword_1handed.gltf" id="1_nor8h"]
+[ext_resource type="Texture2D" uid="uid://csgruele0lfow" path="res://assets/textures/knight_texture.png" id="2_q4dw8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lunjp"]
+albedo_texture = ExtResource("2_q4dw8")
+
+[node name="sword_1H" unique_id=1697073412 instance=ExtResource("1_nor8h")]
+
+[node name="sword_1handed" parent="." index="0" unique_id=2086347213]
+surface_material_override/0 = SubResource("StandardMaterial3D_lunjp")
