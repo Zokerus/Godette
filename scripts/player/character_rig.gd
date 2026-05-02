@@ -19,7 +19,8 @@ func requestJumpTakeoff() -> void:
 func attack()-> void:
 	animation_tree.set("parameters/AttackOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
-func defend(delta: float, forward: bool, speedRatio: float)-> void:
-	shieldBlend = move_toward(shieldBlend, float(forward), delta * 4.0)
+func defend(delta: float, is_defending: bool, speedRatio: float)-> void:
+	shieldBlend = move_toward(shieldBlend, float(is_defending), delta * 4.0)
+	blockLegsBlend= move_toward(blockLegsBlend, 1.0 - speedRatio, delta * 4.0)
 	animation_tree.set("parameters/ShieldBlendUpperBody/blend_amount", shieldBlend)
-	animation_tree.set("parameters/ShieldBlendLowerBody/blend_amount", 1.0 - speedRatio)
+	animation_tree.set("parameters/ShieldBlendLowerBody/blend_amount", blockLegsBlend)
