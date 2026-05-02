@@ -7,6 +7,14 @@ const JUMP_VELOCITY = 4.5
 var mouseLookDelta := Vector2.ZERO
 var isJumpPreparing := false
 var ignoreGroundAnimationUntilAirborne := false
+var defend := false
+	#set(value):
+		#if not defend and value:
+			#rig.defend(true)
+		#if defend and !value:
+			#rig.defend(false)
+		#defend = value
+var movementSpeedRatio : float
 
 @export var mouseSensitivity := 0.002
 @export var padLookSensitivity := 2.0
@@ -14,6 +22,7 @@ var ignoreGroundAnimationUntilAirborne := false
 @export var max_vertical_boundary: float = 17
 @export var moveSpeed := 4.0
 @export var runSpeed := 6.0
+@export var blockMoveSpeed := 2.0
 
 @onready var rig: CharacterRig = $RigYawPivot/Godette
 @onready var rig_yaw_pivot: Node3D = $RigYawPivot
@@ -37,7 +46,7 @@ func _physics_process(delta: float) -> void:
 	handle_movement(direction, delta)
 	handle_jump(delta)
 	handle_fall(delta)
-	ability_logic()
+	ability_logic(delta)
 
 	move_and_slide()
 
@@ -76,6 +85,7 @@ func get_movement_direction()-> Vector3:
 
 func handle_movement(direction: Vector3, delta: float) -> void:
 	var is_running: bool = Input.is_action_pressed("run")
+	var speed : float = blockMoveSpeed if defend else (runSpeed if is_running else moveSpeed )
 	
 	if isJumpPreparing or !is_on_floor():
 		#velocity.x = move_toward(velocity.x, 0, moveSpeed * 4.0 * delta)
@@ -84,7 +94,7 @@ func handle_movement(direction: Vector3, delta: float) -> void:
 	
 	if is_on_floor() and !ignoreGroundAnimationUntilAirborne:
 		if direction != Vector3.ZERO:
-			var speed = runSpeed if is_running else moveSpeed
+			
 			look_toward_direction(direction, delta)
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
@@ -93,6 +103,8 @@ func handle_movement(direction: Vector3, delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, moveSpeed * 4.0 * delta)
 			velocity.z = move_toward(velocity.z, 0, moveSpeed * 4.0 * delta)
 			rig.travel("Idle_A")
+			
+		movementSpeedRatio = clampf(Vector3(velocity.x, 0, velocity.z).length() / speed, 0.0, 1.0)
 		
 func look_toward_direction(direction: Vector3, delta: float)-> void:
 	var target_transform:= rig_yaw_pivot.global_transform.looking_at(rig_yaw_pivot.global_position - direction, Vector3.UP, true)
@@ -127,6 +139,14 @@ func handle_fall(delta: float) -> void:
 		if velocity.y <= 0 or tempVelocity != Vector3.ZERO:
 			rig.travel("Fall")
 
-func ability_logic() -> void:
+func ability_logic(delta: float) -> void:
 	if Input.is_action_just_pressed("attack"):
 		rig.attack()
+	
+	if Input.is_action_pressed("block"):
+		defend = true
+		rig.defend(delta, true, movementSpeedRatio)
+	else:
+		rig.defend(delta, false, 1.0)
+		defend = false
+	
