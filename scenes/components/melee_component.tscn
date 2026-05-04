@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cso85aarnwt3x"]
+
+[ext_resource type="Script" uid="uid://bk4n4rp4w3td" path="res://scripts/components/melee_component.gd" id="1_pni4k"]
+
+[node name="MeleeComponent" type="Node" unique_id=733076158]
+script = ExtResource("1_pni4k")
+
+[node name="ComboTimer" type="Timer" parent="." unique_id=1818094811]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timer_timeout"]
