@@ -35,10 +35,35 @@ func attack() -> void:
 		_startFirstAttack()
 
 func _startFirstAttack()-> void:
-	pass
+	currentComboIndex = 0
+	comboWindowOpen = false
+	
+	combatComponent.startAction()
+	characterRig.playAttack(attacks[currentComboIndex])
 
 func _playNextComboAttack()-> void:
-	pass
+	comboWindowOpen = false
+	comboTimer.stop()
+	
+	currentComboIndex += 1
+	
+	if currentComboIndex > attacks.size():
+		return
+	
+	characterRig.playAttack(attacks[currentComboIndex])
+	
+func openComboWindow() -> void:
+	if !combatComponent.isPerformingAction:
+		return
+	
+	comboWindowOpen = true
+	comboTimer.start()
+
+func finishAttack()-> void:
+	comboWindowOpen = false
+	comboTimer.stop()
+	currentComboIndex = 0
+	combatComponent.finishAction()
 
 func _on_combo_timer_timeout() -> void:
 	pass # Replace with function body.
