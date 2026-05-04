@@ -140,9 +140,11 @@ func handle_fall(delta: float) -> void:
 			rig.travel("Fall")
 
 func ability_logic(delta: float) -> void:
+	#actual attack
 	if Input.is_action_just_pressed("attack"):
 		rig.attack()
 	
+	#defend
 	if Input.is_action_pressed("block"):
 		defend = true
 		rig.defend(delta, true, movementSpeedRatio)
@@ -150,3 +152,6 @@ func ability_logic(delta: float) -> void:
 		rig.defend(delta, false, 1.0)
 		defend = false
 	
+	#switch weapon
+	if Input.is_action_just_pressed("weapon_switch"):
+		pass
