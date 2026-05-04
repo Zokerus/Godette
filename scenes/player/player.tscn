@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cdxl8bnylgjqj" path="res://scripts/player/player_controller.gd" id="1_dovo2"]
 [ext_resource type="Script" uid="uid://beoxrc8x4pgjm" path="res://scripts/player/camera_spring_arm.gd" id="2_gmlin"]
 [ext_resource type="PackedScene" uid="uid://bhoco1a6usaf3" path="res://scenes/character/godette.tscn" id="2_lvxji"]
+[ext_resource type="PackedScene" uid="uid://cdbnu6i65f4ws" path="res://scenes/components/combat_component.tscn" id="4_lvxji"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x7p2l"]
 height = 2.3
@@ -38,3 +39,5 @@ target = NodePath("..")
 target_position = Vector3(0, 0, 5)
 
 [node name="Camera3D" type="Camera3D" parent="CameraYawPivot/CameraPitchPivot/CameraSpringArm" unique_id=1193967741]
+
+[node name="CombatComponent" parent="." unique_id=361524145 instance=ExtResource("4_lvxji")]
