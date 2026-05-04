@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://qtedte26u5b5"]
 
-[ext_resource type="Texture2D" uid="uid://badfxfdu6qi6f" path="res://assets/textures/godette_faces.png" id="1_381wg"]
+[ext_resource type="Texture2D" uid="uid://cb8xtcvpuo4ky" path="res://assets/character/godette_godette_faces.png" id="1_381wg"]
 
 [resource]
 resource_name = "godette_face"
