@@ -20,6 +20,11 @@ func travel(animation_name: String)-> void:
 func requestJumpTakeoff() -> void:
 	jumpTakeoffRequested.emit()
 
+
+func playAttack(attackName: String) -> void:
+	attackStateMachine.travel(attackName)
+	animation_tree.set("parameters/AttackOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+
 func attack()-> void:
 	if !is_attacking:
 		if attack_timer.time_left:

@@ -8,12 +8,7 @@ var mouseLookDelta := Vector2.ZERO
 var isJumpPreparing := false
 var ignoreGroundAnimationUntilAirborne := false
 var defend := false
-	#set(value):
-		#if not defend and value:
-			#rig.defend(true)
-		#if defend and !value:
-			#rig.defend(false)
-		#defend = value
+
 var movementSpeedRatio : float
 
 @export var mouseSensitivity := 0.002
@@ -24,6 +19,8 @@ var movementSpeedRatio : float
 @export var runSpeed := 6.0
 @export var blockMoveSpeed := 2.0
 
+@onready var combatComponent: CombatComponent = $CombatComponent
+@onready var meleeComponent: MeleeComponent = $MeleeComponent
 @onready var rig: CharacterRig = $RigYawPivot/Godette
 @onready var rig_yaw_pivot: Node3D = $RigYawPivot
 @onready var camera_yaw_pivot: Node3D = $CameraYawPivot
@@ -31,6 +28,9 @@ var movementSpeedRatio : float
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	meleeComponent.combatComponent = combatComponent
+	meleeComponent.characterRig = rig
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -85,7 +85,7 @@ func get_movement_direction()-> Vector3:
 
 func handle_movement(direction: Vector3, delta: float) -> void:
 	var is_running: bool = Input.is_action_pressed("run")
-	var speed : float = blockMoveSpeed if defend else (runSpeed if is_running else moveSpeed )
+	var speed : float = blockMoveSpeed if combatComponent.isDefending else (runSpeed if is_running else moveSpeed )
 	
 	if isJumpPreparing or !is_on_floor():
 		#velocity.x = move_toward(velocity.x, 0, moveSpeed * 4.0 * delta)
@@ -142,13 +142,15 @@ func handle_fall(delta: float) -> void:
 func ability_logic(delta: float) -> void:
 	#actual attack
 	if Input.is_action_just_pressed("attack"):
-		rig.attack()
+		meleeComponent.attack()
 	
 	#defend
 	if Input.is_action_pressed("block"):
-		defend = true
-		rig.defend(delta, true, movementSpeedRatio)
+		combatComponent.startDefend()
+		defend = combatComponent.isDefending
+		rig.defend(delta, combatComponent.isDefending, movementSpeedRatio)
 	else:
+		combatComponent.stopDefend()
 		rig.defend(delta, false, 1.0)
 		defend = false
 	
