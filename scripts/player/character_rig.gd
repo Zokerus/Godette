@@ -19,9 +19,11 @@ func travel(animation_name: String)-> void:
 	if playback.get_current_node() != animation_name:
 		playback.travel(animation_name)
 
+
 func playAttack(attackName: String) -> void:
 	attackStateMachine.travel(attackName)
 	animation_tree.set("parameters/AttackOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+
 
 func defend(delta: float, is_defending: bool, speedRatio: float)-> void:
 	shieldBlend = move_toward(shieldBlend, float(is_defending), delta * 4.0)
@@ -29,6 +31,11 @@ func defend(delta: float, is_defending: bool, speedRatio: float)-> void:
 	animation_tree.set("parameters/ShieldBlendUpperBody/blend_amount", shieldBlend)
 	animation_tree.set("parameters/ShieldBlendLowerBody/blend_amount", blockLegsBlend)
 
+
 func switchWeapons(weapon: bool)-> void:
 	right_hand_slot.get_child(0).visible = weapon
 	right_hand_slot.get_child(1).visible = !weapon
+
+func castSpell(spellName: String) -> void:
+	animation_tree.set("parameters/MagicTransition/transition_request", spellName)
+	animation_tree.set("parameters/MagicOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)

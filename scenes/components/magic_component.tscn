@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dak6o8c5ivdi"]
+
+[ext_resource type="Script" uid="uid://bpacfvs4lyu6b" path="res://scripts/components/magic_component.gd" id="1_qcx20"]
+
+[node name="MagicComponent" type="Node" unique_id=2114964570]
+script = ExtResource("1_qcx20")

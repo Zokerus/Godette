@@ -142,7 +142,7 @@ func handle_fall(delta: float) -> void:
 func ability_logic(delta: float) -> void:
 	#actual attack
 	if Input.is_action_just_pressed("attack"):
-		meleeComponent.attack()
+		combatComponent.attack()
 	
 	#defend
 	if Input.is_action_pressed("block"):
@@ -158,6 +158,10 @@ func ability_logic(delta: float) -> void:
 	if Input.is_action_just_pressed("weapon_switch"):
 		weapon_selection = !weapon_selection
 		rig.switchWeapons(weapon_selection)
+		if weapon_selection:
+			combatComponent.activeCombatMode = CombatComponent.CombatMode.MELEE
+		else:
+			combatComponent.activeCombatMode = CombatComponent.CombatMode.MAGIC
 
 func _onAnimationEventReceived(event: int) -> void:
 	match event:
