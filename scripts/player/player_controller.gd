@@ -18,10 +18,11 @@ var movementSpeedRatio : float
 @export var moveSpeed := 4.0
 @export var runSpeed := 6.0
 @export var blockMoveSpeed := 2.0
+@export_category("Character Rig")
+@export var rig: CharacterRig
 
 @onready var combatComponent: CombatComponent = $CombatComponent
 @onready var meleeComponent: MeleeComponent = $MeleeComponent
-@onready var rig: CharacterRig = $RigYawPivot/Godette
 @onready var rig_yaw_pivot: Node3D = $RigYawPivot
 @onready var camera_yaw_pivot: Node3D = $CameraYawPivot
 @onready var camera_pitch_pivot: Node3D = $CameraYawPivot/CameraPitchPivot
@@ -31,7 +32,6 @@ func _ready() -> void:
 	
 	meleeComponent.combatComponent = combatComponent
 	meleeComponent.characterRig = rig
-
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -157,3 +157,8 @@ func ability_logic(delta: float) -> void:
 	#switch weapon
 	if Input.is_action_just_pressed("weapon_switch"):
 		pass
+
+func _onAnimationEventReceived(eventName: StringName) -> void:
+	match eventName:
+		&"jump_takeoff_requested":
+			_on_jump_takeoff_requested()

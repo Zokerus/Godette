@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://reyoh7dsg5oq"]
+
+[ext_resource type="Script" uid="uid://nryxag5cu2t8" path="res://scripts/components/animation_event_relay_component.gd" id="1_xl3hc"]
+
+[node name="AnimationEventRelayComponent" type="Node" unique_id=1650095274]
+script = ExtResource("1_xl3hc")

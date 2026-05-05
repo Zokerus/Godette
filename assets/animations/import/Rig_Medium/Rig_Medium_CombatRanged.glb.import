@@ -42,8 +42,8 @@ _subresources={
 "Ranged_1H_Aiming": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_range/Ranged_1H_Aiming.res",
-"save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "uid://bui1ded8d0o11",
+"save_to_file/keep_custom_tracks": true,
+"save_to_file/path": "",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -2098,7 +2098,7 @@ _subresources={
 "Ranged_1H_Reload": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_range/Ranged_1H_Reload.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://b1qm1ci3s0xfa",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -4154,7 +4154,7 @@ _subresources={
 "Ranged_1H_Shoot": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_range/Ranged_1H_Shoot.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://brxv668y3w2m8",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -6210,7 +6210,7 @@ _subresources={
 "Ranged_1H_Shooting": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_range/Ranged_1H_Shooting.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://bad1uwpwgmau5",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -8266,7 +8266,7 @@ _subresources={
 "Ranged_2H_Aiming": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_range/Ranged_2H_Aiming.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://l4ta18jh5um3",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -10322,7 +10322,7 @@ _subresources={
 "Ranged_2H_Reload": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_range/Ranged_2H_Reload.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://blvltag8pgq6n",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -12378,7 +12378,7 @@ _subresources={
 "Ranged_2H_Shoot": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_range/Ranged_2H_Shoot.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://ce5endgep8x7x",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -14434,7 +14434,7 @@ _subresources={
 "Ranged_2H_Shooting": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_range/Ranged_2H_Shooting.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://cj1ykdd1dhx2v",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -16490,7 +16490,7 @@ _subresources={
 "Ranged_Bow_Aiming_Idle": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_range/Ranged_Bow_Aiming_Idle.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://n8ubwpumijf0",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -18546,7 +18546,7 @@ _subresources={
 "Ranged_Bow_Draw": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_range/Ranged_Bow_Draw.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://ds2nyhlkboebj",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -20602,7 +20602,7 @@ _subresources={
 "Ranged_Bow_Draw_Up": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_range/Ranged_Bow_Draw_Up.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://b7ycf72ryfes4",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -22658,7 +22658,7 @@ _subresources={
 "Ranged_Bow_Idle": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_range/Ranged_Bow_Idle.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://bix5clw74p1jn",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -24714,7 +24714,7 @@ _subresources={
 "Ranged_Bow_Release": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_range/Ranged_Bow_Release.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://cr7opytysud1n",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -26770,7 +26770,7 @@ _subresources={
 "Ranged_Bow_Release_Up": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_range/Ranged_Bow_Release_Up.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://bsqeb2r6n3ogv",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -28826,7 +28826,7 @@ _subresources={
 "Ranged_Magic_Raise": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_range/Ranged_Magic_Raise.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://b4cbawwk3n2a1",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -30882,7 +30882,7 @@ _subresources={
 "Ranged_Magic_Shoot": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_range/Ranged_Magic_Shoot.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://d28ijos1y0n55",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -32938,7 +32938,7 @@ _subresources={
 "Ranged_Magic_Spellcasting": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_range/Ranged_Magic_Spellcasting.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://bw23vkjaxn51v",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -34994,7 +34994,7 @@ _subresources={
 "Ranged_Magic_Spellcasting_Long": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_range/Ranged_Magic_Spellcasting_Long.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://bdtxxgt38gyls",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -37050,7 +37050,7 @@ _subresources={
 "Ranged_Magic_Summon": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_range/Ranged_Magic_Summon.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://cbmm40kavt3mx",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,

@@ -42,7 +42,7 @@ _subresources={
 "Melee_1H_Attack_Chop": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_melee/Melee_1H_Attack_Chop.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://b0drs4enj2l3j",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -2098,7 +2098,7 @@ _subresources={
 "Melee_1H_Attack_Jump_Chop": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_melee/Melee_1H_Attack_Jump_Chop.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://dknfrq0keglqx",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -4154,7 +4154,7 @@ _subresources={
 "Melee_1H_Attack_Slice_Diagonal": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_melee/Melee_1H_Attack_Slice_Diagonal.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://b142qrni2bbr3",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -6210,7 +6210,7 @@ _subresources={
 "Melee_1H_Attack_Slice_Horizontal": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_melee/Melee_1H_Attack_Slice_Horizontal.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://ppvfdrvs4hbe",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -8266,7 +8266,7 @@ _subresources={
 "Melee_1H_Attack_Stab": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_melee/Melee_1H_Attack_Stab.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://c4gk5nqe4spee",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -10322,7 +10322,7 @@ _subresources={
 "Melee_2H_Attack_Chop": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_melee/Melee_2H_Attack_Chop.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://dk6lfyh1y5wjs",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -12378,7 +12378,7 @@ _subresources={
 "Melee_2H_Attack_Slice": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_melee/Melee_2H_Attack_Slice.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://wg2l447lefe1",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -14434,7 +14434,7 @@ _subresources={
 "Melee_2H_Attack_Spin": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_melee/Melee_2H_Attack_Spin.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://8q4myqco5xf",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -16490,7 +16490,7 @@ _subresources={
 "Melee_2H_Attack_Spinning": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_melee/Melee_2H_Attack_Spinning.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://cli7na5selp1v",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
@@ -18546,7 +18546,7 @@ _subresources={
 "Melee_2H_Attack_Stab": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_melee/Melee_2H_Attack_Stab.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://drwdnopgq0san",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -20602,7 +20602,7 @@ _subresources={
 "Melee_2H_Idle": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_melee/Melee_2H_Idle.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://dimcsbfkwdw8o",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
@@ -22658,7 +22658,7 @@ _subresources={
 "Melee_Block": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_melee/Melee_Block.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://dpqt0aqcsio0l",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -24714,7 +24714,7 @@ _subresources={
 "Melee_Block_Attack": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_melee/Melee_Block_Attack.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://b1h1ku63e6bxo",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -26770,7 +26770,7 @@ _subresources={
 "Melee_Block_Hit": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_melee/Melee_Block_Hit.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://c1b0dc0rhfx8",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -28826,7 +28826,7 @@ _subresources={
 "Melee_Blocking": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_melee/Melee_Blocking.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://bg55yukowai6j",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
@@ -30882,7 +30882,7 @@ _subresources={
 "Melee_Dualwield_Attack_Chop": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_melee/Melee_Dualwield_Attack_Chop.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://c7jdhxg3opjeu",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -32938,7 +32938,7 @@ _subresources={
 "Melee_Dualwield_Attack_Slice": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_melee/Melee_Dualwield_Attack_Slice.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://b5m8jkxysgj0j",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -34994,7 +34994,7 @@ _subresources={
 "Melee_Dualwield_Attack_Stab": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_melee/Melee_Dualwield_Attack_Stab.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://p4qqduhddnk7",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -37050,7 +37050,7 @@ _subresources={
 "Melee_Unarmed_Attack_Kick": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_melee/Melee_Unarmed_Attack_Kick.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://m38wmj6egxao",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -39106,7 +39106,7 @@ _subresources={
 "Melee_Unarmed_Attack_Punch_A": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_melee/Melee_Unarmed_Attack_Punch_A.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://bktksth12gyku",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -41162,7 +41162,7 @@ _subresources={
 "Melee_Unarmed_Idle": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/combat_melee/Melee_Unarmed_Idle.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://coo610a0xw06k",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,

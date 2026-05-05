@@ -18546,7 +18546,7 @@ _subresources={
 "PickUp": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/general/PickUp.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://dcjpvuxpcly2c",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -26770,7 +26770,7 @@ _subresources={
 "Throw": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://assets/animations/character/medium/general/Throw.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://c7hp4l1y24oi8",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,

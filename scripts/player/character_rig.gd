@@ -45,5 +45,5 @@ func defend(delta: float, is_defending: bool, speedRatio: float)-> void:
 	animation_tree.set("parameters/ShieldBlendUpperBody/blend_amount", shieldBlend)
 	animation_tree.set("parameters/ShieldBlendLowerBody/blend_amount", blockLegsBlend)
 
-func switchWeapons(weapon: bool)-> void:
+func switchWeapons(_weapon: bool)-> void:
 	pass

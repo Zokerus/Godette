@@ -65,5 +65,12 @@ func finishAttack()-> void:
 	currentComboIndex = 0
 	combatComponent.finishAction()
 
+func _onAnimationEventReceived(eventName: StringName) -> void:
+	match eventName:
+		&"combo_window_open":
+			openComboWindow()
+		&"attack_finished":
+			finishAttack()
+
 func _on_combo_timer_timeout() -> void:
 	pass # Replace with function body.
