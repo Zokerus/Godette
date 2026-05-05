@@ -213,6 +213,13 @@ animation = &"combat_melee/Melee_Blocking"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7s8bn"]
 animation = &"combat_melee/Melee_Blocking"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uim6b"]
+animation = &"general/Hit_A"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_bsk1y"]
+fadein_time = 0.2
+fadeout_time = 0.2
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hr33t"]
 animation = &"combat_range/Ranged_Magic_Spellcasting"
 
@@ -312,8 +319,8 @@ filters = ["%GeneralSkeleton:chest", "%GeneralSkeleton:hand.l", "%GeneralSkeleto
 sync = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lo4ga"]
-graph_offset = Vector2(-850.2012, -45.165314)
-nodes/output/position = Vector2(1540, -160)
+graph_offset = Vector2(-547.345, -127.247375)
+nodes/output/position = Vector2(2120, -180)
 nodes/MovementStateMachine/node = SubResource("AnimationNodeStateMachine_m361h")
 nodes/MovementStateMachine/position = Vector2(-700, -220)
 nodes/AttackOneShot/node = SubResource("AnimationNodeOneShot_0dnc6")
@@ -340,7 +347,11 @@ nodes/MagicCasting/node = SubResource("AnimationNodeAnimation_hr33t")
 nodes/MagicCasting/position = Vector2(280, 760)
 nodes/MagicRaise/node = SubResource("AnimationNodeAnimation_3i32t")
 nodes/MagicRaise/position = Vector2(320, 940)
-node_connections = [&"output", 0, &"MagicOneShot", &"AttackOneShot", 0, &"ShieldBlendUpperBody", &"AttackOneShot", 1, &"AttackStateMachine", &"ShieldBlendLowerBody", 0, &"MovementStateMachine", &"ShieldBlendLowerBody", 1, &"BlockIdleUpper", &"ShieldBlendUpperBody", 0, &"ShieldBlendLowerBody", &"ShieldBlendUpperBody", 1, &"BlockIdleBody", &"MagicOneShot", 0, &"AttackOneShot", &"MagicOneShot", 1, &"MagicTransition", &"MagicTransition", 0, &"MagicShoot", &"MagicTransition", 1, &"MagicShootLong", &"MagicTransition", 2, &"MagicCasting", &"MagicTransition", 3, &"MagicRaise"]
+nodes/ExtraOneShot/node = SubResource("AnimationNodeOneShot_bsk1y")
+nodes/ExtraOneShot/position = Vector2(1620, -180)
+nodes/ExtraAnimation/node = SubResource("AnimationNodeAnimation_uim6b")
+nodes/ExtraAnimation/position = Vector2(1360, 160)
+node_connections = [&"output", 0, &"ExtraOneShot", &"AttackOneShot", 0, &"ShieldBlendUpperBody", &"AttackOneShot", 1, &"AttackStateMachine", &"ShieldBlendLowerBody", 0, &"MovementStateMachine", &"ShieldBlendLowerBody", 1, &"BlockIdleUpper", &"ShieldBlendUpperBody", 0, &"ShieldBlendLowerBody", &"ShieldBlendUpperBody", 1, &"BlockIdleBody", &"MagicOneShot", 0, &"AttackOneShot", &"MagicOneShot", 1, &"MagicTransition", &"MagicTransition", 0, &"MagicShoot", &"MagicTransition", 1, &"MagicShootLong", &"MagicTransition", 2, &"MagicCasting", &"MagicTransition", 3, &"MagicRaise", &"ExtraOneShot", 0, &"MagicOneShot", &"ExtraOneShot", 1, &"ExtraAnimation"]
 
 [node name="Knight" unique_id=1077938132 instance=ExtResource("1_m4bv6")]
 script = ExtResource("2_66lsh")
@@ -349,60 +360,60 @@ script = ExtResource("2_66lsh")
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="GeneralSkeleton" parent="Rig_Medium" index="0" unique_id=1332435467]
-bones/1/position = Vector3(0, 0.38416368, 0)
-bones/1/rotation = Quaternion(0.004551789, 0.043157294, 0.00019663181, 0.9990579)
+bones/1/position = Vector3(0, 0.38699207, 0)
+bones/1/rotation = Quaternion(0.0029210388, 0.043157566, 0.00012618629, 0.9990641)
 bones/1/scale = Vector3(0.99999994, 1, 0.99999994)
-bones/2/rotation = Quaternion(0.012613002, 1.9415227e-09, 0.0010917534, 0.99991995)
+bones/2/rotation = Quaternion(0.008175886, 2.3100941e-09, 0.0007076865, 0.9999663)
 bones/2/scale = Vector3(1.0000001, 1, 1.0000001)
-bones/3/rotation = Quaternion(-0.006154769, 3.856227e-09, -0.00053274276, 0.999981)
+bones/3/rotation = Quaternion(-0.0022271439, 1.4114719e-09, -0.00019277657, 0.9999975)
 bones/3/scale = Vector3(1, 0.9999999, 1)
 bones/4/position = Vector3(0.21200737, 0.13413215, 8.216504e-08)
-bones/4/rotation = Quaternion(-0.53954566, -0.1022292, -0.7628977, 0.34121364)
+bones/4/rotation = Quaternion(-0.53747296, -0.107449405, -0.76610404, 0.33565184)
 bones/4/scale = Vector3(0.9999993, 0.99999905, 0.9999998)
-bones/5/rotation = Quaternion(-6.758037e-10, -6.160448e-08, -0.3787232, 0.92551005)
+bones/5/rotation = Quaternion(1.3186927e-08, -6.35024e-08, -0.37177435, 0.9283232)
 bones/5/scale = Vector3(1.0000004, 0.9999998, 1)
 bones/6/rotation = Quaternion(1.514567e-08, -7.3584383e-09, 0.0266581, 0.99964464)
 bones/6/scale = Vector3(1.0000001, 1, 1)
-bones/7/rotation = Quaternion(-0.22025964, -0.34323362, 0.1781139, 0.89551765)
+bones/7/rotation = Quaternion(-0.22086638, -0.3441797, 0.18058111, 0.8945105)
 bones/7/scale = Vector3(0.99999976, 1.0000001, 1.0000004)
 bones/8/position = Vector3(5.138494e-10, 0.096125126, -0.057500005)
-bones/8/rotation = Quaternion(0.0024925985, 0.0024925985, -0.6978943, 0.71619207)
+bones/8/rotation = Quaternion(0.001600355, 0.0016003717, -0.70120656, 0.71295464)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/position = Vector3(-0.21200736, 0.13413227, 8.62731e-08)
-bones/9/rotation = Quaternion(-0.5659212, 0.03253369, 0.7275701, 0.38641512)
+bones/9/rotation = Quaternion(-0.564091, 0.03762488, 0.73092055, 0.3822838)
 bones/9/scale = Vector3(0.9999992, 0.9999988, 0.9999998)
-bones/10/rotation = Quaternion(2.6919789e-08, 3.1003598e-08, 0.39139223, 0.9202241)
+bones/10/rotation = Quaternion(-2.0415156e-09, 6.775614e-08, 0.38611895, 0.92244905)
 bones/10/scale = Vector3(1.0000004, 0.99999976, 1.0000001)
 bones/11/rotation = Quaternion(2.249753e-10, 6.8246844e-09, -0.026658092, 0.99964464)
 bones/11/scale = Vector3(0.99999994, 0.99999994, 1)
-bones/12/rotation = Quaternion(-0.21068312, 0.37952843, -0.13135737, 0.8912441)
+bones/12/rotation = Quaternion(-0.2112394, 0.3811532, -0.13460904, 0.889933)
 bones/12/scale = Vector3(0.9999995, 0.99999994, 1.0000005)
 bones/13/position = Vector3(-1.5415026e-08, 0.096125185, -0.057500005)
-bones/13/rotation = Quaternion(0.0024925985, -0.0024925987, 0.6978943, 0.71619207)
+bones/13/rotation = Quaternion(0.001600358, -0.001600368, 0.70120656, 0.71295464)
 bones/13/scale = Vector3(1, 1.0000001, 1.0000001)
-bones/14/rotation = Quaternion(-0.015231265, -0.0313381, -0.0008385016, 0.99939245)
+bones/14/rotation = Quaternion(-0.0085332, -0.031340607, -0.00046976487, 0.99947226)
 bones/14/scale = Vector3(0.99999994, 1, 1)
 bones/15/position = Vector3(-0.17094508, 0.11358732, 1.557549e-08)
-bones/15/rotation = Quaternion(0.9950973, -0.031120988, 0.030987173, 0.088615574)
+bones/15/rotation = Quaternion(0.9959461, -0.03053988, 0.031167049, 0.078660384)
 bones/15/scale = Vector3(0.9999999, 0.99999976, 1.0000008)
-bones/16/rotation = Quaternion(0.34235483, -6.3935055e-08, 2.3836108e-07, 0.9395708)
+bones/16/rotation = Quaternion(0.3193388, -6.3127146e-08, 2.2137755e-07, 0.9476406)
 bones/16/scale = Vector3(0.99999994, 0.99999976, 0.99999994)
-bones/17/rotation = Quaternion(-0.59661126, 0.1139167, -0.014587654, 0.7942703)
+bones/17/rotation = Quaternion(-0.5839075, 0.114157006, -0.012535791, 0.80365616)
 bones/17/scale = Vector3(0.99999976, 1.0000006, 0.9999992)
 bones/18/rotation = Quaternion(-8.934892e-05, 0.9202217, -0.3913977, 2.0290998e-05)
 bones/18/scale = Vector3(1.0000002, 0.9999979, 1.0000024)
 bones/19/position = Vector3(0.17094508, 0.1135872, 1.5994095e-08)
-bones/19/rotation = Quaternion(0.98931205, 0.057614487, 0.0714109, 0.11332567)
+bones/19/rotation = Quaternion(0.99044085, 0.057747703, 0.071101055, 0.10313529)
 bones/19/scale = Vector3(0.9999999, 0.9999997, 1.0000008)
-bones/20/rotation = Quaternion(0.33185455, 6.438184e-08, -2.2173414e-07, 0.94333065)
+bones/20/rotation = Quaternion(0.30870768, 6.558344e-08, -2.0596819e-07, 0.951157)
 bones/20/scale = Vector3(1.0000004, 0.99999994, 1.0000001)
-bones/21/rotation = Quaternion(-0.5681648, -0.11219452, 0.048422378, 0.8137914)
+bones/21/rotation = Quaternion(-0.55535746, -0.112981215, 0.046141233, 0.8226082)
 bones/21/scale = Vector3(1.0000004, 1.0000007, 0.9999993)
-bones/22/rotation = Quaternion(-9.924278e-07, 0.9202346, -0.39136732, 2.7758978e-07)
+bones/22/rotation = Quaternion(-9.689214e-07, 0.9202346, -0.39136732, 2.8719774e-07)
 bones/22/scale = Vector3(1.0000001, 0.9999975, 1.0000027)
 
 [node name="RightHandSlot" type="BoneAttachment3D" parent="Rig_Medium/GeneralSkeleton" index="9" unique_id=646431075]
-transform = Transform3D(0.00010150857, -0.262876, -0.9648299, -0.9996411, -0.025825797, 0.0069322865, -0.02674024, 0.96448314, -0.26278457, -0.42420375, 0.52981186, 0.080174185)
+transform = Transform3D(-2.143439e-06, -0.2628684, -0.9648318, -0.9998506, -0.016606906, 0.004528006, -0.017213516, 0.9646881, -0.26282924, -0.42419916, 0.53186774, 0.080713876)
 bone_name = "handslot.r"
 bone_idx = 13
 
@@ -412,7 +423,7 @@ bone_idx = 13
 visible = false
 
 [node name="LeftHandSlot" type="BoneAttachment3D" parent="Rig_Medium/GeneralSkeleton" index="10" unique_id=1732149600]
-transform = Transform3D(-7.734168e-05, 0.2630946, 0.9647701, 0.9996341, -0.026045766, 0.0071836445, 0.027018426, 0.96441764, -0.26299694, 0.42553252, 0.53254586, 0.08542485)
+transform = Transform3D(1.0936521e-05, 0.2628765, 0.9648295, 0.99985135, -0.016596574, 0.0045111408, 0.0171991, 0.9646862, -0.262838, 0.4254594, 0.53463084, 0.08605512)
 bone_name = "handslot.l"
 bone_idx = 8
 
@@ -426,7 +437,7 @@ libraries/general = SubResource("AnimationLibrary_2kc7j")
 libraries/movement_basic = SubResource("AnimationLibrary_e2kwi")
 autoplay = &"general/Idle_A"
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=94183055]
+[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=540979649]
 tree_root = SubResource("AnimationNodeBlendTree_lo4ga")
 anim_player = NodePath("../AnimationPlayer")
 parameters/AttackOneShot/active = false
@@ -440,5 +451,8 @@ parameters/MagicOneShot/request = 0
 parameters/MagicTransition/current_state = "Raise"
 parameters/MagicTransition/transition_request = ""
 parameters/MagicTransition/current_index = 3
+parameters/ExtraOneShot/active = false
+parameters/ExtraOneShot/internal_active = false
+parameters/ExtraOneShot/request = 0
 
 [node name="AnimationEventRelayComponent" parent="." index="3" unique_id=1650095274 instance=ExtResource("67_lo4ga")]

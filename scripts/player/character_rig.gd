@@ -39,3 +39,6 @@ func switchWeapons(weapon: bool)-> void:
 func castSpell(spellName: String) -> void:
 	animation_tree.set("parameters/MagicTransition/transition_request", spellName)
 	animation_tree.set("parameters/MagicOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+
+func hit() -> void:
+	animation_tree.set("parameters/ExtraOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)

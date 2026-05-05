@@ -40,6 +40,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_pause"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
+
 func _physics_process(delta: float) -> void:
 	handle_camera_rotation(delta)
 	var direction := get_movement_direction()
