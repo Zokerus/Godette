@@ -8,8 +8,8 @@ var mouseLookDelta := Vector2.ZERO
 var isJumpPreparing := false
 var ignoreGroundAnimationUntilAirborne := false
 var defend := false
-
 var movementSpeedRatio : float
+var weapon_selection = true
 
 @export var mouseSensitivity := 0.002
 @export var padLookSensitivity := 2.0
@@ -156,7 +156,8 @@ func ability_logic(delta: float) -> void:
 	
 	#switch weapon
 	if Input.is_action_just_pressed("weapon_switch"):
-		pass
+		weapon_selection = !weapon_selection
+		rig.switchWeapons(weapon_selection)
 
 func _onAnimationEventReceived(event: int) -> void:
 	match event:
