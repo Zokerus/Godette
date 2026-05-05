@@ -31,6 +31,10 @@ func attack() -> void:
 			_playNextComboAttack()
 		return
 	
+	if comboWindowOpen:
+		_playNextComboAttack()
+		return
+	
 	if combatComponent.canStartAction():
 		_startFirstAttack()
 
@@ -60,17 +64,18 @@ func openComboWindow() -> void:
 	comboTimer.start()
 
 func finishAttack()-> void:
-	comboWindowOpen = false
-	comboTimer.stop()
-	currentComboIndex = 0
+	#comboWindowOpen = false
+	#comboTimer.stop()
+	#currentComboIndex = 0
 	combatComponent.finishAction()
 
-func _onAnimationEventReceived(eventName: StringName) -> void:
-	match eventName:
-		&"combo_window_open":
+func _onAnimationEventReceived(event: AnimationEventRelay.AnimationEvents) -> void:
+	match event:
+		AnimationEventRelay.AnimationEvents.COMBO_WINDOW_OPEN:
 			openComboWindow()
-		&"attack_finished":
+		AnimationEventRelay.AnimationEvents.ATTACK_FINISHED:
 			finishAttack()
 
 func _on_combo_timer_timeout() -> void:
-	pass # Replace with function body.
+	comboWindowOpen = false
+	currentComboIndex = 0

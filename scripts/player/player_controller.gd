@@ -158,7 +158,7 @@ func ability_logic(delta: float) -> void:
 	if Input.is_action_just_pressed("weapon_switch"):
 		pass
 
-func _onAnimationEventReceived(eventName: StringName) -> void:
-	match eventName:
-		&"jump_takeoff_requested":
+func _onAnimationEventReceived(event: int) -> void:
+	match event:
+		AnimationEventRelay.AnimationEvents.JUMP_TAKEOFF:
 			_on_jump_takeoff_requested()
