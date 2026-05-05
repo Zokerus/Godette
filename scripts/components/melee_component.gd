@@ -64,9 +64,6 @@ func openComboWindow() -> void:
 	comboTimer.start()
 
 func finishAttack()-> void:
-	#comboWindowOpen = false
-	#comboTimer.stop()
-	#currentComboIndex = 0
 	combatComponent.finishAction()
 
 func _onAnimationEventReceived(event: AnimationEventRelay.AnimationEvents) -> void:
