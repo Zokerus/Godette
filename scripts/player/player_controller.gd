@@ -9,7 +9,8 @@ var isJumpPreparing := false
 var ignoreGroundAnimationUntilAirborne := false
 var defend := false
 var movementSpeedRatio : float
-var weapon_selection = true
+var weaponSelection = true
+var movementSpeedModifier := 1.0
 
 @export var mouseSensitivity := 0.002
 @export var padLookSensitivity := 2.0
@@ -67,7 +68,6 @@ func handle_camera_rotation(delta: float) -> void:
 
 func get_movement_direction()-> Vector3:
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var yaw_basis := camera_yaw_pivot.global_transform.basis
 	var forward := yaw_basis.z
@@ -78,7 +78,7 @@ func get_movement_direction()-> Vector3:
 	right.y = 0
 	right = right.normalized()
 	
-	var direction = (forward * input_dir.y + right * input_dir.x).normalized()
+	var direction := (forward * input_dir.y + right * input_dir.x).normalized()
 	return direction
 
 func handle_movement(direction: Vector3, delta: float) -> void:
@@ -94,8 +94,8 @@ func handle_movement(direction: Vector3, delta: float) -> void:
 		if direction != Vector3.ZERO:
 			
 			look_toward_direction(direction, delta)
-			velocity.x = direction.x * speed
-			velocity.z = direction.z * speed
+			velocity.x = direction.x * speed * movementSpeedModifier
+			velocity.z = direction.z * speed * movementSpeedModifier
 			character.rig.travel("Running_A")
 		else:
 			velocity.x = move_toward(velocity.x, 0, moveSpeed * 4.0 * delta)
@@ -154,17 +154,23 @@ func ability_logic(delta: float) -> void:
 	
 	#switch weapon
 	if Input.is_action_just_pressed("weapon_switch"):
-		weapon_selection = !weapon_selection
-		character.rig.switchWeapons(weapon_selection)
-		if weapon_selection:
+		weaponSelection = !weaponSelection
+		character.rig.switchWeapons(weaponSelection)
+		if weaponSelection:
 			combatComponent.activeCombatMode = CombatComponent.CombatMode.MELEE
 		else:
 			combatComponent.activeCombatMode = CombatComponent.CombatMode.MAGIC
 	
 	if Input.is_action_just_pressed("ui_accept"):
 		combatComponent.getHit(&"LightHit")
+		changeSpeedModifier(0.0, 0.3, 0.8)
 
 func _onAnimationEventReceived(event: int) -> void:
 	match event:
 		AnimationEventRelay.AnimationEvents.JUMP_TAKEOFF:
 			_on_jump_takeoff_requested()
+
+func changeSpeedModifier(value: float, start_duration: float, end_duration: float) -> void:
+	var tween = create_tween()
+	tween.tween_property(self, "movementSpeedModifier", value, start_duration)
+	tween.tween_property(self, "movementSpeedModifier", 1.0, end_duration)
