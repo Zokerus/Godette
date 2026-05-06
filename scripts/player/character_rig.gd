@@ -12,7 +12,7 @@ var currentAttackAnimation: String = ""
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/MovementStateMachine/playback"]
 @onready var attackStateMachine: AnimationNodeStateMachinePlayback = animation_tree["parameters/AttackStateMachine/playback"]
-
+@onready var magicStateMachine: AnimationNodeStateMachinePlayback = animation_tree["parameters/MagicStateMachine/playback"]
 
 
 func travel(animation_name: String)-> void:
@@ -22,7 +22,8 @@ func travel(animation_name: String)-> void:
 
 func playAttack(attackName: String) -> void:
 	attackStateMachine.travel(attackName)
-	animation_tree.set("parameters/AttackOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	animation_tree.set("parameters/UpperBodyActionOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	animation_tree.set("parameters/ActionTransition/transition_request", "Melee")
 
 
 func defend(delta: float, is_defending: bool, speedRatio: float)-> void:
@@ -37,8 +38,10 @@ func switchWeapons(weapon: bool)-> void:
 	right_hand_slot.get_child(1).visible = !weapon
 
 func castSpell(spellName: String) -> void:
-	animation_tree.set("parameters/MagicTransition/transition_request", spellName)
-	animation_tree.set("parameters/MagicOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	magicStateMachine.travel(spellName)
+	animation_tree.set("parameters/ActionTransition/transition_request", "Magic")
+	animation_tree.set("parameters/UpperBodyActionOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 func hit() -> void:
-	animation_tree.set("parameters/ExtraOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	animation_tree.set("parameters/UpperBodyActionOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+	animation_tree.set("parameters/ReactionOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
