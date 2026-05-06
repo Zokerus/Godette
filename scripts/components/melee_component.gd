@@ -2,7 +2,7 @@ extends Node
 class_name MeleeComponent
 
 @export var combatComponent: CombatComponent
-@export var characterRig: CharacterRig
+@export var character: CharacterContext
 @export var comboWindowTime := 0.5
 
 @onready var comboTimer: Timer = $ComboTimer
@@ -20,7 +20,7 @@ func _ready() -> void:
 	comboTimer.wait_time = comboWindowTime
 
 func attack() -> void:
-	if combatComponent == null or characterRig == null:
+	if combatComponent == null or character.rig == null:
 		return
 	
 	if combatComponent.activeCombatMode != CombatComponent.CombatMode.MELEE:
@@ -43,7 +43,7 @@ func _startFirstAttack()-> void:
 	comboWindowOpen = false
 	
 	combatComponent.startAction()
-	characterRig.playAttack(attacks[currentComboIndex])
+	character.rig.playAttack(attacks[currentComboIndex])
 
 func _playNextComboAttack()-> void:
 	comboWindowOpen = false
@@ -54,7 +54,7 @@ func _playNextComboAttack()-> void:
 	if currentComboIndex > attacks.size():
 		return
 	
-	characterRig.playAttack(attacks[currentComboIndex])
+	character.rig.playAttack(attacks[currentComboIndex])
 	
 func openComboWindow() -> void:
 	if !combatComponent.isPerformingAction:
@@ -65,6 +65,13 @@ func openComboWindow() -> void:
 
 func finishAttack()-> void:
 	combatComponent.finishAction()
+	
+
+func cancelAttack() -> void:
+	comboTimer.stop()
+	comboWindowOpen = false
+	currentComboIndex = 0
+	finishAttack()
 
 func _onAnimationEventReceived(event: AnimationEventRelay.AnimationEvents) -> void:
 	match event:

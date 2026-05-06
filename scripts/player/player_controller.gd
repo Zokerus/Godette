@@ -18,8 +18,8 @@ var weapon_selection = true
 @export var moveSpeed := 4.0
 @export var runSpeed := 6.0
 @export var blockMoveSpeed := 2.0
-@export_category("Character Rig")
-@export var rig: CharacterRig
+@export_category("Character Context")
+@export var character: CharacterContext
 
 @onready var combatComponent: CombatComponent = $CombatComponent
 @onready var meleeComponent: MeleeComponent = $MeleeComponent
@@ -29,9 +29,6 @@ var weapon_selection = true
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
-	meleeComponent.combatComponent = combatComponent
-	meleeComponent.characterRig = rig
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -99,11 +96,11 @@ func handle_movement(direction: Vector3, delta: float) -> void:
 			look_toward_direction(direction, delta)
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
-			rig.travel("Running_A")
+			character.rig.travel("Running_A")
 		else:
 			velocity.x = move_toward(velocity.x, 0, moveSpeed * 4.0 * delta)
 			velocity.z = move_toward(velocity.z, 0, moveSpeed * 4.0 * delta)
-			rig.travel("Idle_A")
+			character.rig.travel("Idle_A")
 			
 		movementSpeedRatio = clampf(Vector3(velocity.x, 0, velocity.z).length() / speed, 0.0, 1.0)
 		
@@ -118,7 +115,7 @@ func handle_jump(_delta: float) -> void:
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		isJumpPreparing = true
 		if tempVelocity == Vector3.ZERO:
-			rig.travel("Jump")
+			character.rig.travel("Jump")
 		else:
 			_on_jump_takeoff_requested()
 
@@ -138,7 +135,7 @@ func handle_fall(delta: float) -> void:
 		velocity += get_gravity() * delta
 		ignoreGroundAnimationUntilAirborne = false
 		if velocity.y <= 0 or tempVelocity != Vector3.ZERO:
-			rig.travel("Fall")
+			character.rig.travel("Fall")
 
 func ability_logic(delta: float) -> void:
 	#actual attack
@@ -149,20 +146,23 @@ func ability_logic(delta: float) -> void:
 	if Input.is_action_pressed("block"):
 		combatComponent.startDefend()
 		defend = combatComponent.isDefending
-		rig.defend(delta, combatComponent.isDefending, movementSpeedRatio)
+		character.rig.defend(delta, combatComponent.isDefending, movementSpeedRatio)
 	else:
 		combatComponent.stopDefend()
-		rig.defend(delta, false, 1.0)
+		character.rig.defend(delta, false, 1.0)
 		defend = false
 	
 	#switch weapon
 	if Input.is_action_just_pressed("weapon_switch"):
 		weapon_selection = !weapon_selection
-		rig.switchWeapons(weapon_selection)
+		character.rig.switchWeapons(weapon_selection)
 		if weapon_selection:
 			combatComponent.activeCombatMode = CombatComponent.CombatMode.MELEE
 		else:
 			combatComponent.activeCombatMode = CombatComponent.CombatMode.MAGIC
+	
+	if Input.is_action_just_pressed("ui_accept"):
+		combatComponent.getHit(&"LightHit")
 
 func _onAnimationEventReceived(event: int) -> void:
 	match event:

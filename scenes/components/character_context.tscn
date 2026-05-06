@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://brye0g4ixpxhn"]
+
+[ext_resource type="Script" uid="uid://sl1rtij57qrg" path="res://scripts/components/character_context.gd" id="1_kqp3a"]
+
+[node name="CharacterContext" type="Node" unique_id=44747306]
+script = ExtResource("1_kqp3a")

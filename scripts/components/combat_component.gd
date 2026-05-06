@@ -7,6 +7,8 @@ enum CombatMode {
 	MAGIC
 }
 
+@export var character: CharacterContext
+@export_category("Components")
 @export var meleeComponent: MeleeComponent
 @export var rangeComponent: Node
 @export var magicComponent: MagicComponent
@@ -47,3 +49,20 @@ func attack() -> void:
 			if magicComponent != null:
 				magicComponent.cast_spell()
 	
+
+func getHit(hitType: StringName) -> void:
+	cancelCurrentAction()
+	character.rig.playReaction(hitType)
+
+func cancelCurrentAction() -> void:
+	isPerformingAction = false
+	isDefending = false
+	
+	if meleeComponent != null:
+		meleeComponent.cancelAttack()
+	
+	#if magicComponent != null:
+		#magicComponent.cancelCast()
+	#
+	#if rangeComponent != null:
+		#rangeComponent.cancelAttack()

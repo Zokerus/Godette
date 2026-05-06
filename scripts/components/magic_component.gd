@@ -2,10 +2,10 @@ class_name MagicComponent
 extends Node
 
 @export var combatComponent: CombatComponent
-@export var characterRig: CharacterRig
+@export var character: CharacterContext
 
 func cast_spell() -> void:
-	if combatComponent == null or characterRig == null:
+	if combatComponent == null or character.rig == null:
 		return
 	
 	if combatComponent.activeCombatMode != CombatComponent.CombatMode.MAGIC:
@@ -14,5 +14,5 @@ func cast_spell() -> void:
 	if combatComponent.isPerformingAction:
 		return
 	
-	characterRig.castSpell("Shoot")
+	character.rig.castSpell("Shoot")
 	
