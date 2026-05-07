@@ -501,9 +501,9 @@ bone_name = "handslot.r"
 bone_idx = 13
 
 [node name="sword_1H" parent="Rig/GeneralSkeleton/RightHandSlot" index="0" unique_id=1697073412 instance=ExtResource("3_0dnc6")]
-visible = false
 
 [node name="wand" parent="Rig/GeneralSkeleton/RightHandSlot" index="1" unique_id=170926748 instance=ExtResource("4_57cfy")]
+visible = false
 
 [node name="LeftHandSlot" type="BoneAttachment3D" parent="Rig/GeneralSkeleton" index="7" unique_id=771635511]
 transform = Transform3D(-6.5749424e-05, 0.2627556, 0.96486235, 0.9999991, -0.0006698663, 0.000251115, 0.00071269553, 0.9648616, -0.26275566, 0.4254856, 0.5381682, 0.086668044)

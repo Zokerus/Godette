@@ -12,6 +12,7 @@ const faces := {
 
 var face_material: StandardMaterial3D
 var currentExpression := &"default"
+var rng := RandomNumberGenerator.new()
 
 func _ready() -> void:
 	var mat := get_surface_override_material(0)
@@ -40,3 +41,4 @@ func _on_blink_timer_timeout() -> void:
 	changeFace(&"blink")
 	await get_tree().create_timer(0.15).timeout
 	changeFace(currentExpression)
+	blink_timer.wait_time = rng.randf_range(1.5, 3.0)
