@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dyc16vi4vork1"]
+
+[ext_resource type="Texture2D" uid="uid://cdh5qslo8br38" path="res://assets/textures/Skeleton_Minion_skeleton_texture_A.png" id="1_v2vd2"]
+
+[resource]
+resource_name = "skeleton"
+albedo_texture = ExtResource("1_v2vd2")
+roughness = 0.5

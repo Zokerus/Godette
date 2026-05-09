@@ -105,6 +105,14 @@ weapon_switch={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Terrain"
+3d_physics/layer_2="Player"
+3d_physics/layer_3="NPC"
+3d_physics/layer_4="Items"
+3d_physics/layer_5="Projectiles"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

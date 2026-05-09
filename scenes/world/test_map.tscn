@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://6o2e0vhlw5m8"]
 
 [ext_resource type="PackedScene" uid="uid://cds4uy0satc0w" path="res://scenes/player/player.tscn" id="1_lt47i"]
+[ext_resource type="PackedScene" uid="uid://7pdx1qmhod8v" path="res://scenes/Enemy/skeleton_minion.tscn" id="2_x4yjv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x4yjv"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -35,3 +36,8 @@ use_collision = true
 
 [node name="Player" parent="." unique_id=1161970832 instance=ExtResource("1_lt47i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.081)
+
+[node name="Enemies" type="Node" parent="." unique_id=1055103374]
+
+[node name="SkeletonMinion" parent="Enemies" unique_id=1630115397 instance=ExtResource("2_x4yjv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.113052)

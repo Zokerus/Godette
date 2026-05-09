@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pj2kqmt8wc7b"
-path.s3tc="res://.godot/imported/Knight_knight_texture.png-9caf40b43836d03fceba0e978bef8275.s3tc.ctex"
+uid="uid://cdh5qslo8br38"
+path.s3tc="res://.godot/imported/Skeleton_Minion_skeleton_texture_A.png-d8cca6bc3a0620d85022d45be717f7a2.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "930b547ec91f4d0c726b16b849b216ca"
+"md5": "5b963b13c392e553abdb4cd50f0dc585"
 }
 
 [deps]
 
-source_file="res://assets/character/Knight_knight_texture.png"
-dest_files=["res://.godot/imported/Knight_knight_texture.png-9caf40b43836d03fceba0e978bef8275.s3tc.ctex"]
+source_file="res://assets/textures/Skeleton_Minion_skeleton_texture_A.png"
+dest_files=["res://.godot/imported/Skeleton_Minion_skeleton_texture_A.png-d8cca6bc3a0620d85022d45be717f7a2.s3tc.ctex"]
 
 [params]
 
