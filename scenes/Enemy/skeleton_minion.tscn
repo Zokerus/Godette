@@ -22,40 +22,40 @@ rig = NodePath("../RigYawPivot/Skeleton_Minion_Rig")
 [node name="Skeleton_Minion_Rig" parent="RigYawPivot" parent_id_path=PackedInt32Array(2124500958) index="0" unique_id=2109046176 instance=ExtResource("3_30rxw")]
 
 [node name="GeneralSkeleton" parent="RigYawPivot/Skeleton_Minion_Rig/Rig_Medium" parent_id_path=PackedInt32Array(2109046176, 1949315384) index="0" unique_id=1782637113]
-bones/1/position = Vector3(0, 0.39129427, 0)
-bones/1/rotation = Quaternion(0.00050085527, 0.043157745, 2.163864e-05, 0.99906814)
-bones/2/rotation = Quaternion(0.9921197, 0.05808352, 0.070525974, 0.08573785)
-bones/3/rotation = Quaternion(0.26913217, 6.695631e-08, -1.8222373e-07, 0.9631033)
-bones/4/rotation = Quaternion(-0.5335651, -0.11419667, 0.042380564, 0.83694166)
-bones/5/rotation = Quaternion(1.0144413e-05, 0.92025214, -0.3913261, -2.234227e-06)
-bones/6/rotation = Quaternion(0.0010948873, 2.4228533e-09, 9.4771014e-05, 0.9999994)
-bones/7/rotation = Quaternion(0.00404055, 3.1517744e-09, 0.00034974096, 0.9999918)
-bones/8/rotation = Quaternion(-0.5610774, 0.045667335, 0.73617315, 0.3757069)
-bones/9/rotation = Quaternion(-1.9595199e-09, 5.8232942e-08, 0.37767816, 0.925937)
-bones/11/rotation = Quaternion(-0.2122613, 0.3837177, -0.13951734, 0.88782936)
-bones/12/rotation = Quaternion(0.00021636632, -0.00021638362, 0.7063122, 0.7079004)
-bones/13/rotation = Quaternion(-0.0042128093, -0.03134148, -0.00023192207, 0.9994999)
-bones/14/rotation = Quaternion(-0.5341139, -0.115595214, -0.77103513, 0.326902)
-bones/15/rotation = Quaternion(7.980671e-09, -5.968441e-08, -0.36029807, 0.9328373)
-bones/17/rotation = Quaternion(-0.22196057, -0.34561005, 0.18411405, 0.8929666)
-bones/18/rotation = Quaternion(0.00021637342, 0.0002163765, -0.7063122, 0.7079004)
-bones/19/rotation = Quaternion(0.9971599, -0.029598312, 0.031479925, 0.061685316)
-bones/20/rotation = Quaternion(0.28013846, -6.3892905e-08, 1.9544726e-07, 0.9599597)
-bones/21/rotation = Quaternion(-0.5623923, 0.114473306, -0.009146333, 0.8188573)
+bones/1/position = Vector3(0, 0.3920046, 0)
+bones/1/rotation = Quaternion(3.4282424e-05, 0.04315775, 1.4835176e-06, 0.99906826)
+bones/2/rotation = Quaternion(0.9923314, 0.0581414, 0.070440106, 0.083284274)
+bones/3/rotation = Quaternion(0.26350358, 6.239188e-08, -1.753921e-07, 0.96465844)
+bones/4/rotation = Quaternion(-0.5304747, -0.11435722, 0.041859202, 0.8389082)
+bones/5/rotation = Quaternion(1.4126944e-05, 0.9202582, -0.39131153, -3.1393129e-06)
+bones/6/rotation = Quaternion(0.00018232693, 1.1904613e-09, 1.578181e-05, 1)
+bones/7/rotation = Quaternion(0.0048482837, 5.6517777e-09, 0.00041965657, 0.9999882)
+bones/8/rotation = Quaternion(-0.56070775, 0.046625733, 0.7367964, 0.37491873)
+bones/9/rotation = Quaternion(-3.6953431e-09, 3.7068144e-08, 0.3764903, 0.9264206)
+bones/11/rotation = Quaternion(-0.21239567, 0.38402295, -0.14008196, 0.8875762)
+bones/12/rotation = Quaternion(3.602288e-05, -3.6043948e-05, 0.70697457, 0.707239)
+bones/13/rotation = Quaternion(-0.0035848878, -0.031341556, -0.0001973543, 0.9995023)
+bones/14/rotation = Quaternion(-0.5337038, -0.11656505, -0.7716166, 0.325854)
+bones/15/rotation = Quaternion(7.318191e-09, -6.522229e-08, -0.35889825, 0.9333767)
+bones/17/rotation = Quaternion(-0.22210456, -0.34577733, 0.18451011, 0.8927842)
+bones/18/rotation = Quaternion(3.6024576e-05, 3.6042264e-05, -0.70697457, 0.707239)
+bones/19/rotation = Quaternion(0.99730724, -0.029470513, 0.03152462, 0.059295554)
+bones/20/rotation = Quaternion(0.27458334, -6.66494e-08, 1.9492784e-07, 0.9615634)
+bones/21/rotation = Quaternion(-0.5593539, 0.114509195, -0.00867614, 0.8209358)
 
 [node name="RightHandSlot" parent="RigYawPivot/Skeleton_Minion_Rig/Rig_Medium/GeneralSkeleton" index="9" unique_id=1044272553]
-transform = Transform3D(1.7338258e-05, -0.26273957, -0.964867, -0.9999956, -0.0023652283, 0.0006273477, -0.002447382, 0.9648631, -0.26273862, -0.42411742, 0.53497994, 0.08161473)
+transform = Transform3D(-0.00012589488, -0.262887, -0.9648268, -0.99999875, -0.0003579255, 0.0002291439, -0.00040597393, 0.96482587, -0.26288673, -0.42418846, 0.5355547, 0.08151066)
 
 [node name="LeftHandSlot" parent="RigYawPivot/Skeleton_Minion_Rig/Rig_Medium/GeneralSkeleton" index="10" unique_id=662092521]
-transform = Transform3D(-2.8491311e-05, 0.26281637, 0.964846, 0.9999959, -0.0024437879, 0.00069580384, 0.0025412296, 0.96484214, -0.26281548, 0.42547986, 0.53772706, 0.086696655)
+transform = Transform3D(-3.0169613e-05, 0.2628133, 0.96484673, 0.99999917, -0.00023820966, 9.679182e-05, 0.0002555766, 0.964846, -0.26281354, 0.42548427, 0.53832746, 0.08666603)
 
 [node name="NavigationAgent3D" parent="." index="3" unique_id=1999434203]
 path_desired_distance = 0.5
 target_desired_distance = 0.75
 
-[node name="VisionComponent" parent="." index="4" unique_id=1623844984 node_paths=PackedStringArray("characterRig")]
+[node name="VisionComponent" parent="." index="4" unique_id=1623844984 node_paths=PackedStringArray("rig_yaw_pivot")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0)
-characterRig = NodePath("../RigYawPivot/Skeleton_Minion_Rig")
+rig_yaw_pivot = NodePath("../RigYawPivot")
 
 [connection signal="target_identified" from="VisionComponent" to="." method="_on_vision_component_target_identified"]
 

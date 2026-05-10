@@ -18,6 +18,8 @@ shape = SubResource("SphereShape3D_gxy3s")
 
 [node name="VisionRayCast3D" type="RayCast3D" parent="." unique_id=928774778]
 collision_mask = 15
+debug_shape_custom_color = Color(0.89411765, 0, 0, 1)
+debug_shape_thickness = 5
 
 [connection signal="body_entered" from="DetectionArea3D" to="." method="_on_detection_area_3d_body_entered"]
 [connection signal="body_exited" from="DetectionArea3D" to="." method="_on_detection_area_3d_body_exited"]
