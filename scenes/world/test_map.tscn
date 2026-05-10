@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cds4uy0satc0w" path="res://scenes/player/player.tscn" id="1_lt47i"]
 [ext_resource type="PackedScene" uid="uid://7pdx1qmhod8v" path="res://scenes/Enemy/skeleton_minion.tscn" id="2_x4yjv"]
+[ext_resource type="PackedScene" uid="uid://cv08nnl3s6jpu" path="res://scenes/world/TestWorld.tscn" id="3_vlyuc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x4yjv"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -25,38 +26,6 @@ environment = SubResource("Environment_010cr")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Terrain" type="Node3D" parent="." unique_id=1201447679]
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Terrain" unique_id=290989851]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
-use_collision = true
-size = Vector3(50, 0.5, 50)
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Terrain" unique_id=849716193]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 8.472622)
-use_collision = true
-
-[node name="Wall" type="CSGBox3D" parent="Terrain" unique_id=1145558165]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12464476, 1.5, -6.302327)
-use_collision = true
-size = Vector3(5, 3, 1)
-
-[node name="Wall2" type="CSGBox3D" parent="Terrain" unique_id=1746886325]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1.5, 8)
-use_collision = true
-size = Vector3(5, 3, 10)
-
-[node name="Wall3" type="CSGBox3D" parent="Terrain" unique_id=548061998]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 1.5, 12)
-use_collision = true
-size = Vector3(2, 3, 2)
-
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Terrain" unique_id=296275178]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4.5, 0, 11.000022)
-use_collision = true
-polygon = PackedVector2Array(0, 0, 0, 3, 7, 0, 7, 0)
-depth = 2.0
-
 [node name="Player" parent="." unique_id=1161970832 instance=ExtResource("1_lt47i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.081)
 
@@ -64,3 +33,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.081)
 
 [node name="SkeletonMinion" parent="Enemies" unique_id=1630115397 instance=ExtResource("2_x4yjv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.113052)
+
+[node name="NavigationRegion3D" parent="." unique_id=1238533947 instance=ExtResource("3_vlyuc")]
