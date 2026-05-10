@@ -21,21 +21,40 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0.0
 	
 	if !navigation_agent_3d.is_navigation_finished():
-		var destination = navigation_agent_3d.get_next_path_position()
-		var local_destination = destination - global_position
-		#look_toward_direction(local_destination, delta)
+		var direction = get_movement_direction()
+		handle_movement(direction, delta)
 		#local_destination.y = 0.0
-		var direction = local_destination.normalized()
-		
-		velocity.x = direction.x * 5.0
-		velocity.z = direction.z * 5.0
 		move_and_slide()
 
 
-#func look_toward_direction(direction: Vector3, delta: float)-> void:
-	#var target_transform:= rig_yaw_pivot.global_transform.looking_at(rig_yaw_pivot.global_position - direction, Vector3.UP, true)
-	#
-	#rig_yaw_pivot.global_transform = rig_yaw_pivot.global_transform.interpolate_with(target_transform,  1.0 - exp(-10 * delta))
+func get_movement_direction() -> Vector3:
+	var destination := navigation_agent_3d.get_next_path_position()
+	destination = destination - global_position
+	var direction := destination.normalized()
+	return direction
+
+func handle_movement(direction: Vector3, delta: float) -> void:
+	var is_running: bool = Input.is_action_pressed("run")
+	var speed : float = 2.0
+	
+	if direction != Vector3.ZERO:
+		
+		look_toward_direction(direction, delta)
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
+		character.rig.travel("Running_A")
+	else:
+		velocity.x = move_toward(velocity.x, 0, moveSpeed * 4.0 * delta)
+		velocity.z = move_toward(velocity.z, 0, moveSpeed * 4.0 * delta)
+		character.rig.travel("Idle_A")
+			
+		#movementSpeedRatio = clampf(Vector3(velocity.x, 0, velocity.z).length() / speed, 0.0, 1.0)
+
+
+func look_toward_direction(direction: Vector3, delta: float)-> void:
+	var target_transform:= rig_yaw_pivot.global_transform.looking_at(rig_yaw_pivot.global_position - direction, Vector3.UP, true)
+	
+	rig_yaw_pivot.global_transform = rig_yaw_pivot.global_transform.interpolate_with(target_transform,  1.0 - exp(-10 * delta))
 
 
 func update_navigation(destination: Vector3) -> void:

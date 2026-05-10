@@ -34,7 +34,7 @@ func _canSeeTarget(target: Node3D) -> bool:
 	# ray.force_raycast_update()
 	
 	var direction_to_target = global_position.direction_to(target.global_position)
-	var forward_dir = characterRig.global_transform.basis.z # Forward is -Z in Godot
+	var forward_dir = -characterRig.global_transform.basis.z # Forward is -Z in Godot
 	
 	#Calculate angle
 	var angle = rad_to_deg(forward_dir.angle_to(direction_to_target))
@@ -44,7 +44,6 @@ func _canSeeTarget(target: Node3D) -> bool:
 			if vision_ray_cast_3d.get_collider() != target:
 				return false
 			else:
-				print("Player in line of sight!")
 				target_identified.emit(target)
 				return true
 		else:
