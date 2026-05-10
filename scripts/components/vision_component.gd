@@ -5,6 +5,8 @@ signal target_identified(target: Node3D)
 
 @export var excludeParent: bool = true
 @export var FOV_angle: float = 150.0
+@export_category("Character Rig")
+@export var characterRig: CharacterRig
 
 @onready var detection_area_3d: Area3D = $DetectionArea3D
 @onready var vision_ray_cast_3d: RayCast3D = $VisionRayCast3D
@@ -32,7 +34,7 @@ func _canSeeTarget(target: Node3D) -> bool:
 	# ray.force_raycast_update()
 	
 	var direction_to_target = global_position.direction_to(target.global_position)
-	var forward_dir = global_transform.basis.z # Forward is -Z in Godot
+	var forward_dir = characterRig.global_transform.basis.z # Forward is -Z in Godot
 	
 	#Calculate angle
 	var angle = rad_to_deg(forward_dir.angle_to(direction_to_target))
@@ -56,7 +58,12 @@ func _on_detection_area_3d_body_entered(body: Node3D) -> void:
 	
 	if body.is_in_group("Player"):
 		candidates.append(body)
+	
+	if candidates.size() > 0:
+		vision_ray_cast_3d.enabled = true
 
 
 func _on_detection_area_3d_body_exited(body: Node3D) -> void:
 	candidates.erase(body)
+	if candidates.size() <= 0:
+		vision_ray_cast_3d.enabled = false

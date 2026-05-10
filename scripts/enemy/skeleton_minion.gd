@@ -38,5 +38,10 @@ func _physics_process(delta: float) -> void:
 	#rig_yaw_pivot.global_transform = rig_yaw_pivot.global_transform.interpolate_with(target_transform,  1.0 - exp(-10 * delta))
 
 
-func _on_vision_component_target_identified(target: Node3D) -> void:
-	navigation_agent_3d.target_position = target.global_position
+func update_navigation(destination: Vector3) -> void:
+	navigation_agent_3d.target_position = destination
+
+
+func _on_vision_component_target_identified(object: Node3D) -> void:
+	target = object
+	update_navigation(target.global_position)

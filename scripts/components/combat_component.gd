@@ -6,7 +6,7 @@ enum CombatMode {
 	RANGED,
 	MAGIC
 }
-
+@export_category("Character Rig")
 @export var character: CharacterContext
 @export_category("Components")
 @export var meleeComponent: MeleeComponent

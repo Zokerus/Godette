@@ -9,10 +9,10 @@ script = ExtResource("1_muyyy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1069391764]
 
+[node name="CharacterContext" parent="." unique_id=44747306 instance=ExtResource("3_vamnb")]
+
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1999434203]
 path_height_offset = 0.5
 debug_enabled = true
 
 [node name="VisionComponent" parent="." unique_id=1623844984 instance=ExtResource("2_84vye")]
-
-[node name="CharacterContext" parent="." unique_id=44747306 instance=ExtResource("3_vamnb")]
