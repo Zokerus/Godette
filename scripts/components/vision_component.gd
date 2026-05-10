@@ -26,8 +26,8 @@ func updateVision() -> void:
 			return
 
 func _canSeeTarget(target: Node3D) -> bool:
-	# Set the ray to point at the player
-	vision_ray_cast_3d.target_position = target.global_position - vision_ray_cast_3d.global_position
+	# Set the ray to point at the player; Vector3.UP*1.4 to adjust for chestheight
+	vision_ray_cast_3d.target_position = vision_ray_cast_3d.to_local(target.global_position + Vector3.UP * 1.4)
 	
 	# Optional: Force update if needed more than once per frame
 	# ray.force_raycast_update()
