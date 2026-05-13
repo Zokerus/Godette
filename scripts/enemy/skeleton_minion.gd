@@ -19,35 +19,33 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	else:
 		velocity.y = 0.0
-	
-	if !navigation_agent_3d.is_navigation_finished():
-		var direction = get_movement_direction()
-		handle_movement(direction, delta)
-		#local_destination.y = 0.0
-		move_and_slide()
+
+	handle_movement(delta)
+
+	move_and_slide()
 
 
 func get_movement_direction() -> Vector3:
 	var destination := navigation_agent_3d.get_next_path_position()
-	destination = destination - global_position
-	var direction := destination.normalized()
-	return direction
+	var direction := global_position.direction_to(destination)
+	return direction.normalized()
 
-func handle_movement(direction: Vector3, delta: float) -> void:
+func handle_movement(delta: float) -> void:
 	var is_running: bool = Input.is_action_pressed("run")
 	var speed : float = 2.0
 	
-	if direction != Vector3.ZERO:
-		
-		look_toward_direction(direction, delta)
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
-		character.rig.travel("Running_A")
-	else:
+	if navigation_agent_3d.is_navigation_finished(): 
 		velocity.x = move_toward(velocity.x, 0, moveSpeed * 4.0 * delta)
 		velocity.z = move_toward(velocity.z, 0, moveSpeed * 4.0 * delta)
 		character.rig.travel("Idle_A")
-			
+		return
+	
+	var direction := get_movement_direction() 
+	look_toward_direction(direction, delta)
+	velocity.x = direction.x * speed
+	velocity.z = direction.z * speed
+	character.rig.travel("Running_A")
+	
 		#movementSpeedRatio = clampf(Vector3(velocity.x, 0, velocity.z).length() / speed, 0.0, 1.0)
 
 
