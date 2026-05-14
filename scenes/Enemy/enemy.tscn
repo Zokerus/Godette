@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dwbduhtnfrea7" path="res://scripts/enemy/enemy.gd" id="1_muyyy"]
 [ext_resource type="PackedScene" uid="uid://bv3g3p20goar5" path="res://scenes/components/vision_component.tscn" id="2_84vye"]
 [ext_resource type="PackedScene" uid="uid://brye0g4ixpxhn" path="res://scenes/components/character_context.tscn" id="3_vamnb"]
+[ext_resource type="PackedScene" uid="uid://cdbnu6i65f4ws" path="res://scenes/components/combat_component.tscn" id="4_o5uld"]
 
 [node name="Enemy" type="CharacterBody3D" unique_id=1630115397]
 script = ExtResource("1_muyyy")
@@ -18,3 +19,16 @@ path_height_offset = 0.5
 debug_enabled = true
 
 [node name="VisionComponent" parent="." unique_id=1623844984 instance=ExtResource("2_84vye")]
+
+[node name="Timers" type="Node" parent="." unique_id=2064993411]
+
+[node name="AttackTimer" type="Timer" parent="Timers" unique_id=394465433]
+one_shot = true
+
+[node name="PrepareTimer" type="Timer" parent="Timers" unique_id=1581307022]
+one_shot = true
+
+[node name="CoolDownTimer" type="Timer" parent="Timers" unique_id=2034379927]
+one_shot = true
+
+[node name="CombatComponent" parent="." unique_id=361524145 instance=ExtResource("4_o5uld")]

@@ -3,13 +3,16 @@ extends Enemy
 
 var target: Node3D
 
+@onready var melee_component: MeleeComponent = $MeleeComponent
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
-		var random_poistion := Vector3.ZERO
-		random_poistion.x = randf_range(-24.0, 24.0)
-		random_poistion.y = randf_range(-24.0, 24.0)
-		navigation_agent_3d.target_position = random_poistion
+		var random_position := Vector3.ZERO
+		random_position.x = randf_range(-24.0, 24.0)
+		random_position.y = randf_range(-24.0, 24.0)
+		navigation_agent_3d.target_position = random_position
+
 
 func _physics_process(delta: float) -> void:
 	vision_component.updateVision()
@@ -19,10 +22,27 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	else:
 		velocity.y = 0.0
-
-	handle_movement(delta)
-
-	move_and_slide()
+	
+	match state:
+		EnemyState.IDLE:
+			handle_idle(delta)
+		
+		EnemyState.CHASE:
+			handle_chase(delta)
+		
+		EnemyState.ATTACK_PREPARE:
+			handle_attack_prepare(delta)
+			
+		EnemyState.ATTACK:
+			handle_attack()
+			
+		EnemyState.RECOVER:
+			#currently nothing to handle except for timer.timeout -> signal
+			pass
+	
+	#handle_movement(delta)
+	#
+	#move_and_slide()
 
 
 func get_movement_direction() -> Vector3:
@@ -30,8 +50,9 @@ func get_movement_direction() -> Vector3:
 	var direction := global_position.direction_to(destination)
 	return direction.normalized()
 
+
 func handle_movement(delta: float) -> void:
-	var is_running: bool = Input.is_action_pressed("run")
+	#var is_running: bool = Input.is_action_pressed("run")
 	var speed : float = 2.0
 	
 	if navigation_agent_3d.is_navigation_finished(): 
@@ -47,6 +68,13 @@ func handle_movement(delta: float) -> void:
 	character.rig.travel("Running_A")
 	
 		#movementSpeedRatio = clampf(Vector3(velocity.x, 0, velocity.z).length() / speed, 0.0, 1.0)
+	move_and_slide()
+
+
+func stop_movement(delta) -> void:
+	velocity.x = move_toward(velocity.x, 0, moveSpeed * 4.0 * delta)
+	velocity.z = move_toward(velocity.z, 0, moveSpeed * 4.0 * delta)
+	character.rig.travel("Idle_A")
 
 
 func look_toward_direction(direction: Vector3, delta: float)-> void:
@@ -59,6 +87,69 @@ func update_navigation(destination: Vector3) -> void:
 	navigation_agent_3d.target_position = destination
 
 
+func handle_idle(delta: float) -> void:
+	handle_movement(delta)
+
+
+func handle_chase(delta: float) -> void:
+	#If target is lost or gone, go back to IDLE state
+	#TODO: Enemy should go back to origin or back to daily routine
+	if target == null:
+		state = EnemyState.IDLE
+		return
+	
+	var distance := global_position.distance_to(target.global_position)
+	
+	if distance <= attackRange:
+		state = EnemyState.ATTACK_PREPARE
+		prepare_timer.wait_time = attackPrepareTime
+		prepare_timer.start()
+		stop_movement(delta)
+		return
+	
+	update_navigation(target.global_position)
+	handle_movement(delta)
+
+
+func handle_attack_prepare(delta: float) -> void:
+	#If target is lost or gone, go back to IDLE state
+	#TODO: Enemy should go back to origin or back to daily routine
+	if target == null:
+		state = EnemyState.IDLE
+		return
+	
+	var direction := global_position.direction_to(target.global_position)
+	return direction.normalized()
+	look_toward_direction(direction, delta)
+
+
+func handle_attack() -> void:
+	#If target is lost or gone, go back to IDLE state
+	#TODO: Enemy should go back to origin or back to daily routine
+	if target == null:
+		state = EnemyState.IDLE
+		return
+	
+	if combat_component.canStartAction():
+		combat_component.attack()
+
+
 func _on_vision_component_target_identified(object: Node3D) -> void:
 	target = object
-	update_navigation(target.global_position)
+	state = EnemyState.CHASE
+
+
+func _on_prepare_timer_timeout() -> void:
+	state = EnemyState.ATTACK
+
+
+func _on_animation_event_relay_component_animation_event_received(event: AnimationEventRelay.AnimationEvents) -> void:
+	match event:
+		AnimationEventRelay.AnimationEvents.ATTACK_FINISHED:
+			state = EnemyState.RECOVER
+			cool_down_timer.wait_time = attackCooldown
+			cool_down_timer.start()
+
+
+func _on_cool_down_timer_timeout() -> void:
+	state = EnemyState.CHASE

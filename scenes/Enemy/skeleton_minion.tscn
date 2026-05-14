@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b13q7nyhqaqx7" path="res://scenes/Enemy/enemy.tscn" id="1_xw6qm"]
 [ext_resource type="Script" uid="uid://dux7pjknwcjos" path="res://scripts/enemy/skeleton_minion.gd" id="2_x0foc"]
 [ext_resource type="PackedScene" uid="uid://cr46ru1vnslu" path="res://scenes/character/skeleton_minion_rig.tscn" id="3_30rxw"]
+[ext_resource type="PackedScene" uid="uid://cso85aarnwt3x" path="res://scenes/components/melee_component.tscn" id="4_cc0jc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vla0n"]
 height = 2.2
@@ -22,32 +23,32 @@ rig = NodePath("../RigYawPivot/Skeleton_Minion_Rig")
 [node name="Skeleton_Minion_Rig" parent="RigYawPivot" parent_id_path=PackedInt32Array(2124500958) index="0" unique_id=2109046176 instance=ExtResource("3_30rxw")]
 
 [node name="GeneralSkeleton" parent="RigYawPivot/Skeleton_Minion_Rig/Rig_Medium" parent_id_path=PackedInt32Array(2109046176, 1949315384) index="0" unique_id=1782637113]
-bones/1/position = Vector3(0, 0.38428974, 0)
-bones/1/rotation = Quaternion(0.0044404618, 0.04315732, 0.00019182269, 0.9990585)
-bones/2/rotation = Quaternion(0.98923856, 0.05760787, 0.071429454, 0.11395753)
-bones/3/rotation = Quaternion(0.33313835, 6.165086e-08, -2.3076954e-07, 0.94287795)
-bones/4/rotation = Quaternion(-0.56887674, -0.11214907, 0.048550762, 0.8132925)
-bones/5/rotation = Quaternion(-9.861584e-07, 0.9202346, -0.39136732, 2.8015234e-07)
-bones/6/rotation = Quaternion(0.012052245, 2.6374483e-09, 0.0010432154, 0.9999269)
-bones/7/rotation = Quaternion(-0.005658392, 4.5483026e-09, -0.0004897776, 0.9999839)
-bones/8/rotation = Quaternion(-0.5659212, 0.0325337, 0.7275701, 0.386415)
-bones/9/rotation = Quaternion(1.5644003e-08, 4.0607457e-08, 0.39129788, 0.9202642)
-bones/11/rotation = Quaternion(-0.21074982, 0.37973288, -0.13177162, 0.8910801)
-bones/12/rotation = Quaternion(0.0023817783, -0.0023817862, 0.69830656, 0.715791)
-bones/13/rotation = Quaternion(-0.013749525, -0.031338774, -0.0007569301, 0.99941397)
-bones/14/rotation = Quaternion(-0.53967637, -0.10189445, -0.762691, 0.34156895)
-bones/15/rotation = Quaternion(7.949116e-09, -6.5395206e-08, -0.37872326, 0.92551005)
-bones/17/rotation = Quaternion(-0.22028533, -0.34327602, 0.17822617, 0.89547276)
-bones/18/rotation = Quaternion(0.0023817804, 0.0023817837, -0.69830656, 0.715791)
-bones/19/rotation = Quaternion(0.9950414, -0.031157788, 0.030976096, 0.08923294)
-bones/20/rotation = Quaternion(0.34363288, -6.190356e-08, 2.393021e-07, 0.93910414)
-bones/21/rotation = Quaternion(-0.5973185, 0.11390213, -0.014702985, 0.79373854)
+bones/1/position = Vector3(0, 0.3920567, 0)
+bones/1/rotation = Quaternion(4.8927222e-06, 0.043157753, 2.1393417e-07, 0.9990683)
+bones/2/rotation = Quaternion(0.9923522, 0.058147326, 0.07043146, 0.08303919)
+bones/3/rotation = Quaternion(0.26294068, 6.505662e-08, -1.7389998e-07, 0.9648121)
+bones/4/rotation = Quaternion(-0.5301657, -0.1143731, 0.041807264, 0.83910394)
+bones/5/rotation = Quaternion(1.5321511e-05, 0.9202601, -0.39130715, -3.4107188e-06)
+bones/6/rotation = Quaternion(9.020536e-06, 2.7417308e-11, 7.8079705e-07, 1)
+bones/7/rotation = Quaternion(0.0050016805, 7.4240205e-09, 0.0004329343, 0.9999875)
+bones/8/rotation = Quaternion(-0.5606304, 0.046825513, 0.73692626, 0.3747543)
+bones/9/rotation = Quaternion(6.604436e-09, 4.586003e-08, 0.37638444, 0.92646366)
+bones/11/rotation = Quaternion(-0.21243589, 0.38411444, -0.14025132, 0.8875002)
+bones/12/rotation = Quaternion(1.7738718e-06, -1.7947892e-06, 0.7071004, 0.70711327)
+bones/13/rotation = Quaternion(-0.0035497095, -0.031341568, -0.00019541757, 0.9995025)
+bones/14/rotation = Quaternion(-0.533618, -0.116767205, -0.77173764, 0.32563543)
+bones/15/rotation = Quaternion(1.2279466e-08, -6.429377e-08, -0.3586059, 0.9334891)
+bones/17/rotation = Quaternion(-0.22214739, -0.34582704, 0.18462771, 0.89273006)
+bones/18/rotation = Quaternion(1.7738719e-06, 1.7947892e-06, -0.7071004, 0.70711327)
+bones/19/rotation = Quaternion(0.9973216, -0.029457815, 0.03152911, 0.059056852)
+bones/20/rotation = Quaternion(0.27402794, -6.391096e-08, 1.9283554e-07, 0.9617218)
+bones/21/rotation = Quaternion(-0.55905026, 0.11451264, -0.008629316, 0.8211427)
 
 [node name="RightHandSlot" parent="RigYawPivot/Skeleton_Minion_Rig/Rig_Medium/GeneralSkeleton" index="9" unique_id=1044272553]
-transform = Transform3D(0.00015778001, -0.26359203, -0.9646344, -0.99965835, -0.025209757, 0.0067262608, -0.026091477, 0.9643039, -0.26350623, -0.4242485, 0.5299593, 0.07967251)
+transform = Transform3D(3.0682554e-06, -0.26285687, -0.96483505, -0.99999875, -1.6272046e-05, 2.3050286e-06, -1.6616643e-05, 0.9648342, -0.26285684, -0.42413014, 0.53559065, 0.0816138)
 
 [node name="LeftHandSlot" parent="RigYawPivot/Skeleton_Minion_Rig/Rig_Medium/GeneralSkeleton" index="10" unique_id=662092521]
-transform = Transform3D(-0.00023848796, 0.26393387, 0.9645407, 0.99964875, -0.02546513, 0.0072159986, 0.02646708, 0.9642038, -0.26383552, 0.4257256, 0.53269947, 0.08442401)
+transform = Transform3D(-1.6106533e-06, 0.26285973, 0.9648341, 0.99999917, -1.9103274e-05, 7.669449e-06, 2.0818774e-05, 0.9648334, -0.26285994, 0.42548305, 0.5383453, 0.08668688)
 
 [node name="NavigationAgent3D" parent="." index="3" unique_id=1999434203]
 path_desired_distance = 0.5
@@ -57,6 +58,17 @@ target_desired_distance = 0.75
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0)
 rig_yaw_pivot = NodePath("../RigYawPivot")
 
+[node name="CombatComponent" parent="." index="6" unique_id=361524145 node_paths=PackedStringArray("character", "meleeComponent")]
+character = NodePath("../CharacterContext")
+meleeComponent = NodePath("../MeleeComponent")
+
+[node name="MeleeComponent" parent="." index="7" unique_id=733076158 node_paths=PackedStringArray("combatComponent", "character") instance=ExtResource("4_cc0jc")]
+combatComponent = NodePath("../CombatComponent")
+character = NodePath("../CharacterContext")
+
+[connection signal="animationEventReceived" from="RigYawPivot/Skeleton_Minion_Rig/AnimationEventRelayComponent" to="." method="_on_animation_event_relay_component_animation_event_received"]
 [connection signal="target_identified" from="VisionComponent" to="." method="_on_vision_component_target_identified"]
+[connection signal="timeout" from="Timers/PrepareTimer" to="." method="_on_prepare_timer_timeout"]
+[connection signal="timeout" from="Timers/CoolDownTimer" to="." method="_on_cool_down_timer_timeout"]
 
 [editable path="RigYawPivot/Skeleton_Minion_Rig"]
