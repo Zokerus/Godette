@@ -12,10 +12,13 @@ enum CombatMode {
 @export var meleeComponent: MeleeComponent
 @export var rangeComponent: Node
 @export var magicComponent: MagicComponent
+@export var activeCoolDown: bool = false
 
 var activeCombatMode: CombatMode = CombatMode.MELEE
 var isPerformingAction := false
 var isDefending := false
+
+@onready var cool_down_timer: Timer = $CoolDownTimer
 
 func canStartAction() -> bool:
 	return !isPerformingAction and !isDefending
@@ -24,7 +27,10 @@ func startAction() -> void:
 	isPerformingAction = true
 
 func finishAction() -> void:
-	isPerformingAction = false
+	if !activeCoolDown:
+		isPerformingAction = false
+	else:
+		cool_down_timer.start()
 
 func startDefend() -> void:
 	if !isPerformingAction:
@@ -48,7 +54,7 @@ func attack() -> void:
 		CombatMode.MAGIC:
 			if magicComponent != null:
 				magicComponent.cast_spell()
-	
+
 
 func getHit(hitType: StringName) -> void:
 	cancelCurrentAction()
@@ -66,3 +72,7 @@ func cancelCurrentAction() -> void:
 	#
 	#if rangeComponent != null:
 		#rangeComponent.cancelAttack()
+
+
+func _on_cool_down_timer_timeout() -> void:
+	isPerformingAction = false

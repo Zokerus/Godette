@@ -31,7 +31,4 @@ one_shot = true
 [node name="PrepareTimer" type="Timer" parent="Timers" unique_id=1581307022]
 one_shot = true
 
-[node name="CoolDownTimer" type="Timer" parent="Timers" unique_id=2034379927]
-one_shot = true
-
 [node name="CombatComponent" parent="." unique_id=361524145 instance=ExtResource("4_o5uld")]

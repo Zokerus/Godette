@@ -5,6 +5,9 @@ var target: Node3D
 
 @onready var melee_component: MeleeComponent = $MeleeComponent
 
+func _ready() -> void:
+	combat_component.cool_down_timer.wait_time = attackCooldown
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
@@ -35,14 +38,6 @@ func _physics_process(delta: float) -> void:
 			
 		EnemyState.ATTACK:
 			handle_attack()
-			
-		EnemyState.RECOVER:
-			#currently nothing to handle except for timer.timeout -> signal
-			pass
-	
-	#handle_movement(delta)
-	#
-	#move_and_slide()
 
 
 func get_movement_direction() -> Vector3:
@@ -88,7 +83,7 @@ func update_navigation(destination: Vector3) -> void:
 
 
 func handle_idle(delta: float) -> void:
-	handle_movement(delta)
+	stop_movement(delta)
 
 
 func handle_chase(delta: float) -> void:
@@ -151,11 +146,7 @@ func _on_prepare_timer_timeout() -> void:
 func _on_animation_event_relay_component_animation_event_received(event: AnimationEventRelay.AnimationEvents) -> void:
 	match event:
 		AnimationEventRelay.AnimationEvents.ATTACK_FINISHED:
-			state_component.change_state(EnemyState.RECOVER)
-
-
-func _on_cool_down_timer_timeout() -> void:
-	state_component.change_state(EnemyState.CHASE)
+			state_component.change_state(EnemyState.CHASE)
 
 
 func _on_state_component_state_changed(newState: Variant) -> void:
@@ -163,7 +154,3 @@ func _on_state_component_state_changed(newState: Variant) -> void:
 		EnemyState.ATTACK_PREPARE:
 			prepare_timer.wait_time = attackPrepareTime
 			prepare_timer.start()
-		
-		EnemyState.RECOVER:
-			cool_down_timer.wait_time = attackCooldown
-			cool_down_timer.start()

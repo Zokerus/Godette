@@ -4,3 +4,8 @@
 
 [node name="CombatComponent" type="Node" unique_id=361524145]
 script = ExtResource("1_fbogt")
+
+[node name="CoolDownTimer" type="Timer" parent="." unique_id=301721348]
+one_shot = true
+
+[connection signal="timeout" from="CoolDownTimer" to="." method="_on_cool_down_timer_timeout"]

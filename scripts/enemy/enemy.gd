@@ -6,7 +6,6 @@ enum EnemyState {
 	CHASE,
 	ATTACK_PREPARE,
 	ATTACK,
-	RECOVER,
 }
 
 @export var moveSpeed: float = 2.0
@@ -21,5 +20,4 @@ enum EnemyState {
 @onready var character: CharacterContext = $CharacterContext
 @onready var attack_timer: Timer = $Timers/AttackTimer
 @onready var prepare_timer: Timer = $Timers/PrepareTimer
-@onready var cool_down_timer: Timer = $Timers/CoolDownTimer
 @onready var combat_component: CombatComponent = $CombatComponent
