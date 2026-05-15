@@ -138,6 +138,12 @@ func _on_vision_component_target_identified(object: Node3D) -> void:
 	state_component.change_state(EnemyState.CHASE)
 
 
+func _on_vision_component_target_lost() -> void:
+	target = null
+	state_component.change_state(EnemyState.IDLE)
+	#TODO: Later search play at last known position --> run back to origin
+
+
 func _on_prepare_timer_timeout() -> void:
 	state_component.change_state(EnemyState.ATTACK)
 
