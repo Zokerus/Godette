@@ -14,9 +14,8 @@ enum EnemyState {
 @export var attackCooldown := 1.2
 @export var attackPrepareTime := 0.3
 
-var state: EnemyState = EnemyState.IDLE
-
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
+@onready var state_component: StateComponent = $StateComponent
 @onready var vision_component: VisionComponent = $VisionComponent
 @onready var rig_yaw_pivot: Node3D = $RigYawPivot
 @onready var character: CharacterContext = $CharacterContext

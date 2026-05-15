@@ -1,15 +1,14 @@
 class_name StateComponent
 extends Node
 
-signal state_changed(oldState, newState)
+signal state_changed(newState)
 
 var currentState: int
 
 func change_state(newState) -> void:
 	if currentState == newState:
 		return
-		
-	var old := currentState
+	print(newState)
 	currentState = newState
 	
-	state_changed.emit(old, currentState)
+	state_changed.emit(currentState)

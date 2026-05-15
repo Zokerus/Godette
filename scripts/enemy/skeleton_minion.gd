@@ -23,7 +23,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.y = 0.0
 	
-	match state:
+	match state_component.currentState:
 		EnemyState.IDLE:
 			handle_idle(delta)
 		
@@ -95,16 +95,14 @@ func handle_chase(delta: float) -> void:
 	#If target is lost or gone, go back to IDLE state
 	#TODO: Enemy should go back to origin or back to daily routine
 	if target == null:
-		state = EnemyState.IDLE
+		state_component.change_state(EnemyState.IDLE)
 		return
 	
 	var distance := global_position.distance_to(target.global_position)
 	
 	if distance <= attackRange:
-		state = EnemyState.ATTACK_PREPARE
-		prepare_timer.wait_time = attackPrepareTime
-		prepare_timer.start()
 		stop_movement(delta)
+		state_component.change_state(EnemyState.ATTACK_PREPARE)
 		return
 	
 	update_navigation(target.global_position)
@@ -115,11 +113,12 @@ func handle_attack_prepare(delta: float) -> void:
 	#If target is lost or gone, go back to IDLE state
 	#TODO: Enemy should go back to origin or back to daily routine
 	if target == null:
-		state = EnemyState.IDLE
+		state_component.change_state(EnemyState.IDLE)
 		return
 	
 	var direction := global_position.direction_to(target.global_position)
-	return direction.normalized()
+	direction.y = 0.0
+	direction = direction.normalized()
 	look_toward_direction(direction, delta)
 
 
@@ -127,7 +126,7 @@ func handle_attack() -> void:
 	#If target is lost or gone, go back to IDLE state
 	#TODO: Enemy should go back to origin or back to daily routine
 	if target == null:
-		state = EnemyState.IDLE
+		state_component.change_state(EnemyState.IDLE)
 		return
 	
 	if combat_component.canStartAction():
@@ -136,20 +135,29 @@ func handle_attack() -> void:
 
 func _on_vision_component_target_identified(object: Node3D) -> void:
 	target = object
-	state = EnemyState.CHASE
+	state_component.change_state(EnemyState.CHASE)
 
 
 func _on_prepare_timer_timeout() -> void:
-	state = EnemyState.ATTACK
+	state_component.change_state(EnemyState.ATTACK)
 
 
 func _on_animation_event_relay_component_animation_event_received(event: AnimationEventRelay.AnimationEvents) -> void:
 	match event:
 		AnimationEventRelay.AnimationEvents.ATTACK_FINISHED:
-			state = EnemyState.RECOVER
-			cool_down_timer.wait_time = attackCooldown
-			cool_down_timer.start()
+			state_component.change_state(EnemyState.RECOVER)
 
 
 func _on_cool_down_timer_timeout() -> void:
-	state = EnemyState.CHASE
+	state_component.change_state(EnemyState.CHASE)
+
+
+func _on_state_component_state_changed(newState: Variant) -> void:
+	match newState:
+		EnemyState.ATTACK_PREPARE:
+			prepare_timer.wait_time = attackPrepareTime
+			prepare_timer.start()
+		
+		EnemyState.RECOVER:
+			cool_down_timer.wait_time = attackCooldown
+			cool_down_timer.start()

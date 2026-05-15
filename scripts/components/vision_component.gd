@@ -2,28 +2,37 @@ class_name VisionComponent
 extends Node3D
 
 signal target_identified(target: Node3D)
+signal target_lost()
 
 @export var excludeParent: bool = true
 @export var FOV_angle: float = 150.0
 @export var  rig_yaw_pivot: Node3D
 
-@onready var detection_area_3d: Area3D = $DetectionArea3D
-@onready var vision_ray_cast_3d: RayCast3D = $VisionRayCast3D
-
-
 var visibleTarget: Node3D = null
 var candidates: Array[Node3D] = []
 
+@onready var detection_area_3d: Area3D = $DetectionArea3D
+@onready var vision_ray_cast_3d: RayCast3D = $VisionRayCast3D
+
 func updateVision() -> void:
-	visibleTarget = null
+	var newTarget : Node3D = null
 
 	for body in candidates:
 		if body == null or !is_instance_valid(body):
 			continue
 
 		if _canSeeTarget(body):
-			visibleTarget = body
-			return
+			newTarget = body
+			break
+	
+	if newTarget != visibleTarget:
+		if newTarget != null:
+			target_identified.emit(newTarget)
+			visibleTarget = newTarget
+		else:
+			target_lost.emit()
+			visibleTarget = null
+
 
 func _canSeeTarget(target: Node3D) -> bool:
 	# Set the ray to point at the player; Vector3.UP*1.4 to adjust for chestheight
@@ -45,12 +54,13 @@ func _canSeeTarget(target: Node3D) -> bool:
 			if vision_ray_cast_3d.get_collider() != target:
 				return false
 			else:
-				target_identified.emit(target)
+				#target_identified.emit(target)
 				return true
 		else:
 			return false
 	else:
 		return false
+
 
 func _on_detection_area_3d_body_entered(body: Node3D) -> void:
 	if body == self.get_parent():
