@@ -51,7 +51,7 @@ func _playNextComboAttack()-> void:
 	
 	currentComboIndex += 1
 	
-	if currentComboIndex > attacks.size():
+	if currentComboIndex >= attacks.size():
 		return
 	
 	character.rig.playAttack(attacks[currentComboIndex])
