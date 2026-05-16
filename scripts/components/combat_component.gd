@@ -17,20 +17,21 @@ enum CombatMode {
 var activeCombatMode: CombatMode = CombatMode.MELEE
 var isPerformingAction := false
 var isDefending := false
+var isCoolDown := false
 
 @onready var cool_down_timer: Timer = $CoolDownTimer
 
 func canStartAction() -> bool:
-	return !isPerformingAction and !isDefending
+	return !isPerformingAction and !isDefending and !isCoolDown
 
 func startAction() -> void:
 	isPerformingAction = true
 
 func finishAction() -> void:
-	if !activeCoolDown:
-		isPerformingAction = false
-	else:
+	if activeCoolDown:
 		cool_down_timer.start()
+		isCoolDown = true
+	isPerformingAction = false
 
 func startDefend() -> void:
 	if !isPerformingAction:
@@ -75,4 +76,4 @@ func cancelCurrentAction() -> void:
 
 
 func _on_cool_down_timer_timeout() -> void:
-	isPerformingAction = false
+	isCoolDown = false

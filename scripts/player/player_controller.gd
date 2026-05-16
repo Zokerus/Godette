@@ -5,20 +5,20 @@ const JUMP_VELOCITY = 4.5
 
 #Stores the x/y direction the player is trying to look in
 var mouseLookDelta := Vector2.ZERO
-var isJumpPreparing := false
-var ignoreGroundAnimationUntilAirborne := false
-var defend := false
+var isJumpPreparing: bool = false
+var ignoreGroundAnimationUntilAirborne: bool = false
+var defend: bool = false
 var movementSpeedRatio : float
-var weaponSelection = true
-var movementSpeedModifier := 1.0
+var weaponSelection: bool = true
+var movementSpeedModifier: float = 1.0
 
-@export var mouseSensitivity := 0.002
-@export var padLookSensitivity := 2.0
-@export var min_vertical_boundary: float = -60
-@export var max_vertical_boundary: float = 17
-@export var moveSpeed := 4.0
-@export var runSpeed := 6.0
-@export var blockMoveSpeed := 2.0
+@export var mouseSensitivity: float = 0.002
+@export var padLookSensitivity: float = 2.0
+@export var min_vertical_boundary: float = -60.0
+@export var max_vertical_boundary: float = 17.0
+@export var moveSpeed: float = 4.0
+@export var runSpeed: float = 6.0
+@export var blockMoveSpeed: float = 2.0
 @export_category("Character Context")
 @export var character: CharacterContext
 

@@ -93,11 +93,18 @@ func handle_chase(delta: float) -> void:
 		state_component.change_state(EnemyState.IDLE)
 		return
 	
+	#enemy is still attack and must not move
+	if combat_component.isPerformingAction:
+		stop_movement(delta)
+		return
+		
+	
 	var distance := global_position.distance_to(target.global_position)
 	
 	if distance <= attackRange:
 		stop_movement(delta)
-		state_component.change_state(EnemyState.ATTACK_PREPARE)
+		if combat_component.canStartAction():
+			state_component.change_state(EnemyState.ATTACK_PREPARE)
 		return
 	
 	update_navigation(target.global_position)
@@ -115,6 +122,16 @@ func handle_attack_prepare(delta: float) -> void:
 	direction.y = 0.0
 	direction = direction.normalized()
 	look_toward_direction(direction, delta)
+	
+	# Bewegung optional:
+	var distance := global_position.distance_to(target.global_position)
+	if distance <= attackRange:
+		stop_movement(delta)
+	elif distance > attackRange * 1.5 and distance <= attackRange * 3:
+		handle_movement(delta)
+	else:
+		prepare_timer.stop()
+		state_component.change_state(EnemyState.CHASE)
 
 
 func handle_attack() -> void:
@@ -140,7 +157,9 @@ func _on_vision_component_target_lost() -> void:
 
 
 func _on_prepare_timer_timeout() -> void:
-	state_component.change_state(EnemyState.ATTACK)
+	#state_component.change_state(EnemyState.ATTACK)
+	combat_component.attack()
+	state_component.change_state(EnemyState.CHASE)
 
 
 func _on_animation_event_relay_component_animation_event_received(event: AnimationEventRelay.AnimationEvents) -> void:
