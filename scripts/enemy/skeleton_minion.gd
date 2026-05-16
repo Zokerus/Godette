@@ -1,6 +1,9 @@
 class_name SkeletonMinion
 extends Enemy
 
+@export var attackPrepareMoveRangeMultiplier: float = 1.5
+@export var attackPrepareCancelRangeMultiplier: float = 3.0
+
 var target: Node3D
 var lastKnownPosition: Vector3
 
@@ -120,24 +123,29 @@ func handle_chase(delta: float) -> void:
 func handle_attack_prepare(delta: float) -> void:
 	#If target is lost or gone, go back to IDLE state
 	#TODO: Enemy should go back to origin or back to daily routine
+	#Ggf Übergang zu SEARCH
 	if target == null:
 		state_component.change_state(EnemyState.IDLE)
 		return
 	
-	var direction := global_position.direction_to(target.global_position)
-	direction.y = 0.0
-	direction = direction.normalized()
-	look_toward_direction(direction, delta)
-	
-	# Bewegung optional:
 	var distance := global_position.distance_to(target.global_position)
-	if distance <= attackRange:
-		stop_movement(delta)
-	elif distance > attackRange * 1.5 and distance <= attackRange * 3:
-		handle_movement(delta)
-	else:
+	# target is to far away, cancel attack and follow
+	if distance > attackRange * attackPrepareCancelRangeMultiplier:
 		prepare_timer.stop()
 		state_component.change_state(EnemyState.CHASE)
+		return
+	
+	update_navigation(target.global_position)
+	
+	var direction := global_position.direction_to(target.global_position)
+	direction.y = 0.0
+	look_toward_direction(direction.normalized(), delta)
+	
+	# Bewegung optional:
+	if distance <= attackRange:
+		stop_movement(delta)
+	else:
+		handle_movement(delta)
 
 
 func handle_attack() -> void:
