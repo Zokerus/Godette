@@ -2,10 +2,12 @@ class_name SkeletonMinion
 extends Enemy
 
 var target: Node3D
+var lastKnownPosition: Vector3
 
 @onready var melee_component: MeleeComponent = $MeleeComponent
 
 func _ready() -> void:
+	pointOfOrigin = global_position
 	combat_component.cool_down_timer.wait_time = attackCooldown
 
 
@@ -38,6 +40,9 @@ func _physics_process(delta: float) -> void:
 			
 		EnemyState.ATTACK:
 			handle_attack()
+		
+		EnemyState.SEARCH:
+			handle_search(delta)
 
 
 func get_movement_direction() -> Vector3:
@@ -70,6 +75,7 @@ func stop_movement(delta) -> void:
 	velocity.x = move_toward(velocity.x, 0, moveSpeed * 4.0 * delta)
 	velocity.z = move_toward(velocity.z, 0, moveSpeed * 4.0 * delta)
 	character.rig.travel("Idle_A")
+	move_and_slide()
 
 
 func look_toward_direction(direction: Vector3, delta: float)-> void:
@@ -145,14 +151,23 @@ func handle_attack() -> void:
 		combat_component.attack()
 
 
+func handle_search(delta) -> void:
+	update_navigation(lastKnownPosition)
+	handle_movement(delta)
+	
+	if navigation_agent_3d.is_navigation_finished():
+		state_component.change_state(EnemyState.IDLE)
+
+
 func _on_vision_component_target_identified(object: Node3D) -> void:
 	target = object
 	state_component.change_state(EnemyState.CHASE)
 
 
 func _on_vision_component_target_lost() -> void:
+	lastKnownPosition = target.global_position
 	target = null
-	state_component.change_state(EnemyState.IDLE)
+	state_component.change_state(EnemyState.SEARCH)
 	#TODO: Later search play at last known position --> run back to origin
 
 

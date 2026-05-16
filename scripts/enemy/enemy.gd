@@ -6,12 +6,13 @@ enum EnemyState {
 	CHASE,
 	ATTACK_PREPARE,
 	ATTACK,
+	SEARCH,
 }
 
 @export var moveSpeed: float = 2.0
-@export var attackRange := 1.8
-@export var attackCooldown := 1.2
-@export var attackPrepareTime := 0.3
+@export var attackRange: float = 1.8
+@export var attackCooldown: float = 1.2
+@export var attackPrepareTime: float = 0.3
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 @onready var state_component: StateComponent = $StateComponent
@@ -21,3 +22,5 @@ enum EnemyState {
 @onready var attack_timer: Timer = $Timers/AttackTimer
 @onready var prepare_timer: Timer = $Timers/PrepareTimer
 @onready var combat_component: CombatComponent = $CombatComponent
+
+var pointOfOrigin:= Vector3.ZERO
