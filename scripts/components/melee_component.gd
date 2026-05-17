@@ -18,7 +18,7 @@ func _ready() -> void:
 	comboTimer.wait_time = comboWindowTime
 
 
-func attack(attack: StringName) -> void:
+func attack(attackName: StringName) -> void:
 	if combatComponent == null or character.rig == null:
 		return
 	
@@ -35,15 +35,15 @@ func attack(attack: StringName) -> void:
 		return
 	
 	if combatComponent.canStartAction():
-		_startFirstAttack(attack)
+		_startFirstAttack(attackName)
 
 
-func _startFirstAttack(attack: StringName)-> void:
+func _startFirstAttack(attackName: StringName)-> void:
 	currentComboIndex = 0
 	comboWindowOpen = false
 	
 	combatComponent.startAction()
-	character.rig.playAttack(attack)
+	character.rig.playAttack(attackName)
 
 
 func _playNextComboAttack()-> void:
@@ -62,13 +62,13 @@ func get_random_attack() -> StringName:
 	if attackSet == null or attackSet.attacks.is_empty():
 		return &""
 	
-	var attack: StringName = attackSet.attacks.pick_random()
+	var attackName: StringName = attackSet.attacks.pick_random()
 	
-	if attack == lastAttack and attackSet.attacks.size() > 1:
-		attack = attackSet.attacks.pick_random()
+	if attackName == lastAttack and attackSet.attacks.size() > 1:
+		attackName = attackSet.attacks.pick_random()
 	
-	lastAttack = attack
-	return attack
+	lastAttack = attackName
+	return attackName
 
 
 func openComboWindow() -> void:

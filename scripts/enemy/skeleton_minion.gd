@@ -40,9 +40,6 @@ func _physics_process(delta: float) -> void:
 		
 		EnemyState.ATTACK_PREPARE:
 			handle_attack_prepare(delta)
-			
-		EnemyState.ATTACK:
-			handle_attack()
 		
 		EnemyState.SEARCH:
 			handle_search(delta)
@@ -148,17 +145,6 @@ func handle_attack_prepare(delta: float) -> void:
 		handle_movement(delta)
 
 
-func handle_attack() -> void:
-	#If target is lost or gone, go back to IDLE state
-	#TODO: Enemy should go back to origin or back to daily routine
-	if target == null:
-		state_component.change_state(EnemyState.IDLE)
-		return
-	
-	if combat_component.canStartAction():
-		combat_component.attack(&"Chop")
-
-
 func handle_search(delta) -> void:
 	update_navigation(lastKnownPosition)
 	handle_movement(delta)
@@ -180,8 +166,7 @@ func _on_vision_component_target_lost() -> void:
 
 
 func _on_prepare_timer_timeout() -> void:
-	#state_component.change_state(EnemyState.ATTACK)
-	combat_component.attack(&"Chop")
+	combat_component.attack(melee_component.get_random_attack())
 	state_component.change_state(EnemyState.CHASE)
 
 

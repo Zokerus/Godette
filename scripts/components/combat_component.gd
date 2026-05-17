@@ -44,11 +44,11 @@ func setCombatMode(mode: CombatMode) -> void:
 	if !isPerformingAction:
 		activeCombatMode = mode
 
-func attack(attack: StringName) -> void:
+func attack(attackName: StringName) -> void:
 	match activeCombatMode:
 		CombatMode.MELEE:
 			if meleeComponent != null:
-				meleeComponent.attack(attack)
+				meleeComponent.attack(attackName)
 		#CombatMode.RANGED:
 			#if rangeComponent != null:
 				#rangeComponent.attack()
