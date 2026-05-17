@@ -1,20 +1,17 @@
-extends Node
 class_name MeleeComponent
+extends Node
 
 @export var combatComponent: CombatComponent
 @export var character: CharacterContext
 @export var attackSet: AttackSetData
 @export var comboWindowTime := 0.5
 
-@onready var comboTimer: Timer = $ComboTimer
-
 var comboWindowOpen := false
 var currentComboIndex := 0
 
-var attacks: Array[StringName] = [
-	&"Chop",
-	&"Slice"
-]
+@onready var comboTimer: Timer = $ComboTimer
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -44,7 +41,7 @@ func _startFirstAttack()-> void:
 	comboWindowOpen = false
 	
 	combatComponent.startAction()
-	character.rig.playAttack(attacks[currentComboIndex])
+	character.rig.playAttack(attackSet.attacks[currentComboIndex])
 
 func _playNextComboAttack()-> void:
 	comboWindowOpen = false
@@ -52,10 +49,10 @@ func _playNextComboAttack()-> void:
 	
 	currentComboIndex += 1
 	
-	if currentComboIndex >= attacks.size():
+	if currentComboIndex >= attackSet.attacks.size():
 		return
 	
-	character.rig.playAttack(attacks[currentComboIndex])
+	character.rig.playAttack(attackSet.attacks[currentComboIndex])
 	
 func openComboWindow() -> void:
 	if !combatComponent.isPerformingAction:
