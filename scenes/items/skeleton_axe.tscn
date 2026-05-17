@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://c1scee4rypacp"]
+
+[ext_resource type="PackedScene" uid="uid://pmi8a8h1js21" path="res://assets/items/Skeleton_Axe.gltf" id="1_ts2bs"]
+
+[node name="SkeletonAxe" unique_id=123605539 instance=ExtResource("1_ts2bs")]
