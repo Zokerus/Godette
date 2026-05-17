@@ -5,6 +5,7 @@ signal target_identified(target: Node3D)
 signal target_lost()
 
 @export var excludeParent: bool = true
+@export var detectionRange: float = 10.0
 @export var FOV_angle: float = 150.0
 @export var  rig_yaw_pivot: Node3D
 
@@ -13,6 +14,12 @@ var candidates: Array[Node3D] = []
 
 @onready var detection_area_3d: Area3D = $DetectionArea3D
 @onready var vision_ray_cast_3d: RayCast3D = $VisionRayCast3D
+@onready var collision_shape_3d: CollisionShape3D = $DetectionArea3D/CollisionShape3D
+
+
+
+func _ready() -> void:
+	collision_shape_3d.shape.set("radius", detectionRange)
 
 func updateVision() -> void:
 	var newTarget : Node3D = null
