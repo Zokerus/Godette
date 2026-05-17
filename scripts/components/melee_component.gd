@@ -8,14 +8,15 @@ extends Node
 
 var comboWindowOpen := false
 var currentComboIndex := 0
+var lastAttack : StringName
 
 @onready var comboTimer: Timer = $ComboTimer
-
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	comboTimer.wait_time = comboWindowTime
+
 
 func attack() -> void:
 	if combatComponent == null or character.rig == null:
@@ -36,12 +37,14 @@ func attack() -> void:
 	if combatComponent.canStartAction():
 		_startFirstAttack()
 
+
 func _startFirstAttack()-> void:
 	currentComboIndex = 0
 	comboWindowOpen = false
 	
 	combatComponent.startAction()
 	character.rig.playAttack(attackSet.attacks[currentComboIndex])
+
 
 func _playNextComboAttack()-> void:
 	comboWindowOpen = false
@@ -53,7 +56,21 @@ func _playNextComboAttack()-> void:
 		return
 	
 	character.rig.playAttack(attackSet.attacks[currentComboIndex])
+
+
+func get_random_attack() -> StringName:
+	if attackSet == null or attackSet.attacks.is_empty():
+		return &""
 	
+	var attack: StringName = attackSet.attacks.pick_random()
+	
+	if attack == lastAttack and attackSet.attacks.size() > 1:
+		attack = attackSet.attacks.pick_random()
+	
+	lastAttack = attack
+	return attack
+
+
 func openComboWindow() -> void:
 	if !combatComponent.isPerformingAction:
 		return
@@ -61,9 +78,10 @@ func openComboWindow() -> void:
 	comboWindowOpen = true
 	comboTimer.start()
 
+
 func finishAttack()-> void:
 	combatComponent.finishAction()
-	
+
 
 func cancelAttack() -> void:
 	comboTimer.stop()
@@ -71,12 +89,14 @@ func cancelAttack() -> void:
 	currentComboIndex = 0
 	finishAttack()
 
+
 func _onAnimationEventReceived(event: AnimationEventRelay.AnimationEvents) -> void:
 	match event:
 		AnimationEventRelay.AnimationEvents.COMBO_WINDOW_OPEN:
 			openComboWindow()
 		AnimationEventRelay.AnimationEvents.ATTACK_FINISHED:
 			finishAttack()
+
 
 func _on_combo_timer_timeout() -> void:
 	comboWindowOpen = false
