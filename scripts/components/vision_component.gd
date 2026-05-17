@@ -1,7 +1,7 @@
 class_name VisionComponent
 extends Node3D
 
-signal target_identified(target: Node3D)
+signal target_identified(targetObject: Node3D)
 signal target_lost()
 
 @export var excludeParent: bool = true
