@@ -18,7 +18,7 @@ func _ready() -> void:
 	comboTimer.wait_time = comboWindowTime
 
 
-func attack() -> void:
+func attack(attack: StringName) -> void:
 	if combatComponent == null or character.rig == null:
 		return
 	
@@ -35,15 +35,15 @@ func attack() -> void:
 		return
 	
 	if combatComponent.canStartAction():
-		_startFirstAttack()
+		_startFirstAttack(attack)
 
 
-func _startFirstAttack()-> void:
+func _startFirstAttack(attack: StringName)-> void:
 	currentComboIndex = 0
 	comboWindowOpen = false
 	
 	combatComponent.startAction()
-	character.rig.playAttack(attackSet.attacks[currentComboIndex])
+	character.rig.playAttack(attack)
 
 
 func _playNextComboAttack()-> void:

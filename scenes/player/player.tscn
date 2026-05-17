@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cdbnu6i65f4ws" path="res://scenes/components/combat_component.tscn" id="4_lvxji"]
 [ext_resource type="PackedScene" uid="uid://cso85aarnwt3x" path="res://scenes/components/melee_component.tscn" id="5_p47bc"]
 [ext_resource type="PackedScene" uid="uid://dak6o8c5ivdi" path="res://scenes/components/magic_component.tscn" id="7_0owmy"]
+[ext_resource type="Resource" uid="uid://ib7jhi8jem1x" path="res://resources/combat/attack_sets/player_attack_set.tres" id="8_5gtgg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x7p2l"]
 height = 2.3
@@ -39,32 +40,32 @@ right_hand_slot = NodePath("Rig/GeneralSkeleton/RightHandSlot")
 left_hand_slot = NodePath("Rig/GeneralSkeleton/LeftHandSlot")
 
 [node name="GeneralSkeleton" parent="RigYawPivot/Godette/Rig" parent_id_path=PackedInt32Array(1658511372, 1926860781) index="0" unique_id=31224677]
-bones/1/position = Vector3(0, 0.38879946, 0)
-bones/1/rotation = Quaternion(0.0019027065, 0.043157674, 8.219614e-05, 0.9990665)
-bones/2/rotation = Quaternion(0.0052361065, 2.1018693e-09, 0.00045322554, 0.9999863)
-bones/3/rotation = Quaternion(0.00037500635, 4.829642e-09, 3.2459713e-05, 1)
-bones/4/rotation = Quaternion(-0.53611547, -0.11078635, -0.76813465, 0.3320781)
-bones/5/rotation = Quaternion(1.8430208e-08, -6.7353746e-08, -0.36713207, 0.93016887)
-bones/7/rotation = Quaternion(-0.22129412, -0.34477544, 0.18208341, 0.89387053)
-bones/8/rotation = Quaternion(0.0010347639, 0.0010347761, -0.70329785, 0.71089387)
-bones/9/rotation = Quaternion(-0.56288046, 0.040908728, 0.7330698, 0.37960613)
-bones/10/rotation = Quaternion(4.268103e-09, 4.740658e-08, 0.38270545, 0.9238705)
-bones/12/rotation = Quaternion(-0.21163909, 0.3822127, -0.1366717, 0.8890687)
-bones/13/rotation = Quaternion(0.0010347647, -0.0010347749, 0.70329785, 0.71089387)
-bones/14/rotation = Quaternion(-0.006584386, -0.03134107, -0.00036248026, 0.99948704)
-bones/15/rotation = Quaternion(0.9911417, 0.057864357, 0.070880875, 0.09626005)
-bones/16/rotation = Quaternion(0.29316515, 6.492078e-08, -1.9877754e-07, 0.95606184)
-bones/17/rotation = Quaternion(-0.5467693, -0.11347804, 0.044641305, 0.82835585)
-bones/18/rotation = Quaternion(2.0828422e-06, 0.9202395, -0.39135554, -4.021232e-07)
-bones/19/rotation = Quaternion(0.9964613, -0.030160232, 0.031289812, 0.07194731)
-bones/20/rotation = Quaternion(0.30389002, -6.187637e-08, 2.0965898e-07, 0.95270723)
-bones/21/rotation = Quaternion(-0.5754114, 0.114295095, -0.011184648, 0.8097612)
+bones/1/position = Vector3(0, 0.39199606, 0)
+bones/1/rotation = Quaternion(3.92331e-05, 0.043157745, 1.6973781e-06, 0.99906826)
+bones/2/rotation = Quaternion(0.00020865642, 1.3623725e-09, 1.8060833e-05, 1)
+bones/3/rotation = Quaternion(0.0048249783, 5.3938733e-09, 0.00041763938, 0.9999883)
+bones/4/rotation = Quaternion(-0.53371656, -0.11653482, -0.77159846, 0.3258867)
+bones/5/rotation = Quaternion(6.5890187e-09, -6.536189e-08, -0.35894197, 0.93336)
+bones/7/rotation = Quaternion(-0.22209814, -0.34576985, 0.18449236, 0.89279246)
+bones/8/rotation = Quaternion(4.1228097e-05, 4.1245294e-05, -0.7069555, 0.70725805)
+bones/9/rotation = Quaternion(-0.5607193, 0.046595793, 0.73677695, 0.37494338)
+bones/10/rotation = Quaternion(-2.8878098e-09, 3.565545e-08, 0.37650716, 0.9264138)
+bones/12/rotation = Quaternion(-0.21238965, 0.38400924, -0.14005663, 0.8875876)
+bones/13/rotation = Quaternion(4.1226158e-05, -4.1247215e-05, 0.7069555, 0.70725805)
+bones/14/rotation = Quaternion(-0.0035921345, -0.03134156, -0.00019775324, 0.9995023)
+bones/15/rotation = Quaternion(0.9923283, 0.058140505, 0.070441395, 0.08332094)
+bones/16/rotation = Quaternion(0.2635878, 6.2002606e-08, -1.7561432e-07, 0.96463543)
+bones/17/rotation = Quaternion(-0.5305209, -0.11435484, 0.041866977, 0.83887887)
+bones/18/rotation = Quaternion(1.3948304e-05, 0.92025805, -0.3913122, -3.098714e-06)
+bones/19/rotation = Quaternion(0.9973051, -0.029472409, 0.03152395, 0.059331246)
+bones/20/rotation = Quaternion(0.2746664, -6.705901e-08, 1.9524082e-07, 0.9615396)
+bones/21/rotation = Quaternion(-0.55939937, 0.11450869, -0.008683143, 0.82090485)
 
 [node name="RightHandSlot" parent="RigYawPivot/Godette/Rig/GeneralSkeleton" index="6" unique_id=265523135]
-transform = Transform3D(6.426126e-08, -0.26285732, -0.96483487, -0.9999365, -0.010772035, 0.0029356922, -0.011165401, 0.96477395, -0.2628408, -0.42416942, 0.53319025, 0.08104315)
+transform = Transform3D(-0.00014441936, -0.26289028, -0.96482605, -0.99999887, -0.0004096325, 0.0002622788, -0.00046462947, 0.9648249, -0.26289007, -0.42419672, 0.5355486, 0.081496276)
 
 [node name="LeftHandSlot" parent="RigYawPivot/Godette/Rig/GeneralSkeleton" index="7" unique_id=771635511]
-transform = Transform3D(-3.3178367e-07, 0.26285914, 0.9648343, 0.99993676, -0.010773588, 0.0029360808, 0.011166865, 0.9647736, -0.26284292, 0.4254634, 0.5359473, 0.08629954)
+transform = Transform3D(-3.466628e-05, 0.2628061, 0.9648487, 0.99999917, -0.0002725419, 0.000110734036, 0.00029243183, 0.9648481, -0.26280633, 0.42548448, 0.5383239, 0.08666335)
 
 [node name="Knight" parent="RigYawPivot" unique_id=1077938132 node_paths=PackedStringArray("right_hand_slot", "left_hand_slot") instance=ExtResource("3_75vfm")]
 visible = false
@@ -72,32 +73,32 @@ right_hand_slot = NodePath("Rig_Medium/GeneralSkeleton/RightHandSlot")
 left_hand_slot = NodePath("Rig_Medium/GeneralSkeleton/LeftHandSlot")
 
 [node name="GeneralSkeleton" parent="RigYawPivot/Knight/Rig_Medium" parent_id_path=PackedInt32Array(1077938132, 88369012) index="0" unique_id=1332435467]
-bones/1/position = Vector3(0, 0.38879946, 0)
-bones/1/rotation = Quaternion(0.0019027065, 0.043157674, 8.219614e-05, 0.9990665)
-bones/2/rotation = Quaternion(0.0052361065, 2.1018693e-09, 0.00045322554, 0.9999863)
-bones/3/rotation = Quaternion(0.00037500635, 4.829642e-09, 3.2459713e-05, 1)
-bones/4/rotation = Quaternion(-0.53611547, -0.11078635, -0.76813465, 0.3320781)
-bones/5/rotation = Quaternion(1.8430208e-08, -6.7353746e-08, -0.36713207, 0.93016887)
-bones/7/rotation = Quaternion(-0.22129412, -0.34477544, 0.18208341, 0.89387053)
-bones/8/rotation = Quaternion(0.0010347639, 0.001034776, -0.70329785, 0.71089387)
-bones/9/rotation = Quaternion(-0.56288046, 0.040908728, 0.7330698, 0.37960613)
-bones/10/rotation = Quaternion(4.268104e-09, 4.7406576e-08, 0.38270545, 0.9238705)
-bones/12/rotation = Quaternion(-0.21163909, 0.3822127, -0.1366717, 0.8890687)
-bones/13/rotation = Quaternion(0.0010347646, -0.0010347748, 0.70329785, 0.71089387)
-bones/14/rotation = Quaternion(-0.006584386, -0.03134107, -0.00036248026, 0.99948704)
-bones/15/rotation = Quaternion(0.9964613, -0.030160232, 0.031289812, 0.07194731)
-bones/16/rotation = Quaternion(0.30389002, -6.187637e-08, 2.0965895e-07, 0.95270723)
-bones/17/rotation = Quaternion(-0.5754114, 0.114295095, -0.011184648, 0.8097612)
-bones/19/rotation = Quaternion(0.9911417, 0.057864357, 0.070880875, 0.09626005)
-bones/20/rotation = Quaternion(0.29316515, 6.492078e-08, -1.9877756e-07, 0.95606184)
-bones/21/rotation = Quaternion(-0.5467693, -0.11347804, 0.044641305, 0.82835585)
-bones/22/rotation = Quaternion(2.0828422e-06, 0.9202395, -0.39135554, -4.021232e-07)
+bones/1/position = Vector3(0, 0.39199606, 0)
+bones/1/rotation = Quaternion(3.92331e-05, 0.043157745, 1.6973781e-06, 0.99906826)
+bones/2/rotation = Quaternion(0.00020865642, 1.3623725e-09, 1.8060833e-05, 1)
+bones/3/rotation = Quaternion(0.0048249783, 5.3938733e-09, 0.00041763938, 0.9999883)
+bones/4/rotation = Quaternion(-0.53371656, -0.11653482, -0.77159846, 0.3258867)
+bones/5/rotation = Quaternion(6.5890173e-09, -6.5361895e-08, -0.35894197, 0.93336)
+bones/7/rotation = Quaternion(-0.22209814, -0.34576985, 0.18449236, 0.89279246)
+bones/8/rotation = Quaternion(4.1228097e-05, 4.1245297e-05, -0.7069555, 0.70725805)
+bones/9/rotation = Quaternion(-0.5607193, 0.046595793, 0.73677695, 0.37494338)
+bones/10/rotation = Quaternion(-2.8878104e-09, 3.565544e-08, 0.37650716, 0.9264138)
+bones/12/rotation = Quaternion(-0.21238965, 0.38400924, -0.14005663, 0.8875876)
+bones/13/rotation = Quaternion(4.122616e-05, -4.1247218e-05, 0.7069555, 0.70725805)
+bones/14/rotation = Quaternion(-0.0035921345, -0.03134156, -0.00019775324, 0.9995023)
+bones/15/rotation = Quaternion(0.9973051, -0.029472409, 0.03152395, 0.059331246)
+bones/16/rotation = Quaternion(0.2746664, -6.7059005e-08, 1.9524083e-07, 0.9615396)
+bones/17/rotation = Quaternion(-0.55939937, 0.11450869, -0.008683143, 0.82090485)
+bones/19/rotation = Quaternion(0.9923283, 0.058140505, 0.070441395, 0.08332094)
+bones/20/rotation = Quaternion(0.2635878, 6.2002606e-08, -1.7561433e-07, 0.96463543)
+bones/21/rotation = Quaternion(-0.5305209, -0.11435484, 0.041866977, 0.83887887)
+bones/22/rotation = Quaternion(1.3948304e-05, 0.92025805, -0.3913122, -3.098714e-06)
 
 [node name="RightHandSlot" parent="RigYawPivot/Knight/Rig_Medium/GeneralSkeleton" index="9" unique_id=646431075]
-transform = Transform3D(6.472692e-08, -0.26285732, -0.96483487, -0.9999365, -0.010772035, 0.0029356917, -0.011165401, 0.96477395, -0.2628408, -0.42416942, 0.53319025, 0.08104315)
+transform = Transform3D(-0.00014441938, -0.26289028, -0.96482605, -0.99999887, -0.0004096325, 0.00026227883, -0.0004646295, 0.9648249, -0.26289007, -0.42419672, 0.5355486, 0.081496276)
 
 [node name="LeftHandSlot" parent="RigYawPivot/Knight/Rig_Medium/GeneralSkeleton" index="10" unique_id=1732149600]
-transform = Transform3D(-3.3155084e-07, 0.26285914, 0.9648343, 0.99993676, -0.010773588, 0.0029360808, 0.011166865, 0.9647736, -0.26284292, 0.4254634, 0.5359473, 0.08629954)
+transform = Transform3D(-3.4666286e-05, 0.2628061, 0.9648487, 0.99999917, -0.0002725419, 0.000110734036, 0.00029243183, 0.9648481, -0.26280633, 0.42548448, 0.5383239, 0.08666335)
 
 [node name="CameraYawPivot" type="Node3D" parent="." unique_id=1464741403]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
@@ -121,6 +122,7 @@ magicComponent = NodePath("../MagicComponent")
 [node name="MeleeComponent" parent="." unique_id=733076158 node_paths=PackedStringArray("combatComponent", "character") instance=ExtResource("5_p47bc")]
 combatComponent = NodePath("../CombatComponent")
 character = NodePath("../CharacterContext")
+attackSet = ExtResource("8_5gtgg")
 
 [node name="MagicComponent" parent="." unique_id=2114964570 node_paths=PackedStringArray("combatComponent", "character") instance=ExtResource("7_0owmy")]
 combatComponent = NodePath("../CombatComponent")

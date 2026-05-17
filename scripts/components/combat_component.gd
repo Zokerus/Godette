@@ -44,11 +44,11 @@ func setCombatMode(mode: CombatMode) -> void:
 	if !isPerformingAction:
 		activeCombatMode = mode
 
-func attack() -> void:
+func attack(attack: StringName) -> void:
 	match activeCombatMode:
 		CombatMode.MELEE:
 			if meleeComponent != null:
-				meleeComponent.attack()
+				meleeComponent.attack(attack)
 		#CombatMode.RANGED:
 			#if rangeComponent != null:
 				#rangeComponent.attack()
@@ -60,6 +60,7 @@ func attack() -> void:
 func getHit(hitType: StringName) -> void:
 	cancelCurrentAction()
 	character.rig.playReaction(hitType)
+
 
 func cancelCurrentAction() -> void:
 	isPerformingAction = false

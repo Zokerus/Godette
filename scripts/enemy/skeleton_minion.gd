@@ -156,7 +156,7 @@ func handle_attack() -> void:
 		return
 	
 	if combat_component.canStartAction():
-		combat_component.attack()
+		combat_component.attack(&"Chop")
 
 
 func handle_search(delta) -> void:
@@ -181,7 +181,7 @@ func _on_vision_component_target_lost() -> void:
 
 func _on_prepare_timer_timeout() -> void:
 	#state_component.change_state(EnemyState.ATTACK)
-	combat_component.attack()
+	combat_component.attack(&"Chop")
 	state_component.change_state(EnemyState.CHASE)
 
 
