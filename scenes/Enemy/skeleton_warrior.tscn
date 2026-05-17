@@ -2,64 +2,65 @@
 
 [ext_resource type="PackedScene" uid="uid://b13q7nyhqaqx7" path="res://scenes/Enemy/enemy.tscn" id="1_vubfu"]
 [ext_resource type="PackedScene" uid="uid://dfrs85p5yyxcf" path="res://scenes/character/skeleton_warrior_rig.tscn" id="2_1yqvf"]
+[ext_resource type="Script" uid="uid://c2vme8kglithn" path="res://scripts/enemy/skeleton_warrior.gd" id="2_x70ru"]
+[ext_resource type="PackedScene" uid="uid://cso85aarnwt3x" path="res://scenes/components/melee_component.tscn" id="4_x70ru"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vubfu"]
+height = 2.2
 
 [node name="SkeletonWarrior" unique_id=1630115397 instance=ExtResource("1_vubfu")]
+script = ExtResource("2_x70ru")
+
+[node name="CollisionShape3D" parent="." index="0" unique_id=1069391764]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+shape = SubResource("CapsuleShape3D_vubfu")
+
+[node name="CharacterContext" parent="." index="1" unique_id=44747306 node_paths=PackedStringArray("rig")]
+rig = NodePath("../RigYawPivot/Skeleton_Warrior_Rig")
 
 [node name="Skeleton_Warrior_Rig" parent="RigYawPivot" parent_id_path=PackedInt32Array(2124500958) index="0" unique_id=1042127525 instance=ExtResource("2_1yqvf")]
 
 [node name="GeneralSkeleton" parent="RigYawPivot/Skeleton_Warrior_Rig/Rig_Medium" parent_id_path=PackedInt32Array(1042127525, 467514969) index="0" unique_id=1625854722]
-bones/1/position = Vector3(0, 0.39177486, 0)
-bones/1/rotation = Quaternion(0.00019861427, 0.04315775, 8.582363e-06, 0.99906826)
-bones/1/scale = Vector3(0.99999994, 1, 0.99999994)
-bones/2/rotation = Quaternion(0.00036616996, 1.1126673e-09, 3.1694835e-05, 1)
-bones/2/scale = Vector3(1.0000001, 1, 1.0000001)
-bones/3/rotation = Quaternion(0.0046855574, 6.8818284e-09, 0.00040557142, 0.99998903)
-bones/3/scale = Vector3(1, 0.9999999, 1)
-bones/4/position = Vector3(-0.21200736, 0.13413227, 8.62731e-08)
-bones/4/rotation = Quaternion(-0.56073993, 0.046542402, 0.73674226, 0.37498727)
-bones/4/scale = Vector3(0.9999992, 0.9999988, 0.9999998)
-bones/5/rotation = Quaternion(8.7017265e-09, 4.99901e-08, 0.376823, 0.92628527)
-bones/5/scale = Vector3(1.0000004, 0.99999976, 1.0000001)
-bones/7/rotation = Quaternion(-0.21237889, 0.3839848, -0.14001133, 0.88760793)
-bones/7/scale = Vector3(0.9999995, 0.99999994, 1.0000005)
-bones/8/position = Vector3(-1.5415026e-08, 0.096125185, -0.057500005)
-bones/8/rotation = Quaternion(7.235729e-05, -7.237203e-05, 0.70684123, 0.7073723)
-bones/8/scale = Vector3(1, 1.0000001, 1.0000001)
-bones/9/position = Vector3(0.21200737, 0.13413215, 8.216504e-08)
-bones/9/rotation = Quaternion(-0.5337395, -0.11648074, -0.77156603, 0.32594514)
-bones/9/scale = Vector3(0.9999993, 0.99999905, 0.9999998)
-bones/10/rotation = Quaternion(8.790629e-09, -6.580563e-08, -0.35902023, 0.9333299)
-bones/10/scale = Vector3(1.0000004, 0.9999998, 1)
-bones/12/rotation = Quaternion(-0.22207047, -0.34573653, 0.18441239, 0.8928287)
-bones/12/scale = Vector3(0.99999976, 1.0000001, 1.0000004)
-bones/13/position = Vector3(5.138494e-10, 0.096125126, -0.057500005)
-bones/13/rotation = Quaternion(7.235729e-05, 7.237203e-05, -0.70684123, 0.7073723)
-bones/13/scale = Vector3(1, 1, 1)
-bones/14/rotation = Quaternion(-0.0041436567, -0.03134149, -0.00022811512, 0.99950016)
-bones/14/scale = Vector3(0.99999994, 1, 1)
-bones/15/rotation = Quaternion(0.9973012, -0.029475806, 0.031522747, 0.059395086)
-bones/15/scale = Vector3(0.9999999, 0.99999976, 1.0000008)
-bones/16/rotation = Quaternion(0.2748149, -6.779144e-08, 1.958004e-07, 0.9614972)
-bones/16/scale = Vector3(0.99999994, 0.99999976, 0.99999994)
-bones/17/rotation = Quaternion(-0.5594805, 0.11450774, -0.008695674, 0.8208495)
-bones/17/scale = Vector3(0.99999976, 1.0000006, 0.9999992)
-bones/18/scale = Vector3(1.0000002, 0.9999979, 1.0000024)
-bones/19/rotation = Quaternion(0.9923227, 0.058138914, 0.070443705, 0.08338649)
-bones/19/scale = Vector3(0.9999999, 0.9999997, 1.0000008)
-bones/20/rotation = Quaternion(0.26373842, 6.383044e-08, -1.7574197e-07, 0.9645943)
-bones/20/scale = Vector3(1.0000004, 0.99999994, 1.0000001)
-bones/21/rotation = Quaternion(-0.5306035, -0.1143506, 0.041880872, 0.83882654)
-bones/21/scale = Vector3(1.0000004, 1.0000007, 0.9999993)
-bones/22/rotation = Quaternion(1.3638915e-05, 0.92025745, -0.3913133, -3.0253611e-06)
-bones/22/scale = Vector3(1.0000001, 0.9999975, 1.0000027)
+bones/1/position = Vector3(0, 0.3915296, 0)
+bones/1/rotation = Quaternion(0.0003671986, 0.04315775, 1.5864909e-05, 0.99906826)
+bones/2/rotation = Quaternion(0.00067697564, 2.0570954e-09, 5.8597474e-05, 0.99999976)
+bones/3/rotation = Quaternion(0.0044104545, 6.4099885e-09, 0.0003817591, 0.9999903)
+bones/4/rotation = Quaternion(-0.5608352, 0.046295956, 0.73658204, 0.37519002)
+bones/5/rotation = Quaternion(1.0526875e-08, 5.3584248e-08, 0.37720472, 0.92613)
+bones/7/rotation = Quaternion(-0.21232921, 0.3838719, -0.13980244, 0.8877016)
+bones/8/rotation = Quaternion(0.00013378181, -0.00013379117, 0.7066156, 0.70759755)
+bones/9/rotation = Quaternion(-0.5338451, -0.11623138, -0.77141666, 0.3262146)
+bones/10/rotation = Quaternion(5.754497e-09, -6.712129e-08, -0.35938072, 0.9331911)
+bones/12/rotation = Quaternion(-0.22200355, -0.34565777, 0.18422505, 0.89291453)
+bones/13/rotation = Quaternion(0.00013378181, 0.00013379117, -0.7066156, 0.70759755)
+bones/14/rotation = Quaternion(-0.0046605323, -0.03134141, -0.0002565698, 0.9994979)
+bones/15/rotation = Quaternion(0.9972553, -0.029516077, 0.03150864, 0.060149834)
+bones/16/rotation = Quaternion(0.27657026, -6.7046805e-08, 1.9514074e-07, 0.96099377)
+bones/17/rotation = Quaternion(-0.56044036, 0.114496596, -0.008844018, 0.82019436)
+bones/19/rotation = Quaternion(0.9922564, 0.058120422, 0.070470944, 0.08416146)
+bones/20/rotation = Quaternion(0.26551726, 6.5105134e-08, -1.8341156e-07, 0.9641061)
+bones/21/rotation = Quaternion(-0.5315801, -0.11430008, 0.042045362, 0.83820665)
+bones/22/rotation = Quaternion(1.2174654e-05, 0.9202552, -0.3913187, -2.6900072e-06)
 
 [node name="head" parent="RigYawPivot/Skeleton_Warrior_Rig/Rig_Medium/GeneralSkeleton" index="0" unique_id=1185571194]
-transform = Transform3D(0.99972034, -1.4551915e-09, 0.023646593, 5.294563e-05, 0.99999744, -0.0022383537, -0.023646541, 0.0022389777, 0.99971795, -4.2862007e-09, 1.2275217, 0.0033338286)
+transform = Transform3D(0.99972045, -1.3969839e-09, 0.023646608, 3.8138707e-05, 0.99999857, -0.0016123531, -0.023646563, 0.001612802, 0.9997191, -4.265365e-09, 1.2272747, 0.00386911)
 
 [node name="RightHandSlot" parent="RigYawPivot/Skeleton_Warrior_Rig/Rig_Medium/GeneralSkeleton" index="10" unique_id=2012212772]
-transform = Transform3D(9.342731e-05, -0.2626078, -0.96490294, -0.9999987, -0.00066459103, 8.5051404e-05, -0.00066402793, 0.96490175, -0.26260772, -0.42406642, 0.5353523, 0.08178423)
+transform = Transform3D(0.00017139441, -0.26239106, -0.96496177, -0.999998, -0.0012283309, 0.00015745047, -0.0012271277, 0.96496, -0.26239085, -0.4240111, 0.53514487, 0.08193259)
 
 [node name="LeftHandSlot" parent="RigYawPivot/Skeleton_Warrior_Rig/Rig_Medium/GeneralSkeleton" index="11" unique_id=695146928]
-transform = Transform3D(-7.983433e-05, 0.26272988, 0.9648695, 0.999999, -0.00077947916, 0.00029557507, 0.00083023566, 0.9648685, -0.26272982, 0.4254873, 0.5380826, 0.086780064)
+transform = Transform3D(-0.00014804851, 0.26261654, 0.9649004, 0.99999803, -0.001441269, 0.0005462814, 0.0015344793, 0.9648985, -0.26261613, 0.42549083, 0.5378541, 0.08686118)
+
+[node name="VisionComponent" parent="." index="5" unique_id=1623844984 node_paths=PackedStringArray("rig_yaw_pivot")]
+rig_yaw_pivot = NodePath("../RigYawPivot")
+
+[node name="CombatComponent" parent="." index="7" unique_id=361524145 node_paths=PackedStringArray("character", "meleeComponent")]
+character = NodePath("../CharacterContext")
+meleeComponent = NodePath("../MeleeComponent")
+activeCoolDown = true
+
+[node name="MeleeComponent" parent="." index="8" unique_id=733076158 node_paths=PackedStringArray("combatComponent", "character") instance=ExtResource("4_x70ru")]
+combatComponent = NodePath("../CombatComponent")
+character = NodePath("../CharacterContext")
 
 [editable path="RigYawPivot/Skeleton_Warrior_Rig"]

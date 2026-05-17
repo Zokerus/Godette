@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cds4uy0satc0w" path="res://scenes/player/player.tscn" id="1_lt47i"]
 [ext_resource type="PackedScene" uid="uid://7pdx1qmhod8v" path="res://scenes/Enemy/skeleton_minion.tscn" id="2_x4yjv"]
+[ext_resource type="PackedScene" uid="uid://bjq4pqjba4d07" path="res://scenes/Enemy/skeleton_warrior.tscn" id="3_010cr"]
 [ext_resource type="PackedScene" uid="uid://cv08nnl3s6jpu" path="res://scenes/world/TestWorld.tscn" id="3_vlyuc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x4yjv"]
@@ -32,6 +33,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.081)
 [node name="Enemies" type="Node" parent="." unique_id=1055103374]
 
 [node name="SkeletonMinion" parent="Enemies" unique_id=1630115397 instance=ExtResource("2_x4yjv")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -10.113052)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.004593849, 0.35156727, -10.130073)
+
+[node name="SkeletonWarrior" parent="Enemies" unique_id=1527961894 instance=ExtResource("3_010cr")]
+transform = Transform3D(-0.5044523, 0, -0.86343956, 0, 1, 0, 0.86343956, 0, -0.5044523, -16.420895, 0, -15.118307)
 
 [node name="NavigationRegion3D" parent="." unique_id=1238533947 instance=ExtResource("3_vlyuc")]

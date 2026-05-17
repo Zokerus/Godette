@@ -13,6 +13,8 @@ enum EnemyState {
 @export var attackRange: float = 1.8
 @export var attackCooldown: float = 1.2
 @export var attackPrepareTime: float = 0.3
+@export var attackPrepareMoveRangeMultiplier: float = 1.5
+@export var attackPrepareCancelRangeMultiplier: float = 3.0
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 @onready var state_component: StateComponent = $StateComponent
@@ -24,3 +26,9 @@ enum EnemyState {
 @onready var combat_component: CombatComponent = $CombatComponent
 
 var pointOfOrigin:= Vector3.ZERO
+var target: Node3D
+var lastKnownPosition: Vector3
+
+func _ready() -> void:
+	pointOfOrigin = global_position
+	combat_component.cool_down_timer.wait_time = attackCooldown
