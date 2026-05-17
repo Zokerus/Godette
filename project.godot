@@ -15,6 +15,15 @@ run/main_scene="uid://6o2e0vhlw5m8"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[file_customization]
+
+folder_colors={
+"res://assets/": "green",
+"res://resources/": "yellow",
+"res://scenes/": "red",
+"res://scripts/": "blue"
+}
+
 [input]
 
 move_forward={

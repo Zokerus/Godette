@@ -161,9 +161,9 @@ func ability_logic(delta: float) -> void:
 		else:
 			combatComponent.activeCombatMode = CombatComponent.CombatMode.MAGIC
 	
-	if Input.is_action_just_pressed("ui_accept"):
-		combatComponent.getHit(&"LightHit")
-		changeSpeedModifier(0.0, 0.3, 0.8)
+	#if Input.is_action_just_pressed("ui_accept"):
+		#combatComponent.getHit(&"LightHit")
+		#changeSpeedModifier(0.0, 0.3, 0.8)
 
 func _onAnimationEventReceived(event: int) -> void:
 	match event:

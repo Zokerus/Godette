@@ -3,6 +3,7 @@ class_name MeleeComponent
 
 @export var combatComponent: CombatComponent
 @export var character: CharacterContext
+@export var attackSet: AttackSetData
 @export var comboWindowTime := 0.5
 
 @onready var comboTimer: Timer = $ComboTimer
