@@ -27,7 +27,6 @@ func _physics_process(delta: float) -> void:
 			handle_search(delta)
 
 
-
 func _on_vision_component_target_identified(object: Node3D) -> void:
 	target = object
 	state_component.change_state(EnemyState.CHASE)

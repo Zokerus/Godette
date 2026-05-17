@@ -90,7 +90,7 @@ func cancelAttack() -> void:
 	finishAttack()
 
 
-func _onAnimationEventReceived(event: AnimationEventRelay.AnimationEvents) -> void:
+func _on_animation_event_relay_component_animation_event_received(event: AnimationEventRelay.AnimationEvents) -> void:
 	match event:
 		AnimationEventRelay.AnimationEvents.COMBO_WINDOW_OPEN:
 			openComboWindow()
