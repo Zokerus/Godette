@@ -8,6 +8,7 @@ signal target_lost()
 @export var detectionRange: float = 10.0
 @export var FOV_angle: float = 150.0
 @export var  rig_yaw_pivot: Node3D
+@export var eyeHeight: float = 1.65
 
 var visibleTarget: Node3D = null
 var candidates: Array[Node3D] = []
@@ -20,6 +21,8 @@ var candidates: Array[Node3D] = []
 
 func _ready() -> void:
 	collision_shape_3d.shape.set("radius", detectionRange)
+	#global_position = global_position + Vector3.UP * eyeHeight
+
 
 func updateVision() -> void:
 	var newTarget : Node3D = null
