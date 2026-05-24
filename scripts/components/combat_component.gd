@@ -6,54 +6,93 @@ enum CombatMode {
 	RANGED,
 	MAGIC
 }
+enum ActionType {
+	NONE,
+	ATTACK,
+	BLOCK
+}
+
 @export_category("Character Rig")
 @export var character: CharacterContext
 @export_category("Components")
 @export var meleeComponent: MeleeComponent
 @export var rangeComponent: Node
 @export var magicComponent: MagicComponent
-@export var activeCoolDown: bool = false
+@export_category("Cooldown Settings")
+@export var activeCooldown: bool = false
+@export var attackCooldown: float = 1.2
+@export var blockCooldown: float = 1.5
+@export var blockCooldownVariance: float = 0.1
+@export var blockDuration: float = 1.6
+@export var blockDurationVariance: float = 0.2
+
 
 var activeCombatMode: CombatMode = CombatMode.MELEE
-var isPerformingAction := false
-var isDefending := false
-var isCoolDown := false
+var isPerformingAction: bool = false
+var isDefending: bool = false
+var isManualAction: bool = false
+var currentActionType: ActionType = ActionType.NONE
 
+@onready var action_timer: Timer = $ActionTimer
 @onready var cool_down_timer: Timer = $CoolDownTimer
 
 func canStartAction() -> bool:
-	return !isPerformingAction and !isDefending and !isCoolDown
+	return !isPerformingAction and !isDefending and cool_down_timer.is_stopped()
+
 
 func startAction() -> void:
 	isPerformingAction = true
 
 func finishAction() -> void:
-	if activeCoolDown:
-		cool_down_timer.start()
-		isCoolDown = true
+	if !isManualAction:
+		match currentActionType:
+			ActionType.ATTACK:
+				cool_down_timer.start(attackCooldown)
+			ActionType.BLOCK:
+				var cooldown := get_randomized_time(blockCooldown, blockCooldownVariance)
+				cool_down_timer.start(cooldown)
 	isPerformingAction = false
 
-func startDefend() -> void:
-	if !isPerformingAction:
-		isDefending = true
+func startDefend(manual: bool) -> bool:
+	if !canStartAction():
+		return false
+	startAction()
+	isDefending = true
+	isManualAction = manual
+	currentActionType = ActionType.BLOCK
+	
+	if !isManualAction:
+		var duration := get_randomized_time(blockDuration, blockDurationVariance)
+		action_timer.start(duration)
+	return true
 
 func stopDefend() -> void:
+	if !isDefending:
+		return
+		
 	isDefending = false
+	finishAction()
 
 func setCombatMode(mode: CombatMode) -> void:
 	if !isPerformingAction:
 		activeCombatMode = mode
 
-func attack(attackName: StringName) -> void:
+func attack(attackName: StringName, manual: bool = false) -> void:
+	if !canStartAction():
+		return
+	startAction() #start of the Action geht von der Melee/Range/Mageic Component aus
+	isManualAction = manual
 	match activeCombatMode:
 		CombatMode.MELEE:
 			if meleeComponent != null:
+				currentActionType = ActionType.ATTACK
 				meleeComponent.attack(attackName)
 		#CombatMode.RANGED:
 			#if rangeComponent != null:
 				#rangeComponent.attack()
 		CombatMode.MAGIC:
 			if magicComponent != null:
+				currentActionType = ActionType.ATTACK
 				magicComponent.cast_spell()
 
 
@@ -76,5 +115,22 @@ func cancelCurrentAction() -> void:
 		#rangeComponent.cancelAttack()
 
 
+func get_randomized_time(base: float, variance: float) -> float:
+	return base + randf_range(-variance, variance)
+
+#Update Visual while blocking. lower body parts are animated differently whene moving or standing
+func updateCombatVisuals(delta: float, movementSpeedRatio: float) -> void:
+	if character == null or character.rig == null:
+		return
+	
+	character.rig.defend(delta, isDefending, movementSpeedRatio)
+
+
 func _on_cool_down_timer_timeout() -> void:
-	isCoolDown = false
+	pass
+
+
+func _on_action_timer_timeout() -> void:
+	match currentActionType:
+		ActionType.BLOCK:
+			stopDefend()

@@ -16,18 +16,19 @@ enum EnemyState {
 @export var attackPrepareMoveRangeMultiplier: float = 1.5
 @export var attackPrepareCancelRangeMultiplier: float = 3.0
 
+var pointOfOrigin:= Vector3.ZERO
+var target: Node3D
+var lastKnownPosition: Vector3
+var movementSpeedRatio: float
+
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 @onready var state_component: StateComponent = $StateComponent
 @onready var vision_component: VisionComponent = $VisionComponent
 @onready var rig_yaw_pivot: Node3D = $RigYawPivot
 @onready var character: CharacterContext = $CharacterContext
-@onready var attack_timer: Timer = $Timers/AttackTimer
 @onready var prepare_timer: Timer = $Timers/PrepareTimer
 @onready var combat_component: CombatComponent = $CombatComponent
 
-var pointOfOrigin:= Vector3.ZERO
-var target: Node3D
-var lastKnownPosition: Vector3
 
 func _ready() -> void:
 	pointOfOrigin = global_position
@@ -56,7 +57,7 @@ func handle_movement(delta: float) -> void:
 	velocity.z = direction.z * speed
 	character.rig.travel("Running_A")
 	
-		#movementSpeedRatio = clampf(Vector3(velocity.x, 0, velocity.z).length() / speed, 0.0, 1.0)
+	movementSpeedRatio = clampf(Vector3(velocity.x, 0, velocity.z).length() / speed, 0.0, 1.0)
 	move_and_slide()
 
 

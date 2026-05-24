@@ -1,0 +1,64 @@
+res://
+├── scenes/
+│   ├── characters/
+│   │   ├── player/
+│   │   ├── enemies/
+│   │   │   ├── skeleton_minion/
+│   │   │   │   ├── skeleton_minion.tscn
+│   │   │   │   ├── skeleton_minion.gd
+│   │   │   │   └── skeleton_minion_visual.tscn
+│   │   │   └── bandit/
+│   │   └── shared/
+│   │
+│   ├── world/
+│   └── props/
+│
+├── scripts/
+│   ├── components/
+│   │   ├── combat/
+│   │   │   ├── combat_component.gd
+│   │   │   ├── melee_component.gd
+│   │   │   └── vision_component.gd
+│   │   │
+│   │   ├── health/
+│   │   │   └── health_component.gd
+│   │   │
+│   │   ├── ai/
+│   │   │   └── state_component.gd
+│   │   │
+│   │   └── loot/
+│   │       └── loot_component.gd
+│   │
+│   ├── entities/
+│   │   ├── enemy.gd
+│   │   └── player.gd
+│   │
+│   └── systems/
+│       └── navigation_helpers.gd
+│
+├── resources/
+│   ├── combat/
+│   │   ├── attack_sets/
+│   │   │   ├── skeleton_attack_set.tres
+│   │   │   └── bandit_attack_set.tres
+│   │   │
+│   │   ├── combat_data/
+│   │   │   ├── skeleton_combat.tres
+│   │   │   └── bandit_combat.tres
+│   │
+│   ├── health/
+│   │   └── skeleton_health.tres
+│   │
+│   ├── loot/
+│   │   └── skeleton_loot.tres
+│   │
+│   └── templates/
+│       └── (optional später)
+│
+├── assets/
+│   ├── models/
+│   ├── animations/
+│   ├── textures/
+│   └── materials/
+│
+└── addons/

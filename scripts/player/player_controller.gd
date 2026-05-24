@@ -31,6 +31,7 @@ var movementSpeedModifier: float = 1.0
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 			mouseLookDelta += event.relative
@@ -46,6 +47,7 @@ func _physics_process(delta: float) -> void:
 	handle_jump(delta)
 	handle_fall(delta)
 	ability_logic(delta)
+	update_combat_visuals(delta)
 
 	move_and_slide()
 
@@ -140,16 +142,13 @@ func handle_fall(delta: float) -> void:
 func ability_logic(delta: float) -> void:
 	#actual attack
 	if Input.is_action_just_pressed("attack"):
-		combatComponent.attack(&"Chop")
+		combatComponent.attack(&"Chop", true)
 	
 	#defend
 	if Input.is_action_pressed("block"):
-		combatComponent.startDefend()
-		defend = combatComponent.isDefending
-		character.rig.defend(delta, combatComponent.isDefending, movementSpeedRatio)
+		defend = combatComponent.startDefend(true)
 	else:
 		combatComponent.stopDefend()
-		character.rig.defend(delta, false, 1.0)
 		defend = false
 	
 	#switch weapon
@@ -164,6 +163,11 @@ func ability_logic(delta: float) -> void:
 	#if Input.is_action_just_pressed("ui_accept"):
 		#combatComponent.getHit(&"LightHit")
 		#changeSpeedModifier(0.0, 0.3, 0.8)
+
+
+func update_combat_visuals(delta: float) -> void:
+	combatComponent.updateCombatVisuals(delta, movementSpeedRatio)
+
 
 func _onAnimationEventReceived(event: int) -> void:
 	match event:

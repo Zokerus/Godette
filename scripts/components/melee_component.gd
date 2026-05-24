@@ -5,6 +5,7 @@ extends Node
 @export var character: CharacterContext
 @export var attackSet: AttackSetData
 @export var comboWindowTime := 0.5
+@export var activateCombo: bool = false
 
 var comboWindowOpen := false
 var currentComboIndex := 0
@@ -25,23 +26,24 @@ func attack(attackName: StringName) -> void:
 	if combatComponent.activeCombatMode != CombatComponent.CombatMode.MELEE:
 		return
 	
-	if combatComponent.isPerformingAction:
-		if comboWindowOpen:
-			_playNextComboAttack()
-		return
+	#if combatComponent.isPerformingAction:
+		#if comboWindowOpen:
+			#_playNextComboAttack()
+		#return
 	
 	if comboWindowOpen:
 		_playNextComboAttack()
 		return
 	
-	if combatComponent.canStartAction():
-		_startFirstAttack(attackName)
+	#if combatComponent.canStartAction():
+	_startFirstAttack(attackName)
 
 
 func _startFirstAttack(attackName: StringName)-> void:
 	currentComboIndex = 0
 	comboWindowOpen = false
 	
+	print("First Attack")
 	combatComponent.startAction()
 	character.rig.playAttack(attackName)
 
@@ -49,7 +51,7 @@ func _startFirstAttack(attackName: StringName)-> void:
 func _playNextComboAttack()-> void:
 	comboWindowOpen = false
 	comboTimer.stop()
-	
+	print("Combo Attack")
 	currentComboIndex += 1
 	
 	if currentComboIndex >= attackSet.attacks.size():
@@ -72,14 +74,14 @@ func get_random_attack() -> StringName:
 
 
 func openComboWindow() -> void:
-	if !combatComponent.isPerformingAction:
+	if !activateCombo:
 		return
-	
 	comboWindowOpen = true
 	comboTimer.start()
 
 
 func finishAttack()-> void:
+	print("Finish Attack")
 	combatComponent.finishAction()
 
 
