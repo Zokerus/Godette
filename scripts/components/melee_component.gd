@@ -43,7 +43,6 @@ func _startFirstAttack(attackName: StringName)-> void:
 	currentComboIndex = 0
 	comboWindowOpen = false
 	
-	print("First Attack")
 	combatComponent.startAction()
 	character.rig.playAttack(attackName)
 
@@ -51,7 +50,7 @@ func _startFirstAttack(attackName: StringName)-> void:
 func _playNextComboAttack()-> void:
 	comboWindowOpen = false
 	comboTimer.stop()
-	print("Combo Attack")
+	
 	currentComboIndex += 1
 	
 	if currentComboIndex >= attackSet.attacks.size():
@@ -81,7 +80,6 @@ func openComboWindow() -> void:
 
 
 func finishAttack()-> void:
-	print("Finish Attack")
 	combatComponent.finishAction()
 
 
