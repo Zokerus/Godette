@@ -32,7 +32,6 @@ var movementSpeedRatio: float
 
 func _ready() -> void:
 	pointOfOrigin = global_position
-	combat_component.cool_down_timer.wait_time = attackCooldown
 
 
 func get_movement_direction() -> Vector3:
@@ -100,7 +99,7 @@ func handle_chase(delta: float) -> void:
 	
 	if distance <= attackRange:
 		stop_movement(delta)
-		if combat_component.canStartAction():
+		if combat_component.can_attack():
 			state_component.change_state(EnemyState.ATTACK_PREPARE)
 		return
 	

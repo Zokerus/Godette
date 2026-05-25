@@ -34,11 +34,20 @@ var isManualAction: bool = false
 var currentActionType: ActionType = ActionType.NONE
 
 @onready var action_timer: Timer = $ActionTimer
-@onready var cool_down_timer: Timer = $CoolDownTimer
+@onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
+@onready var block_cooldown_timer: Timer = $BlockCooldownTimer
 
-func canStartAction() -> bool:
-	return !isPerformingAction and !isDefending and cool_down_timer.is_stopped()
+##Obsolete
+#func canStartAction() -> bool:
+	#return !isPerformingAction and !isDefending and cool_down_timer.is_stopped()
 
+## Method is checking all states of the CombatComponent and provides feedback regarding the ability to attack.
+func can_attack() -> bool:
+	return !isPerformingAction and !isDefending and attack_cooldown_timer.is_stopped()
+
+## Method is checking all states of the CombatComponent and provides feedback regarding the ability to block.
+func can_block() -> bool:
+	return !isPerformingAction and !isDefending and block_cooldown_timer.is_stopped()
 
 func startAction() -> void:
 	isPerformingAction = true
@@ -47,14 +56,14 @@ func finishAction() -> void:
 	if !isManualAction:
 		match currentActionType:
 			ActionType.ATTACK:
-				cool_down_timer.start(attackCooldown)
+				attack_cooldown_timer.start(attackCooldown)
 			ActionType.BLOCK:
 				var cooldown := get_randomized_time(blockCooldown, blockCooldownVariance)
-				cool_down_timer.start(cooldown)
+				block_cooldown_timer.start(cooldown)
 	isPerformingAction = false
 
 func startDefend(manual: bool) -> bool:
-	if !canStartAction():
+	if !can_block():
 		return false
 	startAction()
 	isDefending = true
@@ -78,7 +87,7 @@ func setCombatMode(mode: CombatMode) -> void:
 		activeCombatMode = mode
 
 func attack(attackName: StringName, manual: bool = false) -> void:
-	if !canStartAction():
+	if !can_attack():
 		return
 	startAction() #start of the Action geht von der Melee/Range/Mageic Component aus
 	isManualAction = manual
@@ -118,8 +127,9 @@ func cancelCurrentAction() -> void:
 func get_randomized_time(base: float, variance: float) -> float:
 	return base + randf_range(-variance, variance)
 
-#Update Visual while blocking. lower body parts are animated differently whene moving or standing
+## Update Visual while blocking. lower body parts are animated differently whene moving or standing
 func updateCombatVisuals(delta: float, movementSpeedRatio: float) -> void:
+	
 	if character == null or character.rig == null:
 		return
 	

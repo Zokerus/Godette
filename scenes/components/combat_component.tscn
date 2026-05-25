@@ -4,11 +4,19 @@
 
 [node name="CombatComponent" type="Node" unique_id=361524145]
 script = ExtResource("1_fbogt")
+activeCooldown = null
+attackCooldown = null
+blockCooldown = null
+blockCooldownVariance = null
+blockDuration = null
+blockDurationVariance = null
 
 [node name="ActionTimer" type="Timer" parent="." unique_id=1930055230]
 
-[node name="CoolDownTimer" type="Timer" parent="." unique_id=301721348]
+[node name="AttackCooldownTimer" type="Timer" parent="." unique_id=301721348]
 one_shot = true
 
+[node name="BlockCooldownTimer" type="Timer" parent="." unique_id=1356680973]
+
 [connection signal="timeout" from="ActionTimer" to="." method="_on_action_timer_timeout"]
-[connection signal="timeout" from="CoolDownTimer" to="." method="_on_cool_down_timer_timeout"]
+[connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_cool_down_timer_timeout"]
