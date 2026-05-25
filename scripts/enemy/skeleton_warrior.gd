@@ -80,31 +80,6 @@ func handle_block_logic(delta: float, distance: float) -> bool:
 	return false
 
 
-func _on_vision_component_target_identified(targetObject: Node3D) -> void:
-	target = targetObject
-	state_component.change_state(EnemyState.CHASE)
-
-
-func _on_vision_component_target_lost() -> void:
-	lastKnownPosition = target.global_position
-	target = null
-	state_component.change_state(EnemyState.SEARCH)
-	#TODO: Later search play at last known position --> run back to origin
-
-
 func _on_prepare_timer_timeout() -> void:
 	combat_component.attack(melee_component.get_random_attack())
 	state_component.change_state(EnemyState.CHASE)
-
-
-func _on_animation_event_relay_component_animation_event_received(event: AnimationEventRelay.AnimationEvents) -> void:
-	match event:
-		AnimationEventRelay.AnimationEvents.ATTACK_FINISHED:
-			state_component.change_state(EnemyState.CHASE)
-
-
-func _on_state_component_state_changed(newState: Variant) -> void:
-	match newState:
-		EnemyState.ATTACK_PREPARE:
-			prepare_timer.wait_time = attackPrepareTime
-			prepare_timer.start()

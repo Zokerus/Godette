@@ -41,6 +41,6 @@ transform = Transform3D(-0.5044523, 0, -0.86343956, 0, 1, 0, 0.86343956, 0, -0.5
 blockChancePerSecond = 0.8
 
 [node name="SkeletonMage" parent="Enemies" unique_id=1520449909 instance=ExtResource("4_jjb5g")]
-transform = Transform3D(-0.8660254, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660254, 16, 0, -7.9529295)
+transform = Transform3D(-0.8660254, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660254, 16, 0, -16)
 
 [node name="NavigationRegion3D" parent="." unique_id=1238533947 instance=ExtResource("3_vlyuc")]

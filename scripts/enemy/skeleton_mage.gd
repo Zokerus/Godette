@@ -1,11 +1,13 @@
-class_name SkeletonMinion
+class_name SkeletonMage
 extends Enemy
 
-@onready var melee_component: MeleeComponent = $MeleeComponent
+
+@onready var magic_component: MagicComponent = $MagicComponent
 
 
 func _physics_process(delta: float) -> void:
 	vision_component.updateVision()
+	combat_component.updateCombatVisuals(delta, movementSpeedRatio)
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -28,5 +30,5 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_prepare_timer_timeout() -> void:
-	combat_component.attack(melee_component.get_random_attack())
+	combat_component.attack(&"")
 	state_component.change_state(EnemyState.CHASE)

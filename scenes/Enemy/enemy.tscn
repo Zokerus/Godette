@@ -29,3 +29,8 @@ debug_enabled = true
 one_shot = true
 
 [node name="CombatComponent" parent="." unique_id=361524145 instance=ExtResource("4_o5uld")]
+attackCooldown = 1.2
+blockCooldown = 1.5
+blockCooldownVariance = 0.1
+blockDuration = 1.6
+blockDurationVariance = 0.2

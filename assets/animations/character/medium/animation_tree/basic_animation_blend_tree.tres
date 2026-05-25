@@ -97,10 +97,12 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mbodu"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jgdw8"]
+xfade_time = 0.2
 switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1ofg0"]
+xfade_time = 0.2
 switch_mode = 2
 advance_mode = 2
 
@@ -202,7 +204,7 @@ fadein_time = 0.2
 fadeout_time = 0.2
 
 [resource]
-graph_offset = Vector2(-597.4668, -110.525314)
+graph_offset = Vector2(-543.21387, -118.13083)
 nodes/output/position = Vector2(2120, -180)
 nodes/MovementStateMachine/node = SubResource("AnimationNodeStateMachine_m361h")
 nodes/MovementStateMachine/position = Vector2(-700, -220)

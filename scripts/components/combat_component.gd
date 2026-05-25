@@ -12,6 +12,7 @@ enum ActionType {
 	BLOCK
 }
 
+@export var activeCombatMode: CombatMode = CombatMode.MELEE
 @export_category("Character Rig")
 @export var character: CharacterContext
 @export_category("Components")
@@ -19,7 +20,6 @@ enum ActionType {
 @export var rangeComponent: Node
 @export var magicComponent: MagicComponent
 @export_category("Cooldown Settings")
-@export var activeCooldown: bool = false
 @export var attackCooldown: float = 1.2
 @export var blockCooldown: float = 1.5
 @export var blockCooldownVariance: float = 0.1
@@ -27,7 +27,6 @@ enum ActionType {
 @export var blockDurationVariance: float = 0.2
 
 
-var activeCombatMode: CombatMode = CombatMode.MELEE
 var isPerformingAction: bool = false
 var isDefending: bool = false
 var isManualAction: bool = false
@@ -36,10 +35,6 @@ var currentActionType: ActionType = ActionType.NONE
 @onready var action_timer: Timer = $ActionTimer
 @onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
 @onready var block_cooldown_timer: Timer = $BlockCooldownTimer
-
-##Obsolete
-#func canStartAction() -> bool:
-	#return !isPerformingAction and !isDefending and cool_down_timer.is_stopped()
 
 ## Method is checking all states of the CombatComponent and provides feedback regarding the ability to attack.
 func can_attack() -> bool:
@@ -102,7 +97,7 @@ func attack(attackName: StringName, manual: bool = false) -> void:
 		CombatMode.MAGIC:
 			if magicComponent != null:
 				currentActionType = ActionType.ATTACK
-				magicComponent.cast_spell()
+				magicComponent.cast_spell(&"Shoot")
 
 
 func getHit(hitType: StringName) -> void:
