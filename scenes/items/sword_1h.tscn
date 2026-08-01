@@ -20,9 +20,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_lunjp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.83, 0)
 collision_layer = 0
 collision_mask = 4
-monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox" index="0" unique_id=1514578554]
 shape = SubResource("BoxShape3D_67rky")
+disabled = true
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
