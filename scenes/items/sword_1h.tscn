@@ -1,12 +1,28 @@
 [gd_scene format=3 uid="uid://bs7afbfkjmxpg"]
 
 [ext_resource type="PackedScene" uid="uid://bjglp4s0d1mpx" path="res://assets/items/sword_1handed.gltf" id="1_nor8h"]
+[ext_resource type="Script" uid="uid://cxgulmnkhyjl3" path="res://scripts/items/sword_1h.gd" id="2_lunjp"]
 [ext_resource type="Texture2D" uid="uid://csgruele0lfow" path="res://assets/textures/knight_texture.png" id="2_q4dw8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lunjp"]
 albedo_texture = ExtResource("2_q4dw8")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_67rky"]
+size = Vector3(0.32, 1.16, 0.1)
+
 [node name="sword_1H" unique_id=1697073412 instance=ExtResource("1_nor8h")]
+script = ExtResource("2_lunjp")
 
 [node name="sword_1handed" parent="." index="0" unique_id=2086347213]
 surface_material_override/0 = SubResource("StandardMaterial3D_lunjp")
+
+[node name="HitBox" type="Area3D" parent="." index="1" unique_id=1811532382]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.83, 0)
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox" index="0" unique_id=1514578554]
+shape = SubResource("BoxShape3D_67rky")
+disabled = true
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
