@@ -29,17 +29,16 @@ func disable_hitbox() -> void:
 	collision_shape_3d.set_deferred("disabled", true)
 
 
-func _process_hit(body: CharacterBody3D):
+func _process_hit(body: Node3D):
 		#body got damage on this try, deal damage just once
 		if body in hit_bodies:
 			return
-		
-		hit_bodies.append(body)
 		
 		var combat_component := body.get_node_or_null("CombatComponent") as CombatComponent
 		if combat_component == null:
 			return
 			
+		hit_bodies.append(body)
 		combat_component.getHit(&"LightHit")
 
 

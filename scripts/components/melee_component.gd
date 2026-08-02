@@ -81,6 +81,8 @@ func openComboWindow() -> void:
 
 
 func finishAttack()-> void:
+	if activeWeapon:
+		activeWeapon.disable_hitbox()
 	combatComponent.finishAction()
 
 
@@ -88,8 +90,6 @@ func cancelAttack() -> void:
 	comboTimer.stop()
 	comboWindowOpen = false
 	currentComboIndex = 0
-	if activeWeapon:
-		activeWeapon.disable_hitbox()
 	finishAttack()
 
 
