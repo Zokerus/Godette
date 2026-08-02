@@ -9,5 +9,5 @@ func change_state(newState) -> void:
 	if currentState == newState:
 		return
 	currentState = newState
-	print(newState)
+	#print(newState)
 	state_changed.emit(currentState)
