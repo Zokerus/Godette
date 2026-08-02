@@ -19,6 +19,10 @@ func disable_hitbox() -> void:
 
 func _on_hit_box_body_entered(body: Node3D) -> void:
 	print("Weapon touched: ", body.name)
+	if body is Enemy:
+		#TODO set HIT Animation name
+		body.combat_component.getHit("test")
+	
 
 
 #func _on_animation_event_relay_component_animation_event_received(event: AnimationEventRelay.AnimationEvents) -> void:
