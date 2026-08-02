@@ -22,5 +22,10 @@ func finish_spell()-> void:
 	combatComponent.finishAction()
 
 
-func _on_animation_event_relay_component_animation_event_received(_event: AnimationEventRelay.AnimationEvents) -> void:
-	finish_spell()
+func _on_animation_event_relay_component_animation_event_received(event: AnimationEventRelay.AnimationEvents) -> void:
+	match event:
+		AnimationEventRelay.AnimationEvents.ATTACK_FINISHED:
+			finish_spell()
+			
+		AnimationEventRelay.AnimationEvents.SPAWN_MAGIC_SPELL:
+			print("Spawn Fireball")
