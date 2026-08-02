@@ -5,7 +5,7 @@ extends Node
 @export var character: CharacterContext
 @export var attackSet: AttackSetData
 
-func cast_spell(attackName: StringName) -> void:
+func cast_spell(_attackName: StringName) -> void:
 	if combatComponent == null or character.rig == null:
 		return
 	
@@ -22,5 +22,5 @@ func finish_spell()-> void:
 	combatComponent.finishAction()
 
 
-func _on_animation_event_relay_component_animation_event_received(event: AnimationEventRelay.AnimationEvents) -> void:
+func _on_animation_event_relay_component_animation_event_received(_event: AnimationEventRelay.AnimationEvents) -> void:
 	finish_spell()

@@ -143,7 +143,7 @@ func handle_search(delta) -> void:
 		state_component.change_state(EnemyState.IDLE)
 
 
-func handle_special_combat(delta: float) -> void:
+func handle_special_combat(_delta: float) -> void:
 	pass
 
 

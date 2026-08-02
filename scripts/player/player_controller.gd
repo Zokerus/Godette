@@ -139,7 +139,7 @@ func handle_fall(delta: float) -> void:
 		if velocity.y <= 0 or tempVelocity != Vector3.ZERO:
 			character.rig.travel("Fall")
 
-func ability_logic(delta: float) -> void:
+func ability_logic(_delta: float) -> void:
 	#actual attack
 	if Input.is_action_just_pressed("attack"):
 		combatComponent.attack(&"Chop", true)
