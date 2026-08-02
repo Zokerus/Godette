@@ -1,7 +1,7 @@
 class_name Sword1H
 extends Node3D
 
-var hit_bodies: Array[CharacterBody3D] = []
+var hit_bodies: Array[Node3D] = []
 
 @onready var hit_box: Area3D = $HitBox
 @onready var collision_shape_3d: CollisionShape3D = $HitBox/CollisionShape3D
@@ -41,13 +41,10 @@ func _process_hit(body: CharacterBody3D):
 			return
 			
 		combat_component.getHit(&"LightHit")
-		
-		#TODO set HIT Animation name
-		body.combat_component.getHit("test")
 
 
 func _on_hit_box_body_entered(body: Node3D) -> void:
-		_process_hit(body)
+			_process_hit(body)
 
 
 #func _on_animation_event_relay_component_animation_event_received(event: AnimationEventRelay.AnimationEvents) -> void:
