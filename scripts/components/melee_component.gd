@@ -6,6 +6,7 @@ extends Node
 @export var attackSet: AttackSetData
 @export var comboWindowTime := 0.5
 @export var activateCombo: bool = false
+@export var activeWeapon: Node
 
 var comboWindowOpen := false
 var currentComboIndex := 0
@@ -96,6 +97,14 @@ func _on_animation_event_relay_component_animation_event_received(event: Animati
 			openComboWindow()
 		AnimationEventRelay.AnimationEvents.ATTACK_FINISHED:
 			finishAttack()
+			
+		AnimationEventRelay.AnimationEvents.ACTIVATE_WEAPON_HITBOX:
+			if activeWeapon:
+				activeWeapon.enable_hitbox()
+			
+		AnimationEventRelay.AnimationEvents.DEACTIVATE_WEAPON_HITBOX:
+			if activeWeapon:
+				activeWeapon.disable_hitbox()
 
 
 func _on_combo_timer_timeout() -> void:
