@@ -56,3 +56,8 @@ func heal(amount: float) -> float:
 	health_changed.emit(current_health, get_max_health())
 
 	return  current_health - previous_health
+
+
+## Debug function to print current health after change
+func _on_health_changed(current_health: float, max_health: float) -> void:
+	print(current_health)

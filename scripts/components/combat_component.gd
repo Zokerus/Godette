@@ -101,6 +101,8 @@ func attack(attackName: StringName, manual: bool = false) -> void:
 
 
 func getHit(hitType: StringName) -> void:
+	#Debug Test
+	#$"../HealthComponent".take_damage(10)
 	cancelCurrentAction()
 	character.rig.playReaction(hitType)
 
