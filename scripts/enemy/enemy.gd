@@ -186,13 +186,16 @@ func _on_vision_component_target_lost() -> void:
 func _on_vision_component_target_died() -> void:
 	lastKnownPosition = target.global_position
 	target = null
+	combat_component.cancelCurrentAction() #disables weapon hitbox aswell
+	prepare_timer.stop()
 	state_component.change_state(EnemyState.BACK_TO_ORIGIN)
 
 
 func _on_animation_event_relay_component_animation_event_received(event: AnimationEventRelay.AnimationEvents) -> void:
 	match event:
 		AnimationEventRelay.AnimationEvents.ATTACK_FINISHED:
-			state_component.change_state(EnemyState.CHASE)
+			if target != null:
+				state_component.change_state(EnemyState.CHASE)
 
 
 func _on_state_component_state_changed(newState: Variant) -> void:

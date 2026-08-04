@@ -74,7 +74,7 @@ func _canSeeTarget(target: Node3D) -> bool:
 
 ## Registers a newly visible target and observes its lifetime.
 func _set_visible_target(new_target: Node3D)-> void:
-	_clear_target_connection
+	_clear_target_connection()
 	
 	if new_target == null:
 		return
