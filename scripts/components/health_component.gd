@@ -58,5 +58,5 @@ func heal(amount: float) -> float:
 
 
 ## Debug function to print current health after change
-func _on_health_changed(current_health: float, max_health: float) -> void:
-	print("[Health ", get_parent().name,"]\n","Current: ", current_health, "/", max_health,)
+func _on_health_changed(c_health: float, mx_health: float) -> void:
+	print("[Health ", get_parent().name,"]\n","Current: ", c_health, "/", mx_health,)

@@ -181,4 +181,4 @@ func changeSpeedModifier(value: float, start_duration: float, end_duration: floa
 
 
 func _on_health_component_died() -> void:
-	"Player died!"
+	print("Player died!")
