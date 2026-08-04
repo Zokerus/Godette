@@ -178,3 +178,7 @@ func changeSpeedModifier(value: float, start_duration: float, end_duration: floa
 	var tween = create_tween()
 	tween.tween_property(self, "movementSpeedModifier", value, start_duration)
 	tween.tween_property(self, "movementSpeedModifier", 1.0, end_duration)
+
+
+func _on_health_component_died() -> void:
+	"Player died!"
