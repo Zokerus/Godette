@@ -20,6 +20,7 @@ var pointOfOrigin:= Vector3.ZERO
 var target: Node3D
 var lastKnownPosition: Vector3
 var movementSpeedRatio: float
+var is_dead: bool = false
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 @onready var state_component: StateComponent = $StateComponent
@@ -146,6 +147,13 @@ func handle_search(delta) -> void:
 func handle_special_combat(_delta: float) -> void:
 	pass
 
+## disable collision layer and masks after death
+func _disable_character_collisions()-> void:
+	set_collision_layer_value(3, false) # character will not be detected by other objects
+	set_collision_mask_value(2, false) # character will not collide with player
+	set_collision_mask_value(3, false) # character will not collide with other npc
+	set_collision_mask_value(5, false) # character will not collide with projectiles
+
 
 func _on_vision_component_target_identified(targetObject: Node3D) -> void:
 	target = targetObject
@@ -170,3 +178,25 @@ func _on_state_component_state_changed(newState: Variant) -> void:
 		EnemyState.ATTACK_PREPARE:
 			prepare_timer.wait_time = attackPrepareTime
 			prepare_timer.start()
+
+
+## Stops all enemy systems and removes the character from the scene.
+func die() -> void:
+	if is_dead:
+		return
+
+	is_dead = true
+
+	combat_component.cancelCurrentAction() #disables weapon hitbox aswell
+	combat_component.set_process(false)
+	combat_component.set_physics_process(false)
+	
+	vision_component.set_process(false)
+	vision_component.set_physics_process(false)
+
+	navigation_agent_3d.target_position = global_position
+	velocity = Vector3.ZERO
+
+	_disable_character_collisions()
+
+	#queue_free()
