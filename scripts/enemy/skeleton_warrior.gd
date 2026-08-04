@@ -83,3 +83,8 @@ func handle_block_logic(delta: float, distance: float) -> bool:
 func _on_prepare_timer_timeout() -> void:
 	combat_component.attack(melee_component.get_random_attack())
 	state_component.change_state(EnemyState.CHASE)
+
+
+func _on_health_component_died() -> void:
+	print("Warrior died!")
+	queue_free()

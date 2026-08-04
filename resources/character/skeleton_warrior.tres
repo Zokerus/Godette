@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CharacterAttributes" format=3 uid="uid://g1g3cyuavhb0"]
+
+[ext_resource type="Script" uid="uid://d1g44h48sme3c" path="res://scripts/resources/character_attributes.gd" id="1_6kpcq"]
+
+[resource]
+script = ExtResource("1_6kpcq")
+level = 3
+vitality = 8
+endurance = 6
+dexterity = 4
+intelligence = 2
+metadata/_custom_type_script = "uid://d1g44h48sme3c"
