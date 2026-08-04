@@ -151,7 +151,7 @@ func handle_search(delta) -> void:
 	if navigation_agent_3d.is_navigation_finished():
 		state_component.change_state(EnemyState.IDLE)
 
-
+## Moves the enemy back to its original position and returns it to idle.
 func handle_walk_back(delta)-> void:
 	update_navigation(pointOfOrigin)
 	handle_movement(delta)

@@ -1,7 +1,7 @@
 extends CharacterBody3D
 class_name PlayerController
 
-signal died(character: Node3D)
+signal died()
 
 const JUMP_VELOCITY = 4.5
 
@@ -185,7 +185,7 @@ func changeSpeedModifier(value: float, start_duration: float, end_duration: floa
 	tween.tween_property(self, "movementSpeedModifier", value, start_duration)
 	tween.tween_property(self, "movementSpeedModifier", 1.0, end_duration)
 
-
+## Stops player input, movement, combat, and target detection after death.
 func _die()-> void:
 	if is_dead:
 		return
@@ -194,8 +194,7 @@ func _die()-> void:
 	combatComponent.cancelCurrentAction()
 	velocity = Vector3.ZERO
 	set_collision_layer_value(2, false)
-	
-	
+
 
 func _on_health_component_died() -> void:
 	print("Player died!")
