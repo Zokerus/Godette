@@ -18,7 +18,6 @@ func _ready() -> void:
 		return
 
 	current_health = character.get_max_health()
-	print(current_health)
 
 
 ## Applies damage and returns the amount of health actually removed.
@@ -60,4 +59,4 @@ func heal(amount: float) -> float:
 
 ## Debug function to print current health after change
 func _on_health_changed(current_health: float, max_health: float) -> void:
-	print(current_health)
+	print("[Health]\n","Current: ", current_health, "/", max_health, "\n", "Damage: ", max_health- current_health)

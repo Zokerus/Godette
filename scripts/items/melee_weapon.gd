@@ -2,6 +2,7 @@ class_name MeleeWeapon
 extends Node3D
 
 var hit_bodies: Array[Node3D] = []
+var basic_damge: float = 10.0
 
 @onready var hit_box: Area3D = $HitBox
 @onready var collision_shape_3d: CollisionShape3D = $HitBox/CollisionShape3D
@@ -39,7 +40,11 @@ func _process_hit(body: Node3D):
 			return
 			
 		hit_bodies.append(body)
-		combat_component.getHit(&"LightHit")
+		combat_component.getHit(&"LightHit", get_damage())
+
+## return damage of the weapon, defense and buffs of the target are not included
+func get_damage()-> float:
+	return basic_damge
 
 
 func _on_hit_box_body_entered(body: Node3D) -> void:

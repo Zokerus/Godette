@@ -19,6 +19,7 @@ enum ActionType {
 @export var meleeComponent: MeleeComponent
 @export var rangeComponent: Node
 @export var magicComponent: MagicComponent
+@export var healthComponent: HealthComponent
 @export_category("Cooldown Settings")
 @export var attackCooldown: float = 1.2
 @export var blockCooldown: float = 1.5
@@ -99,10 +100,12 @@ func attack(attackName: StringName, manual: bool = false) -> void:
 				currentActionType = ActionType.ATTACK
 				magicComponent.cast_spell(&"Shoot")
 
-
-func getHit(hitType: StringName) -> void:
-	#Debug Test
-	#$"../HealthComponent".take_damage(10)
+## Processes an incoming hit, applies damage, and plays the hit reaction.
+func getHit(hitType: StringName, damage: float) -> void:
+	
+	if healthComponent != null:
+		healthComponent.take_damage(damage)
+	
 	cancelCurrentAction()
 	character.rig.playReaction(hitType)
 
