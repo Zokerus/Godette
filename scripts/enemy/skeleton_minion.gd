@@ -5,14 +5,23 @@ extends Enemy
 
 
 func _physics_process(delta: float) -> void:
-	vision_component.updateVision()
+	_apply_gravity(delta)
 	
+	if !is_dead:
+		_alive_physics_process(delta)
+	move_and_slide()
+
+
+func _apply_gravity(delta: float)-> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	else:
 		velocity.y = 0.0
-	
+
+
+func _alive_physics_process(delta: float)-> void:
+	vision_component.updateVision()
 	match state_component.currentState:
 		EnemyState.IDLE:
 			handle_idle(delta)
