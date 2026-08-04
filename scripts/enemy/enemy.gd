@@ -7,6 +7,8 @@ enum EnemyState {
 	ATTACK_PREPARE,
 	ATTACK,
 	SEARCH,
+	BACK_TO_ORIGIN,
+	DEAD
 }
 
 @export var moveSpeed: float = 2.0
@@ -150,6 +152,14 @@ func handle_search(delta) -> void:
 		state_component.change_state(EnemyState.IDLE)
 
 
+func handle_walk_back(delta)-> void:
+	update_navigation(pointOfOrigin)
+	handle_movement(delta)
+	
+	if navigation_agent_3d.is_navigation_finished():
+		state_component.change_state(EnemyState.IDLE)
+
+
 func handle_special_combat(_delta: float) -> void:
 	pass
 
@@ -171,6 +181,12 @@ func _on_vision_component_target_lost() -> void:
 	target = null
 	state_component.change_state(EnemyState.SEARCH)
 	#TODO: Later search play at last known position --> run back to origin
+
+
+func _on_vision_component_target_died() -> void:
+	lastKnownPosition = target.global_position
+	target = null
+	state_component.change_state(EnemyState.BACK_TO_ORIGIN)
 
 
 func _on_animation_event_relay_component_animation_event_received(event: AnimationEventRelay.AnimationEvents) -> void:

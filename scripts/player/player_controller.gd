@@ -190,6 +190,7 @@ func _die()-> void:
 	if is_dead:
 		return
 	is_dead = true
+	died.emit()
 	combatComponent.cancelCurrentAction()
 	velocity = Vector3.ZERO
 	set_collision_layer_value(2, false)

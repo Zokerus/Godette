@@ -3,6 +3,7 @@ extends Node3D
 
 signal target_identified(targetObject: Node3D)
 signal target_lost()
+signal target_died()
 
 @export var excludeParent: bool = true
 @export var detectionRange: float = 10.0
@@ -38,8 +39,7 @@ func updateVision() -> void:
 	
 	if newTarget != visibleTarget:
 		if newTarget != null:
-			target_identified.emit(newTarget)
-			visibleTarget = newTarget
+			_set_visible_target(newTarget)
 		else:
 			target_lost.emit()
 			visibleTarget = null
@@ -112,7 +112,7 @@ func _clear_visible_target() -> void:
 	visibleTarget = null
 	candidates.erase(previous_target)
 
-	target_lost.emit()
+	target_died.emit()
 
 
 func _on_detection_area_3d_body_entered(body: Node3D) -> void:

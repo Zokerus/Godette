@@ -26,6 +26,9 @@ func _alive_physics_process(delta: float)-> void:
 		
 		EnemyState.SEARCH:
 			handle_search(delta)
+		
+		EnemyState.BACK_TO_ORIGIN:
+			handle_walk_back(delta)
 
 
 func _on_prepare_timer_timeout() -> void:

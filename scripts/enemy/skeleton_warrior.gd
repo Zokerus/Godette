@@ -32,6 +32,9 @@ func _alive_physics_process(delta: float)-> void:
 		
 		EnemyState.SEARCH:
 			handle_search(delta)
+		
+		EnemyState.BACK_TO_ORIGIN:
+			handle_walk_back(delta)
 
 
 func handle_chase(delta: float) -> void:
