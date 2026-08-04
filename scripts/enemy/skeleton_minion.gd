@@ -11,15 +11,7 @@ func _physics_process(delta: float) -> void:
 		_alive_physics_process(delta)
 	move_and_slide()
 
-
-func _apply_gravity(delta: float)-> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-	else:
-		velocity.y = 0.0
-
-
+## Processes vision, combat visuals, and state behavior while the enemy is alive.
 func _alive_physics_process(delta: float)-> void:
 	vision_component.updateVision()
 	match state_component.currentState:

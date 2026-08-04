@@ -34,6 +34,14 @@ var is_dead: bool = false
 func _ready() -> void:
 	pointOfOrigin = global_position
 
+## Applies gravity independently from the enemy's alive state.
+func _apply_gravity(delta: float)-> void:
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+	else:
+		velocity.y = 0.0
+
 
 func get_movement_direction() -> Vector3:
 	var destination := navigation_agent_3d.get_next_path_position()

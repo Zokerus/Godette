@@ -1,6 +1,8 @@
 extends CharacterBody3D
 class_name PlayerController
 
+signal died(character: Node3D)
+
 const JUMP_VELOCITY = 4.5
 
 #Stores the x/y direction the player is trying to look in
@@ -28,6 +30,8 @@ var movementSpeedModifier: float = 1.0
 @onready var camera_yaw_pivot: Node3D = $CameraYawPivot
 @onready var camera_pitch_pivot: Node3D = $CameraYawPivot/CameraPitchPivot
 
+var is_dead: bool = false
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -42,12 +46,14 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	handle_camera_rotation(delta)
-	var direction := get_movement_direction()
-	handle_movement(direction, delta)
-	handle_jump(delta)
 	handle_fall(delta)
-	ability_logic(delta)
-	update_combat_visuals(delta)
+	
+	if !is_dead:
+		var direction := get_movement_direction()
+		handle_movement(direction, delta)
+		handle_jump(delta)
+		ability_logic(delta)
+		update_combat_visuals(delta)
 
 	move_and_slide()
 
@@ -180,5 +186,16 @@ func changeSpeedModifier(value: float, start_duration: float, end_duration: floa
 	tween.tween_property(self, "movementSpeedModifier", 1.0, end_duration)
 
 
+func _die()-> void:
+	if is_dead:
+		return
+	is_dead = true
+	combatComponent.cancelCurrentAction()
+	velocity = Vector3.ZERO
+	set_collision_layer_value(2, false)
+	
+	
+
 func _on_health_component_died() -> void:
 	print("Player died!")
+	_die()
