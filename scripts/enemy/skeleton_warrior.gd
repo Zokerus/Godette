@@ -8,14 +8,24 @@ extends Enemy
 
 
 func _physics_process(delta: float) -> void:
-	vision_component.updateVision()
-	combat_component.updateCombatVisuals(delta, movementSpeedRatio)
+	_apply_gravity(delta)
 	
+	if !is_dead:
+		_alive_physics_process(delta)
+	move_and_slide()
+	
+
+func _apply_gravity(delta: float)-> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	else:
 		velocity.y = 0.0
+
+
+func _alive_physics_process(delta: float)-> void:
+	vision_component.updateVision()
+	combat_component.updateCombatVisuals(delta, movementSpeedRatio)
 	
 	match state_component.currentState:
 		EnemyState.IDLE:
@@ -87,4 +97,4 @@ func _on_prepare_timer_timeout() -> void:
 
 func _on_health_component_died() -> void:
 	print("Warrior died!")
-	queue_free()
+	die()

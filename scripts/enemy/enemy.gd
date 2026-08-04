@@ -58,14 +58,12 @@ func handle_movement(delta: float) -> void:
 	character.rig.travel("Running_A")
 	
 	movementSpeedRatio = clampf(Vector3(velocity.x, 0, velocity.z).length() / speed, 0.0, 1.0)
-	#move_and_slide()
 
 
 func stop_movement(delta) -> void:
 	velocity.x = move_toward(velocity.x, 0, moveSpeed * 4.0 * delta)
 	velocity.z = move_toward(velocity.z, 0, moveSpeed * 4.0 * delta)
 	character.rig.travel("Idle_A")
-	#move_and_slide()
 
 
 func look_toward_direction(direction: Vector3, delta: float)-> void:
@@ -193,6 +191,8 @@ func die() -> void:
 	
 	vision_component.set_process(false)
 	vision_component.set_physics_process(false)
+	
+	prepare_timer.stop()
 
 	navigation_agent_3d.target_position = global_position
 	velocity = Vector3.ZERO
