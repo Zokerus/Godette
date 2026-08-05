@@ -6,14 +6,17 @@ extends Enemy
 
 
 func _physics_process(delta: float) -> void:
+	_apply_gravity(delta)
+	
+	if !is_dead:
+		_alive_physics_process(delta)
+	move_and_slide()
+
+
+## Processes vision, combat visuals, and state behavior while the enemy is alive.
+func _alive_physics_process(delta: float)-> void:
 	vision_component.updateVision()
 	combat_component.updateCombatVisuals(delta, movementSpeedRatio)
-	
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-	else:
-		velocity.y = 0.0
 	
 	match state_component.currentState:
 		EnemyState.IDLE:
@@ -27,8 +30,16 @@ func _physics_process(delta: float) -> void:
 		
 		EnemyState.SEARCH:
 			handle_search(delta)
+			
+		EnemyState.BACK_TO_ORIGIN:
+			handle_walk_back(delta)
 
 
 func _on_prepare_timer_timeout() -> void:
 	combat_component.attack(&"")
 	state_component.change_state(EnemyState.CHASE)
+
+## Signal from HealthComponent if enemy dies
+func _on_health_component_died() -> void:
+	print("Mage died!")
+	die()
