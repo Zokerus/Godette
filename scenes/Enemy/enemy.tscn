@@ -8,6 +8,12 @@
 
 [node name="Enemy" type="CharacterBody3D" unique_id=1630115397]
 script = ExtResource("1_muyyy")
+moveSpeed = null
+attackRange = null
+attackCooldown = null
+attackPrepareTime = null
+attackPrepareMoveRangeMultiplier = null
+attackPrepareCancelRangeMultiplier = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1069391764]
 

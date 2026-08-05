@@ -42,6 +42,7 @@ func updateVision() -> void:
 			_set_visible_target(newTarget)
 		else:
 			target_lost.emit()
+			_clear_target_connection()
 			visibleTarget = null
 
 
