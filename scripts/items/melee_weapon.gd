@@ -7,7 +7,7 @@ var hit_bodies: Array[Node3D] = []
 @onready var collision_shape_3d: CollisionShape3D = $HitBox/CollisionShape3D
 
 func _ready() -> void:
-	basic_damge = 10
+	basic_damage = 10
 
 
 ## Enables the weapon hitbox during the active attack window.

@@ -30,11 +30,15 @@ func shoot_fireball()-> void:
 	if weapon == null:
 		push_warning("MagicComponent: No active weapon equipped.")
 		return
-
+	
 	if weapon is not MagicWeapon:
 		push_warning("MagicComponent: Active weapon has no projectile spawn point.")
 		return
-
+	
+	if fireball == null:
+		push_error("MagicComponent: Fireball scene is missing.")
+		return
+	
 	var magic_weapon := weapon as MagicWeapon
 	var spawn_transform := magic_weapon.get_projectile_spawn_transform()
 
