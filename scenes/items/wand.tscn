@@ -1,5 +1,10 @@
 [gd_scene format=3 uid="uid://8p8bmm4fwmop"]
 
 [ext_resource type="PackedScene" uid="uid://cu21j8mb0uyjm" path="res://assets/items/wand.gltf" id="1_tdt6b"]
+[ext_resource type="Script" uid="uid://fvasmbbpv26r" path="res://scripts/items/magic_weapon.gd" id="2_grfbw"]
 
 [node name="wand" unique_id=170926748 instance=ExtResource("1_tdt6b")]
+script = ExtResource("2_grfbw")
+
+[node name="EndPoint" type="Marker3D" parent="." index="1" unique_id=1448159394]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038758397, 0.69516003, 0)
