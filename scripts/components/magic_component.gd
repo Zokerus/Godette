@@ -21,6 +21,10 @@ func cast_spell(_attackName: StringName) -> void:
 func finish_spell()-> void:
 	combatComponent.finishAction()
 
+## Shoot a firebal after spellcast "shoot"
+func shoot_fireball()-> void:
+	pass
+
 
 func _on_animation_event_relay_component_animation_event_received(event: AnimationEventRelay.AnimationEvents) -> void:
 	match event:

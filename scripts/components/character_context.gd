@@ -5,6 +5,9 @@ extends Node
 @export var attributes: CharacterAttributes
 @export var rig: CharacterRig
 
+@export_category("Weapon")
+@export var active_weapon: BaseWeapon
+
 const BASE_HEALTH: float = 40.0
 const HEALTH_PER_VITALITY: float = 8.0
 const HEALTH_PER_ENDURANCE: float = 2.0
