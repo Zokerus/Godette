@@ -6,8 +6,8 @@ extends Node
 @export var attackSet: AttackSetData
 @export var comboWindowTime := 0.5
 @export var activateCombo: bool = false
-@export var activeWeapon: Node
 
+var activeWeapon: BaseWeapon
 var comboWindowOpen := false
 var currentComboIndex := 0
 var lastAttack : StringName
@@ -81,8 +81,7 @@ func openComboWindow() -> void:
 
 
 func finishAttack()-> void:
-	if activeWeapon:
-		activeWeapon.disable_hitbox()
+	_set_weapon_hitbox(false)
 	combatComponent.finishAction()
 
 
@@ -93,6 +92,16 @@ func cancelAttack() -> void:
 	finishAttack()
 
 
+func _set_weapon_hitbox(state: bool)-> void:
+	activeWeapon = character.active_weapon
+	if activeWeapon and activeWeapon is MeleeWeapon:
+		var weapon = activeWeapon as MeleeWeapon
+		if state:
+			weapon.enable_hitbox()
+		else:
+			weapon.disable_hitbox()
+
+
 func _on_animation_event_relay_component_animation_event_received(event: AnimationEventRelay.AnimationEvents) -> void:
 	match event:
 		AnimationEventRelay.AnimationEvents.COMBO_WINDOW_OPEN:
@@ -101,12 +110,10 @@ func _on_animation_event_relay_component_animation_event_received(event: Animati
 			finishAttack()
 			
 		AnimationEventRelay.AnimationEvents.ACTIVATE_WEAPON_HITBOX:
-			if activeWeapon:
-				activeWeapon.enable_hitbox()
+			_set_weapon_hitbox(true)
 			
 		AnimationEventRelay.AnimationEvents.DEACTIVATE_WEAPON_HITBOX:
-			if activeWeapon:
-				activeWeapon.disable_hitbox()
+			_set_weapon_hitbox(false)
 
 
 func _on_combo_timer_timeout() -> void:

@@ -160,7 +160,8 @@ func ability_logic(_delta: float) -> void:
 	#switch weapon
 	if Input.is_action_just_pressed("weapon_switch"):
 		weaponSelection = !weaponSelection
-		character.rig.switchWeapons(weaponSelection)
+		character.active_weapon = character.rig.switchWeapons(weaponSelection)
+		#TODO base decision on weapon type (combat_mode)
 		if weaponSelection:
 			combatComponent.activeCombatMode = CombatComponent.CombatMode.MELEE
 		else:

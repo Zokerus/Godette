@@ -38,9 +38,11 @@ func defend(delta: float, is_defending: bool, speedRatio: float)-> void:
 	animation_tree.set("parameters/ShieldBlendLowerBody/blend_amount", blockLegsBlend)
 
 
-func switchWeapons(weapon: bool)-> void:
+func switchWeapons(weapon: bool)-> BaseWeapon:
 	right_hand_slot.get_child(0).visible = weapon
 	right_hand_slot.get_child(1).visible = !weapon
+	
+	return right_hand_slot.get_child(float(!weapon))
 
 func castSpell(spellName: String) -> void:
 	magicStateMachine.travel(spellName)
