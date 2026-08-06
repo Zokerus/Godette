@@ -5,6 +5,8 @@ extends Node
 @export var character: CharacterContext
 @export var attackSet: AttackSetData
 
+@export var fireball: PackedScene
+
 func cast_spell(_attackName: StringName) -> void:
 	if combatComponent == null or character.rig == null:
 		return
@@ -23,7 +25,22 @@ func finish_spell()-> void:
 
 ## Shoot a firebal after spellcast "shoot"
 func shoot_fireball()-> void:
-	pass
+	var weapon := character.active_weapon
+
+	if weapon == null:
+		push_warning("MagicComponent: No active weapon equipped.")
+		return
+
+	if weapon is not MagicWeapon:
+		push_warning("MagicComponent: Active weapon has no projectile spawn point.")
+		return
+
+	var magic_weapon := weapon as MagicWeapon
+	var spawn_transform := magic_weapon.get_projectile_spawn_transform()
+
+	var projectile := fireball.instantiate()
+	get_tree().current_scene.add_child(projectile)
+	projectile.global_transform = spawn_transform
 
 
 func _on_animation_event_relay_component_animation_event_received(event: AnimationEventRelay.AnimationEvents) -> void:
@@ -33,3 +50,4 @@ func _on_animation_event_relay_component_animation_event_received(event: Animati
 			
 		AnimationEventRelay.AnimationEvents.SPAWN_MAGIC_SPELL:
 			print("Spawn Fireball")
+			shoot_fireball()
