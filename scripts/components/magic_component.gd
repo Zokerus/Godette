@@ -42,9 +42,8 @@ func shoot_fireball()-> void:
 	var magic_weapon := weapon as MagicWeapon
 	var spawn_transform := magic_weapon.get_projectile_spawn_transform()
 
-	var projectile := ProjectileSpawner.spawn_projectile(fireball, spawn_transform)
-	#get_tree().current_scene.add_child(projectile)
-	#projectile.global_transform = spawn_transform
+	var projectile := ProjectileSpawner.spawn_projectile(fireball, spawn_transform) as Fireball
+	projectile.initialize(Vector2(0,1))
 
 
 func _on_animation_event_relay_component_animation_event_received(event: AnimationEventRelay.AnimationEvents) -> void:
