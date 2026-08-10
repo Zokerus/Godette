@@ -42,7 +42,7 @@ func switchWeapons(weapon: bool)-> BaseWeapon:
 	right_hand_slot.get_child(0).visible = weapon
 	right_hand_slot.get_child(1).visible = !weapon
 	
-	return right_hand_slot.get_child(float(!weapon))
+	return right_hand_slot.get_child(int(!weapon))
 
 func castSpell(spellName: String) -> void:
 	magicStateMachine.travel(spellName)
