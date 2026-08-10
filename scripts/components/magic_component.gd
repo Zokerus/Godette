@@ -2,6 +2,7 @@ class_name MagicComponent
 extends Node
 
 @export var combatComponent: CombatComponent
+@export var aimComponent: AimComponent
 @export var character: CharacterContext
 @export var attackSet: AttackSetData
 
@@ -43,7 +44,7 @@ func shoot_fireball()-> void:
 	var spawn_transform := magic_weapon.get_projectile_spawn_transform()
 
 	var projectile := ProjectileSpawner.spawn_projectile(fireball, spawn_transform) as Fireball
-	projectile.initialize(Vector2(0,1))
+	projectile.initialize(aimComponent.get_aim_direction(spawn_transform.origin))
 
 
 func _on_animation_event_relay_component_animation_event_received(event: AnimationEventRelay.AnimationEvents) -> void:
