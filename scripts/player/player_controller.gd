@@ -156,7 +156,7 @@ func ability_logic(_delta: float) -> void:
 		combatComponent.handle_secondary_combat_action(false)
 	
 	#switch weapon
-	if Input.is_action_just_pressed("weapon_switch"):
+	if Input.is_action_just_pressed("weapon_switch") and !combatComponent.isDefending:
 		weaponSelection = !weaponSelection
 		character.active_weapon = character.rig.switchWeapons(weaponSelection)
 		#TODO base decision on weapon type (combat_mode)
