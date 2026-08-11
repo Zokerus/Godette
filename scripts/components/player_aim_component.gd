@@ -2,6 +2,7 @@ class_name PlayerComponent
 extends AimComponent
 
 @export var camera: Camera3D
+@export var camera_controller: CameraController
 @export var aim_distance: float = 100.0
 
 ## Returns the projectile direction toward the center of the player's camera view.
