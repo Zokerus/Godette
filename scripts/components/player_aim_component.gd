@@ -1,8 +1,22 @@
 class_name PlayerComponent
 extends AimComponent
 
+signal aiming_changed(active: bool)
+
 @export var camera: Camera3D
 @export var aim_distance: float = 100.0
+
+var is_aiming: bool = false
+
+
+## Changes the current aiming state and notifies dependent systems.
+func set_aiming(active: bool) -> void:
+	if is_aiming == active:
+		return
+
+	is_aiming = active
+	aiming_changed.emit(active)
+
 
 ## Returns the projectile direction toward the center of the player's camera view.
 func get_aim_direction(origin: Vector3) -> Vector3:

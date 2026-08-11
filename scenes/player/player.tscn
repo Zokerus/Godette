@@ -47,32 +47,32 @@ right_hand_slot = NodePath("Rig/GeneralSkeleton/RightHandSlot")
 left_hand_slot = NodePath("Rig/GeneralSkeleton/LeftHandSlot")
 
 [node name="GeneralSkeleton" parent="RigYawPivot/Godette/Rig" parent_id_path=PackedInt32Array(1658511372, 2106657058) index="0" unique_id=1919334758]
-bones/1/position = Vector3(0, 0.38408855, 0)
-bones/1/rotation = Quaternion(0.004588148, 0.04315729, 0.0001982025, 0.9990578)
-bones/2/rotation = Quaternion(0.012262971, 2.3759272e-09, 0.0010614553, 0.9999243)
-bones/3/rotation = Quaternion(-0.005844925, 4.2882284e-09, -0.00050592347, 0.9999829)
-bones/4/rotation = Quaternion(-0.53972036, -0.10178198, -0.76262134, 0.34168848)
-bones/5/rotation = Quaternion(4.7079665e-09, -6.397069e-08, -0.37872326, 0.92551005)
-bones/7/rotation = Quaternion(-0.22024436, -0.34320837, 0.17804705, 0.8955444)
-bones/8/rotation = Quaternion(0.002423425, 0.0024234268, -0.69815165, 0.7159417)
-bones/9/rotation = Quaternion(-0.5659212, 0.0325337, 0.7275701, 0.38641506)
-bones/10/rotation = Quaternion(2.4168891e-08, 3.7526533e-08, 0.39155146, 0.92015624)
-bones/12/rotation = Quaternion(-0.21072476, 0.37965605, -0.13161597, 0.8911418)
-bones/13/rotation = Quaternion(0.0024234236, -0.0024234287, 0.69815165, 0.7159417)
-bones/14/rotation = Quaternion(-0.014361119, -0.031338498, -0.00079059904, 0.9994054)
-bones/15/rotation = Quaternion(0.9892137, 0.057605635, 0.07143569, 0.11417)
-bones/16/rotation = Quaternion(0.33313835, 6.085044e-08, -2.3085505e-07, 0.94287795)
-bones/17/rotation = Quaternion(-0.56887674, -0.112149075, 0.048550766, 0.8132925)
-bones/18/rotation = Quaternion(-9.885143e-07, 0.9202346, -0.39136732, 2.7918935e-07)
-bones/19/rotation = Quaternion(0.9950225, -0.031170165, 0.030972373, 0.08944056)
-bones/20/rotation = Quaternion(0.34363288, -6.1677845e-08, 2.3932623e-07, 0.93910414)
-bones/21/rotation = Quaternion(-0.5973185, 0.11390213, -0.014702985, 0.79373854)
+bones/1/position = Vector3(0, 0.3905724, 0)
+bones/1/rotation = Quaternion(0.00092471286, 0.043157734, 3.9948536e-05, 0.9990679)
+bones/2/rotation = Quaternion(0.002382057, 5.6512367e-10, 0.00020618559, 0.99999714)
+bones/3/rotation = Quaternion(0.0028853982, 4.7231126e-09, 0.00024975356, 0.9999958)
+bones/4/rotation = Quaternion(-0.53476566, -0.114043295, -0.7701025, 0.3285757)
+bones/5/rotation = Quaternion(1.1825997e-08, -5.568113e-08, -0.36252147, 0.9319755)
+bones/7/rotation = Quaternion(-0.22173946, -0.34534237, 0.1834708, 0.8932575)
+bones/8/rotation = Quaternion(0.00047074805, 0.00047074698, -0.7053768, 0.7088323)
+bones/9/rotation = Quaternion(-0.56166494, 0.04413242, 0.73517394, 0.3769671)
+bones/10/rotation = Quaternion(6.03926e-09, 5.7942525e-08, 0.3792852, 0.92527986)
+bones/12/rotation = Quaternion(-0.21205494, 0.38323286, -0.13860959, 0.88823014)
+bones/13/rotation = Quaternion(0.00047074235, -0.0004707527, 0.7053768, 0.7088323)
+bones/14/rotation = Quaternion(-0.0048638303, -0.031341378, -0.0002677615, 0.9994969)
+bones/15/rotation = Quaternion(0.9918087, 0.058005836, 0.07064581, 0.08921981)
+bones/16/rotation = Quaternion(0.27709964, 6.222535e-08, -1.942419e-07, 0.9608413)
+bones/17/rotation = Quaternion(-0.5379433, -0.113964155, 0.04312438, 0.834128)
+bones/18/rotation = Quaternion(7.031338e-06, 0.9202473, -0.39133748, -1.5267374e-06)
+bones/19/rotation = Quaternion(0.9969407, -0.029781878, 0.031416733, 0.06507943)
+bones/20/rotation = Quaternion(0.2880127, -6.412792e-08, 2.003498e-07, 0.95762664)
+bones/21/rotation = Quaternion(-0.56670326, 0.11441858, -0.009817205, 0.8158795)
 
 [node name="RightHandSlot" parent="RigYawPivot/Godette/Rig/GeneralSkeleton" index="6" unique_id=265523135]
-transform = Transform3D(0.00033722306, -0.26310036, -0.96476877, -0.9996559, -0.025350118, 0.006564921, -0.026184555, 0.9644347, -0.26301867, -0.42412245, 0.5297676, 0.080046035)
+transform = Transform3D(-1.3241544e-05, -0.26280403, -0.96484935, -0.99998575, -0.004917526, 0.0013543573, -0.005101122, 0.964836, -0.26280034, -0.42414758, 0.53448814, 0.08138782)
 
 [node name="LeftHandSlot" parent="RigYawPivot/Godette/Rig/GeneralSkeleton" index="7" unique_id=771635511]
-transform = Transform3D(-0.000416697, 0.2639452, 0.9645378, 0.99962956, -0.02611737, 0.007579448, 0.027192105, 0.9641835, -0.26383707, 0.42579752, 0.53245914, 0.0844271)
+transform = Transform3D(-1.7560087e-05, 0.26282716, 0.96484274, 0.9999859, -0.004932815, 0.001362553, 0.0051178723, 0.96482974, -0.2628237, 0.4254731, 0.5372439, 0.08654605)
 
 [node name="Knight" parent="RigYawPivot" unique_id=1077938132 node_paths=PackedStringArray("right_hand_slot", "left_hand_slot") instance=ExtResource("3_75vfm")]
 visible = false
@@ -80,38 +80,39 @@ right_hand_slot = NodePath("Rig_Medium/GeneralSkeleton/RightHandSlot")
 left_hand_slot = NodePath("Rig_Medium/GeneralSkeleton/LeftHandSlot")
 
 [node name="GeneralSkeleton" parent="RigYawPivot/Knight/Rig_Medium" parent_id_path=PackedInt32Array(1077938132, 1082112016) index="0" unique_id=1602417766]
-bones/1/position = Vector3(0, 0.38408855, 0)
-bones/1/rotation = Quaternion(0.004588148, 0.04315729, 0.0001982025, 0.9990578)
-bones/2/rotation = Quaternion(0.012262971, 2.3759272e-09, 0.0010614553, 0.9999243)
-bones/3/rotation = Quaternion(-0.005844925, 4.2882284e-09, -0.00050592347, 0.9999829)
-bones/4/rotation = Quaternion(-0.53972036, -0.10178198, -0.76262134, 0.34168848)
-bones/5/rotation = Quaternion(4.7079665e-09, -6.397069e-08, -0.37872326, 0.92551005)
-bones/7/rotation = Quaternion(-0.22024436, -0.34320837, 0.17804705, 0.8955444)
-bones/8/rotation = Quaternion(0.002423425, 0.0024234268, -0.69815165, 0.7159417)
-bones/9/rotation = Quaternion(-0.5659212, 0.0325337, 0.7275701, 0.38641506)
-bones/10/rotation = Quaternion(2.4168891e-08, 3.7526533e-08, 0.39155146, 0.92015624)
-bones/12/rotation = Quaternion(-0.21072476, 0.37965605, -0.13161597, 0.8911418)
-bones/13/rotation = Quaternion(0.0024234236, -0.0024234287, 0.69815165, 0.7159417)
-bones/14/rotation = Quaternion(-0.014361119, -0.031338498, -0.00079059904, 0.9994054)
-bones/15/rotation = Quaternion(0.9950225, -0.031170165, 0.030972373, 0.08944056)
-bones/16/rotation = Quaternion(0.34363288, -6.167783e-08, 2.3932623e-07, 0.93910414)
-bones/17/rotation = Quaternion(-0.5973185, 0.11390213, -0.014702985, 0.79373854)
-bones/19/rotation = Quaternion(0.9892137, 0.057605635, 0.07143569, 0.11417)
-bones/20/rotation = Quaternion(0.33313835, 6.085044e-08, -2.3085505e-07, 0.94287795)
-bones/21/rotation = Quaternion(-0.56887674, -0.112149075, 0.048550766, 0.8132925)
-bones/22/rotation = Quaternion(-9.885143e-07, 0.9202346, -0.39136732, 2.7918935e-07)
+bones/1/position = Vector3(0, 0.3905724, 0)
+bones/1/rotation = Quaternion(0.00092471286, 0.043157734, 3.9948536e-05, 0.9990679)
+bones/2/rotation = Quaternion(0.002382057, 5.6512367e-10, 0.00020618559, 0.99999714)
+bones/3/rotation = Quaternion(0.0028853982, 4.7231126e-09, 0.00024975356, 0.9999958)
+bones/4/rotation = Quaternion(-0.53476566, -0.114043295, -0.7701025, 0.3285757)
+bones/5/rotation = Quaternion(1.1825996e-08, -5.568113e-08, -0.36252147, 0.9319755)
+bones/7/rotation = Quaternion(-0.22173946, -0.34534237, 0.1834708, 0.8932575)
+bones/8/rotation = Quaternion(0.00047074805, 0.00047074698, -0.7053768, 0.7088323)
+bones/9/rotation = Quaternion(-0.56166494, 0.04413242, 0.73517394, 0.3769671)
+bones/10/rotation = Quaternion(6.0392615e-09, 5.7942522e-08, 0.3792852, 0.92527986)
+bones/12/rotation = Quaternion(-0.21205494, 0.38323286, -0.13860959, 0.88823014)
+bones/13/rotation = Quaternion(0.00047074232, -0.0004707527, 0.7053768, 0.7088323)
+bones/14/rotation = Quaternion(-0.0048638303, -0.031341378, -0.0002677615, 0.9994969)
+bones/15/rotation = Quaternion(0.9969407, -0.029781878, 0.031416733, 0.06507943)
+bones/16/rotation = Quaternion(0.2880127, -6.412791e-08, 2.0034979e-07, 0.95762664)
+bones/17/rotation = Quaternion(-0.56670326, 0.11441858, -0.009817205, 0.8158795)
+bones/19/rotation = Quaternion(0.9918087, 0.058005836, 0.07064581, 0.08921981)
+bones/20/rotation = Quaternion(0.27709964, 6.2225354e-08, -1.942419e-07, 0.9608413)
+bones/21/rotation = Quaternion(-0.5379433, -0.113964155, 0.04312438, 0.834128)
+bones/22/rotation = Quaternion(7.031338e-06, 0.9202473, -0.39133748, -1.5267374e-06)
 
 [node name="RightHandSlot" parent="RigYawPivot/Knight/Rig_Medium/GeneralSkeleton" index="9" unique_id=646431075]
-transform = Transform3D(0.00033722306, -0.26310036, -0.96476877, -0.9996559, -0.025350118, 0.006564921, -0.026184555, 0.9644347, -0.26301867, -0.42412245, 0.5297676, 0.080046035)
+transform = Transform3D(-1.3241544e-05, -0.26280403, -0.96484935, -0.99998575, -0.004917526, 0.0013543572, -0.005101122, 0.964836, -0.26280034, -0.42414758, 0.53448814, 0.08138782)
 
 [node name="LeftHandSlot" parent="RigYawPivot/Knight/Rig_Medium/GeneralSkeleton" index="10" unique_id=1732149600]
-transform = Transform3D(-0.000416697, 0.2639452, 0.9645378, 0.99962956, -0.02611737, 0.007579448, 0.027192105, 0.9641835, -0.26383707, 0.42579752, 0.53245914, 0.0844271)
+transform = Transform3D(-1.7560087e-05, 0.26282716, 0.96484274, 0.9999859, -0.004932815, 0.001362553, 0.0051178723, 0.96482974, -0.2628237, 0.4254731, 0.5372439, 0.08654605)
 
 [node name="CameraYawPivot" type="Node3D" parent="." unique_id=1464741403 node_paths=PackedStringArray("shoulder_pivot")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 script = ExtResource("6_ugbui")
 shoulder_pivot = NodePath("CameraPitchPivot/ShoulderPivot")
 aim_offset = Vector3(1.3, 0.4, 0)
+transition_duration = 0.3
 
 [node name="CameraPitchPivot" type="Node3D" parent="CameraYawPivot" unique_id=32305532]
 
@@ -142,10 +143,9 @@ character = NodePath("../CharacterContext")
 attackSet = ExtResource("8_5gtgg")
 activateCombo = true
 
-[node name="MagicComponent" parent="." unique_id=2114964570 node_paths=PackedStringArray("combatComponent", "aimComponent", "camera_controller", "character") instance=ExtResource("7_0owmy")]
+[node name="MagicComponent" parent="." unique_id=2114964570 node_paths=PackedStringArray("combatComponent", "aimComponent", "character") instance=ExtResource("7_0owmy")]
 combatComponent = NodePath("../CombatComponent")
 aimComponent = NodePath("../PlayerAimComponent")
-camera_controller = NodePath("../CameraYawPivot")
 character = NodePath("../CharacterContext")
 fireball = ExtResource("11_fm80t")
 
@@ -162,6 +162,7 @@ camera = NodePath("../CameraYawPivot/CameraPitchPivot/ShoulderPivot/CameraSpring
 [connection signal="animationEventReceived" from="RigYawPivot/Knight/AnimationEventRelayComponent" to="MeleeComponent" method="_on_animation_event_relay_component_animation_event_received"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="health_changed" from="HealthComponent" to="HealthComponent" method="_on_health_changed"]
+[connection signal="aiming_changed" from="PlayerAimComponent" to="CameraYawPivot" method="set_aiming"]
 
 [editable path="RigYawPivot/Godette"]
 [editable path="RigYawPivot/Knight"]
