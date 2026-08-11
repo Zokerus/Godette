@@ -147,11 +147,11 @@ func handle_fall(delta: float) -> void:
 
 func ability_logic(_delta: float) -> void:
 	#actual attack
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("primary_combat"):
 		combatComponent.attack(&"Chop", true)
 	
 	#defend
-	if Input.is_action_pressed("block"):
+	if Input.is_action_pressed("secondary_combat"):
 		defend = combatComponent.startDefend(true)
 	else:
 		combatComponent.stopDefend()
