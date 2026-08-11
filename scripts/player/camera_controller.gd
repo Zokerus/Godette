@@ -4,7 +4,7 @@ extends Node3D
 @export var shoulder_pivot: Node3D
 
 @export_category("Camera Offsets")
-@export var exploration_offset := Vector3(0.35, 0.1, 0.0)
+@export var exploration_offset := Vector3(0.7, 0.2, 0.0)
 @export var aim_offset := Vector3(0.9, 0.2, 0.0)
 @export var transition_duration: float = 0.2
 

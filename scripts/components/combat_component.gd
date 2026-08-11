@@ -111,8 +111,7 @@ func handle_secondary_combat_action(start_action: bool) -> void:
 				stopDefend()
 
 		CombatComponent.CombatMode.MAGIC:
-			pass
-			#_handle_aim_secondary()
+			magicComponent.handle_aim_secondary(start_action)
 
 		CombatComponent.CombatMode.RANGED:
 			pass

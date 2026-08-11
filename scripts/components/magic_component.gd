@@ -3,6 +3,7 @@ extends Node
 
 @export var combatComponent: CombatComponent
 @export var aimComponent: AimComponent
+@export var camera_controller: CameraController
 @export var character: CharacterContext
 @export var attackSet: AttackSetData
 
@@ -45,6 +46,16 @@ func shoot_fireball()-> void:
 
 	var projectile := ProjectileSpawner.spawn_projectile(fireball, spawn_transform) as Fireball
 	projectile.initialize(aimComponent.get_aim_direction(spawn_transform.origin))
+
+
+## Handles aiming while the player uses a ranged or magic weapon.
+func handle_aim_secondary(start_action: bool) -> void:
+	if start_action:
+		#aimComponent.start_aim()
+		camera_controller.set_aiming(start_action)
+	else:
+		#aimComponent.stop_aim()
+		camera_controller.set_aiming(start_action)
 
 
 func _on_animation_event_relay_component_animation_event_received(event: AnimationEventRelay.AnimationEvents) -> void:
