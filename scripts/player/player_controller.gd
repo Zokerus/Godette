@@ -9,7 +9,6 @@ const JUMP_VELOCITY = 4.5
 var mouseLookDelta := Vector2.ZERO
 var isJumpPreparing: bool = false
 var ignoreGroundAnimationUntilAirborne: bool = false
-var defend: bool = false
 var movementSpeedRatio : float
 var weaponSelection: bool = true
 var movementSpeedModifier: float = 1.0
@@ -150,12 +149,11 @@ func ability_logic(_delta: float) -> void:
 	if Input.is_action_just_pressed("primary_combat"):
 		combatComponent.attack(&"Chop", true)
 	
-	#defend
+	#secondary combat action
 	if Input.is_action_pressed("secondary_combat"):
-		defend = combatComponent.startDefend(true)
+		combatComponent.handle_secondary_combat_action(true)
 	else:
-		combatComponent.stopDefend()
-		defend = false
+		combatComponent.handle_secondary_combat_action(false)
 	
 	#switch weapon
 	if Input.is_action_just_pressed("weapon_switch"):

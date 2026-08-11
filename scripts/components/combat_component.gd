@@ -100,6 +100,25 @@ func attack(attackName: StringName, manual: bool = false) -> void:
 				currentActionType = ActionType.ATTACK
 				magicComponent.cast_spell(&"Shoot")
 
+
+## Handles the secondary combat input according to the active combat mode.
+func handle_secondary_combat_action(start_action: bool) -> void:
+	match activeCombatMode:
+		CombatComponent.CombatMode.MELEE:
+			if start_action:
+				startDefend(true)
+			else:
+				stopDefend()
+
+		CombatComponent.CombatMode.MAGIC:
+			pass
+			#_handle_aim_secondary()
+
+		CombatComponent.CombatMode.RANGED:
+			pass
+			#_handle_aim_secondary()
+
+
 ## Processes an incoming hit, applies damage, and plays the hit reaction.
 func getHit(hitType: StringName, damage: float) -> void:
 	
