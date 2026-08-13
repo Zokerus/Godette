@@ -59,5 +59,4 @@ func _on_animation_event_relay_component_animation_event_received(event: Animati
 			finish_spell()
 			
 		AnimationEventRelay.AnimationEvents.SPAWN_MAGIC_SPELL:
-			print("Spawn Fireball")
 			shoot_fireball()
