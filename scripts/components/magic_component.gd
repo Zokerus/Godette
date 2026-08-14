@@ -44,7 +44,7 @@ func shoot_fireball()-> void:
 	var spawn_transform := magic_weapon.get_projectile_spawn_transform()
 
 	var projectile := ProjectileSpawner.spawn_projectile(fireball, spawn_transform) as Fireball
-	projectile.initialize(aimComponent.get_aim_direction(spawn_transform.origin))
+	projectile.initialize(spawn_transform.origin, aimComponent.get_aim_direction(spawn_transform.origin))
 
 
 ## Handles aiming while the player uses a ranged or magic weapon.
