@@ -5,11 +5,12 @@ var direction: Vector3
 var caster_node: Node3D
 
 const SPEED = 5.0 # temp moving speed, might change in the future
-const MAX_DISTANCE = 50.0 # maximum travel distance before desolving
+const MAX_DISTANCE = 50.0 # maximum travel distance before dessolving
 
 func _ready() -> void:
 	basic_damage = 10
 
+## Initializes the projectile with its caster, spawn position, and movement direction.
 func initialize(caster: Node3D, pos: Vector3, dir: Vector3)-> void:
 	caster_node = caster
 	origin = pos
