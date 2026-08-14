@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dndtvlupnvlj1" path="res://scripts/projectiles/fireball.gd" id="1_nx3os"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1p5ls"]
+albedo_color = Color(1, 0.23529412, 0.09411765, 1)
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_yt0ak"]
 
 [node name="Fireball" type="Area3D" unique_id=1188708655]
@@ -12,6 +15,7 @@ script = ExtResource("1_nx3os")
 [node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=63480417]
 radial_segments = 24
 rings = 14
+material = SubResource("StandardMaterial3D_1p5ls")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1095440106]
 shape = SubResource("SphereShape3D_yt0ak")
