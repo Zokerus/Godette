@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DefenseData" format=3 uid="uid://bv0exrw8wlv51"]
+
+[ext_resource type="Script" uid="uid://c1d1gaupjmacw" path="res://scripts/resources/defense_data.gd" id="1_d0fbk"]
+
+[resource]
+script = ExtResource("1_d0fbk")
+amount = 5.0
+metadata/_custom_type_script = "uid://c1d1gaupjmacw"

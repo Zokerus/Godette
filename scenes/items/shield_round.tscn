@@ -1,12 +1,17 @@
 [gd_scene format=3 uid="uid://c2bmbdpvbplob"]
 
 [ext_resource type="PackedScene" uid="uid://q01sjajabp0k" path="res://assets/items/shield_round.gltf" id="1_jtdak"]
+[ext_resource type="Script" uid="uid://djosbhqjxws5q" path="res://scripts/items/shield.gd" id="2_2chnb"]
 [ext_resource type="Texture2D" uid="uid://csgruele0lfow" path="res://assets/textures/knight_texture.png" id="2_lcipn"]
+[ext_resource type="Script" uid="uid://c1d1gaupjmacw" path="res://scripts/resources/defense_data.gd" id="3_r18t1"]
+[ext_resource type="Resource" uid="uid://bv0exrw8wlv51" path="res://resources/items/shield/shield.tres" id="4_f21y2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2chnb"]
 albedo_texture = ExtResource("2_lcipn")
 
 [node name="Shield_Round" unique_id=1058619000 instance=ExtResource("1_jtdak")]
+script = ExtResource("2_2chnb")
+defense = Array[ExtResource("3_r18t1")]([ExtResource("4_f21y2")])
 
 [node name="shield_round" parent="." index="0" unique_id=1367478979]
 surface_material_override/0 = SubResource("StandardMaterial3D_2chnb")
