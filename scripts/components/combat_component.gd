@@ -154,6 +154,10 @@ func updateCombatVisuals(delta: float, movementSpeedRatio: float) -> void:
 	character.rig.defend(delta, isDefending, movementSpeedRatio)
 
 
+func _damage_calculation(damage: DamagePacket, shield: DefenseData)-> float:
+	return 0
+
+
 func _on_cool_down_timer_timeout() -> void:
 	pass
 
