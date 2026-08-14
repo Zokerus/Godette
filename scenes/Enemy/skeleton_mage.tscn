@@ -6,6 +6,8 @@
 [ext_resource type="Resource" uid="uid://b7j4ttv1ekyda" path="res://resources/character/skeleton_mage.tres" id="3_bwj8a"]
 [ext_resource type="PackedScene" uid="uid://dak6o8c5ivdi" path="res://scenes/components/magic_component.tscn" id="4_law0u"]
 [ext_resource type="PackedScene" uid="uid://bygobbosm1ynx" path="res://scenes/components/health_component.tscn" id="5_8jtl0"]
+[ext_resource type="PackedScene" uid="uid://76ojsj30gq1e" path="res://scenes/projectiles/fireball.tscn" id="6_nswjs"]
+[ext_resource type="PackedScene" uid="uid://cvoy05871smvd" path="res://scenes/components/npc_aim_component.tscn" id="7_u188r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_662sf"]
 height = 2.2
@@ -14,47 +16,54 @@ height = 2.2
 collision_layer = 4
 collision_mask = 31
 script = ExtResource("2_law0u")
+moveSpeed = 2.0
 attackRange = 6.0
+attackCooldown = 1.2
+attackPrepareTime = 0.3
+attackPrepareMoveRangeMultiplier = 1.5
+attackPrepareCancelRangeMultiplier = 3.0
 
 [node name="CollisionShape3D" parent="." index="0" unique_id=1069391764]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 shape = SubResource("CapsuleShape3D_662sf")
 
-[node name="CharacterContext" parent="." index="1" unique_id=44747306 node_paths=PackedStringArray("rig")]
+[node name="CharacterContext" parent="." index="1" unique_id=44747306 node_paths=PackedStringArray("rig", "active_weapon")]
 attributes = ExtResource("3_bwj8a")
 rig = NodePath("../RigYawPivot/Skeleton_Mage_Rig")
+active_weapon = NodePath("../RigYawPivot/Skeleton_Mage_Rig/Rig_Medium/GeneralSkeleton/RightHandSlot/wand")
 
 [node name="Skeleton_Mage_Rig" parent="RigYawPivot" parent_id_path=PackedInt32Array(2124500958) index="0" unique_id=1623801086 instance=ExtResource("2_dwp6k")]
 
 [node name="GeneralSkeleton" parent="RigYawPivot/Skeleton_Mage_Rig/Rig_Medium" parent_id_path=PackedInt32Array(1623801086, 129866238) index="0" unique_id=202050622]
-bones/1/position = Vector3(0, 0.38418245, 0)
-bones/1/rotation = Quaternion(0.004539373, 0.0431573, 0.00019609548, 0.999058)
-bones/2/rotation = Quaternion(0.9950998, -0.031119328, 0.030987673, 0.08858774)
-bones/3/rotation = Quaternion(0.34226084, -6.411577e-08, 2.3828855e-07, 0.939605)
-bones/4/rotation = Quaternion(-0.5965593, 0.113917775, -0.014579179, 0.79430926)
-bones/6/rotation = Quaternion(0.9893154, 0.057614785, 0.07141006, 0.11329718)
-bones/7/rotation = Quaternion(0.33176017, 6.469408e-08, -2.2105833e-07, 0.94336385)
-bones/8/rotation = Quaternion(-0.5681125, -0.11219785, 0.04841294, 0.81382805)
-bones/9/rotation = Quaternion(-9.925599e-07, 0.9202346, -0.39136732, 2.7753578e-07)
-bones/10/rotation = Quaternion(0.012624811, 1.926865e-09, 0.0010927756, 0.9999198)
-bones/11/rotation = Quaternion(-0.0061652237, 3.84165e-09, -0.0005336477, 0.9999809)
-bones/13/rotation = Quaternion(2.6559366e-08, 3.0727676e-08, 0.3913638, 0.9202361)
-bones/15/rotation = Quaternion(-0.21068172, 0.37952417, -0.13134865, 0.89124763)
-bones/16/rotation = Quaternion(0.0024949326, -0.0024949326, 0.69788563, 0.7162006)
-bones/17/rotation = Quaternion(-0.015260626, -0.031338084, -0.0008401179, 0.99939203)
-bones/18/rotation = Quaternion(-0.53953975, -0.1022443, -0.762907, 0.34119767)
-bones/19/rotation = Quaternion(-8.574639e-10, -6.152465e-08, -0.37872323, 0.92551005)
-bones/21/rotation = Quaternion(-0.22026347, -0.34323993, 0.17813061, 0.8955109)
-bones/22/rotation = Quaternion(0.0024949326, 0.0024949324, -0.69788563, 0.7162006)
+bones/1/position = Vector3(0, 0.38987267, 0)
+bones/1/rotation = Quaternion(0.0012635018, 0.043157723, 5.4583626e-05, 0.99906754)
+bones/2/rotation = Quaternion(0.99675757, -0.029929807, 0.031366587, 0.06778491)
+bones/3/rotation = Quaternion(0.29427615, -6.299528e-08, 2.0230597e-07, 0.9557205)
+bones/4/rotation = Quaternion(-0.5701362, 0.11437206, -0.010354236, 0.8134843)
+bones/6/rotation = Quaternion(0.9915519, 0.057947613, 0.07073957, 0.091994174)
+bones/7/rotation = Quaternion(0.28343114, 6.259934e-08, -1.9137113e-07, 0.9589926)
+bones/8/rotation = Quaternion(-0.5414256, -0.11377516, 0.04372012, 0.8318666)
+bones/9/rotation = Quaternion(5.0418944e-06, 0.92024404, -0.3913449, -1.0564166e-06)
+bones/10/rotation = Quaternion(0.003488929, 6.7268313e-10, 0.0003019938, 0.9999939)
+bones/11/rotation = Quaternion(0.001921503, 1.1763412e-09, 0.00016632104, 0.99999815)
+bones/12/rotation = Quaternion(-0.56213975, 0.04288079, 0.7343578, 0.3779931)
+bones/13/rotation = Quaternion(1.7701783e-08, 5.7660525e-08, 0.38062033, 0.9247315)
+bones/15/rotation = Quaternion(-0.21189365, 0.38283986, -0.13786446, 0.88855404)
+bones/16/rotation = Quaternion(0.00068948726, -0.000689491, 0.70457125, 0.7096325)
+bones/17/rotation = Quaternion(-0.010771164, -0.03133993, -0.0005929676, 0.9994506)
+bones/18/rotation = Quaternion(-0.5352928, -0.112778254, -0.76933986, 0.32993793)
+bones/19/rotation = Quaternion(3.244961e-08, -6.7334895e-08, -0.36432144, 0.93127334)
+bones/21/rotation = Quaternion(-0.22156349, -0.3451228, 0.18293725, 0.89349526)
+bones/22/rotation = Quaternion(0.000689482, 0.0006894962, -0.70457125, 0.7096325)
 
 [node name="head" parent="RigYawPivot/Skeleton_Mage_Rig/Rig_Medium/GeneralSkeleton" index="0" unique_id=1680680647]
-transform = Transform3D(0.9997204, -1.6298145e-09, 0.023646604, -0.00020130689, 0.9999636, 0.008510841, -0.023645733, -0.00851324, 0.99968433, -4.9518643e-09, 1.2196488, 0.02058145)
+transform = Transform3D(0.9997204, -8.1490725e-10, 0.0236466, -0.00019353628, 0.9999663, 0.008182278, -0.023645803, -0.008184574, 0.99968696, -4.1857904e-09, 1.2255929, 0.0076596737)
 
 [node name="RightHandSlot" parent="RigYawPivot/Skeleton_Mage_Rig/Rig_Medium/GeneralSkeleton" index="9" unique_id=2016600244]
-transform = Transform3D(7.238425e-05, -0.2628919, -0.9648257, -0.99964046, -0.025851399, 0.006969941, -0.026774772, 0.9644784, -0.26279956, -0.424218, 0.5298277, 0.080159016)
+transform = Transform3D(-6.39935e-07, -0.2628297, -0.9648424, -0.9999712, -0.0071323724, 0.0019447897, -0.0073931227, 0.9648151, -0.26282245, -0.4241551, 0.5339781, 0.08123509)
 
 [node name="LeftHandSlot" parent="RigYawPivot/Skeleton_Mage_Rig/Rig_Medium/GeneralSkeleton" index="10" unique_id=1889684894]
-transform = Transform3D(-5.7613943e-05, 0.26308414, 0.964773, 0.9996344, -0.026049597, 0.007163693, 0.027016923, 0.9644207, -0.2629869, 0.4255232, 0.5325669, 0.08545371)
+transform = Transform3D(-9.940006e-06, 0.2628372, 0.96484023, 0.9999717, -0.0071350867, 0.0019546547, 0.007398385, 0.9648132, -0.2628301, 0.42546874, 0.5367343, 0.086431496)
 
 [node name="VisionComponent" parent="." index="5" unique_id=1623844984 node_paths=PackedStringArray("rig_yaw_pivot")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0)
@@ -66,12 +75,17 @@ character = NodePath("../CharacterContext")
 magicComponent = NodePath("../MagicComponent")
 healthComponent = NodePath("../HealthComponent")
 
-[node name="MagicComponent" parent="." index="8" unique_id=2114964570 node_paths=PackedStringArray("combatComponent", "character") instance=ExtResource("4_law0u")]
+[node name="MagicComponent" parent="." index="8" unique_id=2114964570 node_paths=PackedStringArray("combatComponent", "aimComponent", "character") instance=ExtResource("4_law0u")]
 combatComponent = NodePath("../CombatComponent")
+aimComponent = NodePath("../NPCAimComponent")
 character = NodePath("../CharacterContext")
+fireball = ExtResource("6_nswjs")
 
 [node name="HealthComponent" parent="." index="9" unique_id=220650441 node_paths=PackedStringArray("character") instance=ExtResource("5_8jtl0")]
 character = NodePath("../CharacterContext")
+
+[node name="NPCAimComponent" parent="." index="10" unique_id=1260803487 node_paths=PackedStringArray("vision_component") instance=ExtResource("7_u188r")]
+vision_component = NodePath("../VisionComponent")
 
 [connection signal="animationEventReceived" from="RigYawPivot/Skeleton_Mage_Rig/AnimationEventRelayComponent" to="." method="_on_animation_event_relay_component_animation_event_received"]
 [connection signal="animationEventReceived" from="RigYawPivot/Skeleton_Mage_Rig/AnimationEventRelayComponent" to="MagicComponent" method="_on_animation_event_relay_component_animation_event_received"]

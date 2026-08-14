@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cvoy05871smvd"]
+
+[ext_resource type="Script" uid="uid://cycbvyyux6qbu" path="res://scripts/npc_aim_component.gd" id="1_msyy2"]
+
+[node name="NPCAimComponent" type="Node" unique_id=1260803487]
+script = ExtResource("1_msyy2")

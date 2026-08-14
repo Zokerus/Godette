@@ -118,7 +118,7 @@ func handle_chase(delta: float) -> void:
 
 func handle_attack_prepare(delta: float) -> void:
 	#If target is lost or gone, go back to IDLE state
-	#TODO: Enemy should go back to origin or back to daily routine
+	#TODO: Enemy should go back to daily routine
 	#Ggf Übergang zu SEARCH
 	if target == null:
 		state_component.change_state(EnemyState.IDLE)
