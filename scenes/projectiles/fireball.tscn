@@ -19,3 +19,5 @@ material = SubResource("StandardMaterial3D_1p5ls")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1095440106]
 shape = SubResource("SphereShape3D_yt0ak")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
