@@ -2,10 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://cu21j8mb0uyjm" path="res://assets/items/wand.gltf" id="1_tdt6b"]
 [ext_resource type="Script" uid="uid://fvasmbbpv26r" path="res://scripts/items/magic_weapon.gd" id="2_grfbw"]
+[ext_resource type="Script" uid="uid://d1kluquwmvb5p" path="res://scripts/resources/damage_data.gd" id="3_4r7b1"]
+[ext_resource type="Resource" uid="uid://dm1xgb0joe4i2" path="res://resources/items/weapons/wand.tres" id="4_fefc6"]
 
 [node name="wand" unique_id=170926748 node_paths=PackedStringArray("projectile_spawn_marker") instance=ExtResource("1_tdt6b")]
 script = ExtResource("2_grfbw")
 projectile_spawn_marker = NodePath("EndPoint")
+damage = Array[ExtResource("3_4r7b1")]([ExtResource("4_fefc6")])
 
 [node name="EndPoint" type="Marker3D" parent="." index="1" unique_id=1448159394]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038758397, 0.69516003, 0)

@@ -3,6 +3,7 @@ extends Node3D
 
 ## TODO for future puposes
 #@export weapon_attributes: WeaponData
+@export var damage: Array[DamageData] = []
 
 var basic_damage: float = 10.0 # might be set by weapon_attributes in the future
 

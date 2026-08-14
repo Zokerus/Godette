@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dgogh2khn1nc3" path="res://scenes/items/melee_weapon.tscn" id="1_hchhw"]
 [ext_resource type="Material" uid="uid://dyc16vi4vork1" path="res://assets/materials/skeleton.tres" id="2_qoewf"]
+[ext_resource type="Script" uid="uid://d1kluquwmvb5p" path="res://scripts/resources/damage_data.gd" id="2_wbxop"]
+[ext_resource type="Resource" uid="uid://x00a1j4w7q0e" path="res://resources/items/weapons/sword_1h.tres" id="3_e5y0b"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wbxop"]
 size = Vector3(0.98, 0.7, 0.13)
@@ -41,6 +43,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_m20lw")
 
 [node name="SkeletonAxe" unique_id=1236819149 instance=ExtResource("1_hchhw")]
+damage = Array[ExtResource("2_wbxop")]([ExtResource("3_e5y0b")])
 
 [node name="HitBox" parent="." index="0" unique_id=655001217]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0)

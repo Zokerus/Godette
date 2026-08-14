@@ -4,6 +4,8 @@
 [ext_resource type="Material" uid="uid://b10to1hqk8aqg" path="res://assets/materials/knight.tres" id="2_jebsu"]
 [ext_resource type="Script" uid="uid://cgqd84f8tkou3" path="res://scripts/items/sword_1h.gd" id="2_lunjp"]
 [ext_resource type="Texture2D" uid="uid://csgruele0lfow" path="res://assets/textures/knight_texture.png" id="2_q4dw8"]
+[ext_resource type="Script" uid="uid://d1kluquwmvb5p" path="res://scripts/resources/damage_data.gd" id="3_kdqyv"]
+[ext_resource type="Resource" uid="uid://x00a1j4w7q0e" path="res://resources/items/weapons/sword_1h.tres" id="4_7m1lt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kdqyv"]
 size = Vector3(0.32, 1.16, 0.1)
@@ -47,6 +49,7 @@ albedo_texture = ExtResource("2_q4dw8")
 
 [node name="Sword_1H" unique_id=1236819149 instance=ExtResource("1_lunjp")]
 script = ExtResource("2_lunjp")
+damage = Array[ExtResource("3_kdqyv")]([ExtResource("4_7m1lt")])
 
 [node name="HitBox" parent="." index="0" unique_id=655001217]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.83, 0)
