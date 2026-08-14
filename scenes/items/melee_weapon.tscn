@@ -4,6 +4,7 @@
 
 [node name="MeleeWeapon" type="Node3D" unique_id=1236819149]
 script = ExtResource("1_j1kbt")
+damage = null
 
 [node name="HitBox" type="Area3D" parent="." unique_id=655001217]
 monitoring = false

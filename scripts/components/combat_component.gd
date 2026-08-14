@@ -119,10 +119,10 @@ func handle_secondary_combat_action(start_action: bool) -> void:
 
 
 ## Processes an incoming hit, applies damage, and plays the hit reaction.
-func getHit(hitType: StringName, damage: float) -> void:
+func getHit(hitType: StringName, damage: DamagePacket) -> void:
 	
 	if healthComponent != null:
-		healthComponent.take_damage(damage)
+		healthComponent.take_damage(10)
 	
 	cancelCurrentAction()
 	character.rig.playReaction(hitType)

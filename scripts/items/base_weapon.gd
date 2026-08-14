@@ -6,5 +6,5 @@ extends Node3D
 @export var damage: Array[DamageData] = []
 
 ## return damage of the weapon, defense and buffs of the target are not included
-func get_damage()-> Array[DamageData]:
-	return damage
+func get_damage()-> DamagePacket:
+	return DamagePacket.new()
