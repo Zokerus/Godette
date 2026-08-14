@@ -33,6 +33,7 @@ var is_dead: bool = false
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	character.active_weapon.recalculate_damage(character)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -164,6 +165,7 @@ func ability_logic(_delta: float) -> void:
 			combatComponent.activeCombatMode = CombatComponent.CombatMode.MELEE
 		else:
 			combatComponent.activeCombatMode = CombatComponent.CombatMode.MAGIC
+		character.active_weapon.recalculate_damage(character)
 	
 	#if Input.is_action_just_pressed("ui_accept"):
 		#combatComponent.getHit(&"LightHit")
