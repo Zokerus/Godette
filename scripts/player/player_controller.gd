@@ -24,7 +24,6 @@ var movementSpeedModifier: float = 1.0
 @export var character: CharacterContext
 
 @onready var combatComponent: CombatComponent = $CombatComponent
-@onready var meleeComponent: MeleeComponent = $MeleeComponent
 @onready var rig_yaw_pivot: Node3D = $RigYawPivot
 @onready var camera_yaw_pivot: Node3D = $CameraYawPivot
 @onready var camera_pitch_pivot: Node3D = $CameraYawPivot/CameraPitchPivot
