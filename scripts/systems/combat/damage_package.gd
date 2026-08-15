@@ -1,4 +1,4 @@
-class_name DamagePacket
+class_name DamagePackage
 extends RefCounted
 
 var components: Array[DamageInstance] = []

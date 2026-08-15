@@ -119,7 +119,7 @@ func handle_secondary_combat_action(start_action: bool) -> void:
 
 
 ## Processes an incoming hit, applies damage, and plays the hit reaction.
-func getHit(hitType: StringName, damage: DamagePacket) -> void:
+func getHit(hitType: StringName, damage: DamagePackage) -> void:
 	
 	if healthComponent != null:
 		healthComponent.take_damage(10)
@@ -154,7 +154,7 @@ func updateCombatVisuals(delta: float, movementSpeedRatio: float) -> void:
 	character.rig.defend(delta, isDefending, movementSpeedRatio)
 
 
-func _damage_calculation(damage: DamagePacket, shield: DefenseData)-> float:
+func _damage_calculation(damage: DamagePackage, shield: DefenseData)-> float:
 	return 0
 
 

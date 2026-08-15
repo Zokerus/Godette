@@ -7,5 +7,5 @@ var basic_damage: float = 10.0 # might be set by weapon_attributes in the future
 var origin: Vector3
 
 ## return damage of the weapon, defense and buffs of the target are not included
-func get_damage()-> DamagePacket:
-	return DamagePacket.new()
+func get_damage()-> DamagePackage:
+	return DamagePackage.new()
