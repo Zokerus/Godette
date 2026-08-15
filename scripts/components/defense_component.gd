@@ -3,10 +3,17 @@ extends Node
 
 
 @export var character: CharacterContext
+@export var equipment_component: EquipmentComponent
 ##TODO Equipment
 
 var category_resistances: Dictionary = {}
 var type_resistances: Dictionary = {}
+
+
+func _ready() -> void:
+	equipment_component.equipment_changed.connect(recalculate_defense)
+	#buff_component.buffs_changed.connect(recalculate_defense)
+	#attributes.attributes_changed.connect(recalculate_defense)
 
 ## Rebuilds all cached defense values from character attributes, equipment and buffs.
 func recalculate_defense() -> void:
@@ -16,8 +23,8 @@ func recalculate_defense() -> void:
 	#_apply_character_defense()
 	_apply_equipment_defense()
 	#_apply_buff_defense()
-	
-	
+
+
 	## Adds a resistance value for the given damage category.
 func add_category_resistance(category: DamageTypes.Category, value: float) -> void:
 	category_resistances[category] = category_resistances.get(category, 0.0) + value

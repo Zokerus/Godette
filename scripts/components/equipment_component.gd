@@ -1,25 +1,27 @@
 class_name EquipmentComponent
 extends Node
 
-signal equipment_changed
+signal equipment_changed ##may be not relevant
 
-@export var character_root: Node
+@export var character_rig: CharacterRig
 
 var equipment_slots: Array[EquipmentSlot] = []
 
 
 func _ready() -> void:
-	if character_root == null:
+	if character_rig == null:
 		push_error("EquipmentComponent: Character root is missing.")
 		return
-		
-	initialize_equipment_slots()
+	
+	initialize_equipment_slots() # connect signals and add slot to slot array
+	
+	call_deferred()
 	
 
 ## Finds all equipment slots below the character root and connects their change signals.
 func initialize_equipment_slots() -> void:
 	equipment_slots.clear()
-	_find_equipment_slots(character_root)
+	_find_equipment_slots(character_rig)
 
 
 ## Recursively searches a node subtree for equipment slots.

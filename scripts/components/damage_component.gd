@@ -2,10 +2,18 @@ class_name DamageComponent
 extends Node
 
 @export var character: CharacterContext
+@export var equipment_component: EquipmentComponent
 ## Store the active weapon inside here?
 
+
+func _ready() -> void:
+	equipment_component.equipment_changed.connect(recalculate_damage)
+	#buff_component.buffs_changed.connect(recalculate_damage)
+	#attributes.attributes_changed.connect(recalculate_damage)
+
+
 ## Recalculates the weapon's runtime damage from its base data and character modifiers.
-func recalculate_damage(character: CharacterContext) -> void:
+func recalculate_damage() -> void:
 	var weapon := character.active_weapon
 	if weapon == null: ##TODO Set damage to zero, but fpr the time being fine
 		return
