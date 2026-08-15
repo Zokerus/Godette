@@ -7,6 +7,7 @@ extends Node
 
 @export_category("Weapon")
 @export var active_weapon: BaseWeapon
+@export var active_shield: Shield
 
 const BASE_HEALTH: float = 40.0
 const HEALTH_PER_VITALITY: float = 8.0

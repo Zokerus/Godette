@@ -166,3 +166,7 @@ func _on_action_timer_timeout() -> void:
 	match currentActionType:
 		ActionType.BLOCK:
 			stopDefend()
+
+
+##TODO put damage_resolver in own class
+## 
