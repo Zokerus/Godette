@@ -67,4 +67,7 @@ func get_equipment_slot(slot_type: EquipmentSlot.SlotType) -> EquipmentSlot:
 
 ##Return active weapon on main hand slot
 func get_active_weapon()-> BaseWeapon:
+	if main_hand_slot == null:
+		return null
+		
 	return main_hand_slot.get_equipped_item() as BaseWeapon
