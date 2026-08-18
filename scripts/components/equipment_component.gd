@@ -15,13 +15,26 @@ func _ready() -> void:
 	
 	initialize_equipment_slots() # connect signals and add slot to slot array
 	
-	call_deferred()
+	call_deferred("_on_equipment_slot_changed")
 	
 
 ## Finds all equipment slots below the character root and connects their change signals.
 func initialize_equipment_slots() -> void:
 	equipment_slots.clear()
 	_find_equipment_slots(character_rig)
+
+
+## Returns all items currently equipped by the character.
+func get_equipped_items() -> Array[Equipment]:
+	var equipped_items: Array[Equipment] = []
+
+	for slot in equipment_slots:
+		var item := slot.get_equipped_item()
+
+		if item != null:
+			equipped_items.append(item)
+
+	return equipped_items
 
 
 ## Recursively searches a node subtree for equipment slots.
