@@ -1,5 +1,5 @@
 class_name Shield
-extends Node3D
+extends Equipment
 
 @export var defense: Array[DefenseData] = []
 

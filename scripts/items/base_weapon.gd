@@ -1,9 +1,8 @@
 class_name BaseWeapon
-extends Node3D
+extends Equipment
 
 ## TODO for future puposes
 #@export weapon_attributes: WeaponData
-@export var damage: Array[DamageData] = []
 
 var cached_damage: Array[DamageInstance] = []
 
