@@ -48,9 +48,14 @@ func get_type_resistance(type: DamageTypes.Type) -> float:
 func _recalculate_equipment_defense() -> void:
 	var equipment := equipment_component.get_equipped_items()
 	for item in equipment:
-		if item is BaseWeapon:
-			continue
 		for defense in item.get_defense():
 			add_category_resistance(defense.category, defense.amount)
-			if defense.type != DamageTypes.Type.NONE:
-				add_type_resistance(defense.type, defense.amount)
+			_apply_defense_data(defense)
+
+
+## Adds one defense definition to the appropriate runtime cache.
+func _apply_defense_data(defense: DefenseData) -> void:
+	if defense.type == DamageTypes.Type.NONE:
+		add_category_resistance(defense.category, defense.amount)
+	else:
+		add_type_resistance(defense.type, defense.amount)

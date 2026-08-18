@@ -14,7 +14,7 @@ func _ready() -> void:
 
 ## Recalculates the weapon's runtime damage from its base data and character modifiers.
 func recalculate_damage() -> void:
-	var weapon := character.active_weapon
+	var weapon := equipment_component.we
 	if weapon == null: ##TODO Set damage to zero, but fpr the time being fine
 		return
 	weapon.cached_damage.clear()

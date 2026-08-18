@@ -39,7 +39,7 @@ func _process_hit(body: Node3D):
 			return
 			
 		hit_bodies.append(body)
-		combat_component.getHit(&"LightHit", build_damage_packet()) ##TODO Übergabe DamageInstance DamageData (Weapon) + CharacterData + Buffs
+		combat_component.getHit(&"LightHit", build_damage_package()) ##TODO Übergabe DamageInstance DamageData (Weapon) + CharacterData + Buffs
 
 
 func _on_hit_box_body_entered(body: Node3D) -> void:

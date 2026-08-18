@@ -165,8 +165,6 @@ func ability_logic(_delta: float) -> void:
 		else:
 			combatComponent.activeCombatMode = CombatComponent.CombatMode.MAGIC
 
-
-
 func update_combat_visuals(delta: float) -> void:
 	combatComponent.updateCombatVisuals(delta, movementSpeedRatio)
 

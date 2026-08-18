@@ -6,6 +6,7 @@ signal equipment_changed ##may be not relevant
 @export var character_rig: CharacterRig
 
 var equipment_slots: Array[EquipmentSlot] = []
+var main_hand_slot: EquipmentSlot
 
 
 func _ready() -> void:
@@ -16,7 +17,7 @@ func _ready() -> void:
 	initialize_equipment_slots() # connect signals and add slot to slot array
 	
 	call_deferred("_on_equipment_slot_changed")
-	
+
 
 ## Finds all equipment slots below the character root and connects their change signals.
 func initialize_equipment_slots() -> void:
@@ -53,3 +54,17 @@ func _find_equipment_slots(node: Node) -> void:
 ## Receives equipment change signal from slots and notifies character systems that equipped items have changed.
 func _on_equipment_slot_changed() -> void:
 	equipment_changed.emit()
+
+
+## Returns the currently equipped item in the requested slot type.
+func get_equipment_slot(slot_type: EquipmentSlot.SlotType) -> EquipmentSlot:
+	for slot in equipment_slots:
+		if slot.slot_type == slot_type:
+			return slot
+
+	return null
+
+
+##Return active weapon on main hand slot
+func get_active_weapon()-> BaseWeapon:
+	return main_hand_slot.get_equipped_item() as BaseWeapon
