@@ -19,12 +19,12 @@ func recalculate_damage() -> void:
 		return
 	weapon.cached_damage.clear()
 
-	for damage_data in weapon.damage:
+	for damage in weapon.damage_data:
 		var damage_instance := DamageInstance.new()
 
-		damage_instance.category = damage_data.category
-		damage_instance.type = damage_data.type
-		damage_instance.amount = calculate_damage( damage_data, null)
+		damage_instance.category = damage.category
+		damage_instance.type = damage.type
+		damage_instance.amount = calculate_damage(damage, null)
 
 		weapon.cached_damage.append(damage_instance)
 	
