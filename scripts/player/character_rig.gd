@@ -6,13 +6,20 @@ var blockLegsBlend := 0.0
 var is_attacking: bool = false
 var currentAttackAnimation: String = ""
 
-@export var right_hand_slot: BoneAttachment3D
+@export var right_hand_slot: BoneAttachment3D #TODO might be 
 @export var left_hand_slot: BoneAttachment3D
+@export var main_hand_item_slot: EquipmentSlot
+@export var off_hand_item_slot: EquipmentSlot
+
+@export var weapons: Array[PackedScene] 
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/MovementStateMachine/playback"]
 @onready var attackStateMachine: AnimationNodeStateMachinePlayback = animation_tree["parameters/AttackStateMachine/playback"]
 @onready var magicStateMachine: AnimationNodeStateMachinePlayback = animation_tree["parameters/MagicStateMachine/playback"]
+
+
+
 
 
 func travel(animation_name: String)-> void:
@@ -39,10 +46,10 @@ func defend(delta: float, is_defending: bool, speedRatio: float)-> void:
 
 
 func switchWeapons(weapon: bool)-> BaseWeapon:
-	right_hand_slot.get_child(0).visible = weapon
-	right_hand_slot.get_child(1).visible = !weapon
+	main_hand_item_slot.remove_child(main_hand_item_slot.get_child(0))
+	main_hand_item_slot.add_child(weapons[int(!weapon)].instantiate())
 	
-	return right_hand_slot.get_child(int(!weapon))
+	return main_hand_item_slot.get_child(0)
 
 func castSpell(spellName: String) -> void:
 	magicStateMachine.travel(spellName)

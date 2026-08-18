@@ -49,7 +49,7 @@ albedo_texture = ExtResource("2_q4dw8")
 
 [node name="Sword_1H" unique_id=1236819149 instance=ExtResource("1_lunjp")]
 script = ExtResource("2_lunjp")
-damage = Array[ExtResource("3_kdqyv")]([ExtResource("4_7m1lt")])
+damage_data = Array[ExtResource("3_kdqyv")]([ExtResource("4_7m1lt")])
 
 [node name="HitBox" parent="." index="0" unique_id=655001217]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.83, 0)
