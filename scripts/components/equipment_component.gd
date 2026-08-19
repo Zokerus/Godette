@@ -15,7 +15,7 @@ func _ready() -> void:
 		return
 	
 	initialize_equipment_slots() # connect signals and add slot to slot array
-	
+	main_hand_slot = get_equipment_slot(EquipmentSlot.SlotType.MAIN_HAND)
 	call_deferred("_on_equipment_slot_changed")
 
 

@@ -2,6 +2,7 @@ class_name MagicComponent
 extends Node
 
 @export var combatComponent: CombatComponent
+@export var equipmentComponent: EquipmentComponent
 @export var aimComponent: AimComponent
 @export var character: CharacterContext
 @export var attackSet: AttackSetData
@@ -26,7 +27,7 @@ func finish_spell()-> void:
 
 ## Shoot a firebal after spellcast "shoot"
 func shoot_fireball()-> void:
-	var weapon := character.active_weapon
+	var weapon := equipmentComponent.get_active_weapon()
 
 	if weapon == null:
 		push_warning("MagicComponent: No active weapon equipped.")

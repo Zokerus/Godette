@@ -38,8 +38,3 @@ func _alive_physics_process(delta: float)-> void:
 func _on_prepare_timer_timeout() -> void:
 	combat_component.attack(&"")
 	state_component.change_state(EnemyState.CHASE)
-
-## Signal from HealthComponent if enemy dies
-func _on_health_component_died() -> void:
-	print("Mage died!")
-	die()

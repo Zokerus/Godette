@@ -205,6 +205,12 @@ func _on_state_component_state_changed(newState: Variant) -> void:
 			prepare_timer.start()
 
 
+## Signal from HealthComponent if enemy dies
+func _on_health_component_died() -> void:
+	print(name," died!")
+	die()
+
+
 ## Stops all enemy systems and removes the character from the scene.
 func die() -> void:
 	if is_dead:

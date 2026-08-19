@@ -20,6 +20,7 @@ enum ActionType {
 @export var rangeComponent: Node
 @export var magicComponent: MagicComponent
 @export var healthComponent: HealthComponent
+@export var defenseComponent: DefenseComponent
 @export_category("Cooldown Settings")
 @export var attackCooldown: float = 1.2
 @export var blockCooldown: float = 1.5
@@ -118,11 +119,13 @@ func handle_secondary_combat_action(start_action: bool) -> void:
 			#_handle_aim_secondary()
 
 
-## Processes an incoming hit, applies damage, and plays the hit reaction.
+## Resolves an incoming damage packet and triggers the corresponding hit reaction.
 func getHit(hitType: StringName, damage: DamagePackage) -> void:
+	var final_damage := DamageResolver.resolve_damage(damage, defenseComponent)
+	
 	
 	if healthComponent != null:
-		healthComponent.take_damage(10)
+		healthComponent.take_damage(final_damage)
 	
 	cancelCurrentAction()
 	character.rig.playReaction(hitType)

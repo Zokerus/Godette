@@ -5,15 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://brye0g4ixpxhn" path="res://scenes/components/character_context.tscn" id="3_vamnb"]
 [ext_resource type="PackedScene" uid="uid://cdbnu6i65f4ws" path="res://scenes/components/combat_component.tscn" id="4_o5uld"]
 [ext_resource type="PackedScene" uid="uid://chu3dpxaed7a0" path="res://scenes/components/state_component.tscn" id="5_grfqg"]
+[ext_resource type="PackedScene" uid="uid://bygobbosm1ynx" path="res://scenes/components/health_component.tscn" id="6_ebm38"]
+[ext_resource type="PackedScene" uid="uid://dgbhoxc1diq7b" path="res://scenes/components/damage_component.tscn" id="7_q0kbr"]
+[ext_resource type="PackedScene" uid="uid://bf2uu720ou2qo" path="res://scenes/components/defense_component.tscn" id="8_fx0l5"]
+[ext_resource type="PackedScene" uid="uid://cfjxl6tss00p2" path="res://scenes/components/equipment_component.tscn" id="9_pg6jp"]
 
 [node name="Enemy" type="CharacterBody3D" unique_id=1630115397]
 script = ExtResource("1_muyyy")
-moveSpeed = null
-attackRange = null
-attackCooldown = null
-attackPrepareTime = null
-attackPrepareMoveRangeMultiplier = null
-attackPrepareCancelRangeMultiplier = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1069391764]
 
@@ -34,4 +32,23 @@ debug_enabled = true
 [node name="PrepareTimer" type="Timer" parent="Timers" unique_id=1581307022]
 one_shot = true
 
-[node name="CombatComponent" parent="." unique_id=361524145 instance=ExtResource("4_o5uld")]
+[node name="CombatComponent" parent="." unique_id=361524145 node_paths=PackedStringArray("character", "healthComponent", "defenseComponent") instance=ExtResource("4_o5uld")]
+character = NodePath("../CharacterContext")
+healthComponent = NodePath("../HealthComponent")
+defenseComponent = NodePath("../DefenseComponent")
+
+[node name="HealthComponent" parent="." unique_id=220650441 node_paths=PackedStringArray("character") instance=ExtResource("6_ebm38")]
+character = NodePath("../CharacterContext")
+
+[node name="DamageComponent" parent="." unique_id=1883245926 node_paths=PackedStringArray("character", "equipment_component") instance=ExtResource("7_q0kbr")]
+character = NodePath("../CharacterContext")
+equipment_component = NodePath("../EquipmentComponent")
+
+[node name="DefenseComponent" parent="." unique_id=856339823 node_paths=PackedStringArray("character", "equipment_component") instance=ExtResource("8_fx0l5")]
+character = NodePath("../CharacterContext")
+equipment_component = NodePath("../EquipmentComponent")
+
+[node name="EquipmentComponent" parent="." unique_id=117660128 instance=ExtResource("9_pg6jp")]
+
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="health_changed" from="HealthComponent" to="HealthComponent" method="_on_health_changed"]
