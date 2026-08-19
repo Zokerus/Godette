@@ -2,6 +2,7 @@ class_name MeleeComponent
 extends Node
 
 @export var combatComponent: CombatComponent
+@export var equipmentComponent: EquipmentComponent
 @export var character: CharacterContext
 @export var attackSet: AttackSetData
 @export var comboWindowTime := 0.5
@@ -93,7 +94,7 @@ func cancelAttack() -> void:
 
 
 func _set_weapon_hitbox(state: bool)-> void:
-	activeWeapon = character.active_weapon
+	activeWeapon = equipmentComponent.get_active_weapon()
 	if activeWeapon and activeWeapon is MeleeWeapon:
 		var weapon = activeWeapon as MeleeWeapon
 		if state:

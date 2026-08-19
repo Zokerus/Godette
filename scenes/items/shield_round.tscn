@@ -11,7 +11,7 @@ albedo_texture = ExtResource("2_lcipn")
 
 [node name="Shield_Round" unique_id=1058619000 instance=ExtResource("1_jtdak")]
 script = ExtResource("2_2chnb")
-defense = Array[ExtResource("3_r18t1")]([ExtResource("4_f21y2")])
+defense_data = Array[ExtResource("3_r18t1")]([ExtResource("4_f21y2")])
 
-[node name="shield_round" parent="." index="0" unique_id=1367478979]
+[node name="shield_round" parent="." index="0" unique_id=1963480542]
 surface_material_override/0 = SubResource("StandardMaterial3D_2chnb")
