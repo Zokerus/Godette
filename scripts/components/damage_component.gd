@@ -32,3 +32,32 @@ func recalculate_damage() -> void:
 ## Character has to be defined, because enemies and player are not the same
 func calculate_damage(damage_data: DamageData, _character: Node3D)-> float:
 	return damage_data.amount
+
+
+## Builds runtime damage for a spell from cached weapon damage and spell base data.
+func calculate_spell_damage(spell_damage: DamageData, cached_damage: Array[DamageInstance]) -> float:
+	var modifier: float = 0.0
+	
+	for damage in cached_damage:
+		if damage.category == spell_damage.category:
+			modifier += damage.amount
+			
+		if damage.type == spell_damage.type:
+			modifier += damage.amount
+			
+	return spell_damage.amount * (1.0 + (modifier/100.0))
+
+
+## Builds a damage package by combining cached weapon damage with spell damage.
+func build_spell_package(weapon: BaseWeapon, spell_damage: Array[DamageData]) -> DamagePackage:
+	var package := DamagePackage.new()
+
+	for damage_data in spell_damage:
+		var damage := DamageInstance.new()
+		damage.category = damage_data.category
+		damage.type = damage_data.type
+		damage.amount = calculate_spell_damage(damage_data, weapon.cached_damage)
+
+		package.damage_instances.append(damage)
+
+	return package

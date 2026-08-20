@@ -7,9 +7,6 @@ var caster_node: Node3D
 const SPEED = 5.0 # temp moving speed, might change in the future
 const MAX_DISTANCE = 50.0 # maximum travel distance before dessolving
 
-func _ready() -> void:
-	basic_damage = 10
-
 ## Initializes the projectile with its caster, spawn position, and movement direction.
 func initialize(caster: Node3D, pos: Vector3, dir: Vector3)-> void:
 	caster_node = caster
@@ -29,6 +26,6 @@ func _on_body_entered(body: Node3D) -> void:
 		return
 	var combat_component := body.get_node_or_null("CombatComponent") as CombatComponent
 	if combat_component != null:
-		combat_component.getHit(&"LightHit", get_damage())
+		combat_component.getHit(&"LightHit", damage_package)
 	
 	queue_free()
