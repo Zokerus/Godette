@@ -46,7 +46,7 @@ func shoot_fireball()-> void:
 	var spawn_transform := magic_weapon.get_projectile_spawn_transform()
 
 	var projectile := ProjectileSpawner.spawn_projectile(fireball, spawn_transform) as Fireball
-	projectile.damage_package = damageComponent.build_spell_package(magic_weapon, projectile.damage_data)
+	projectile.damage_package = damageComponent.build_spell_package(projectile.damage_data)
 	projectile.initialize(get_parent(), spawn_transform.origin, aimComponent.get_aim_direction(spawn_transform.origin))
 
 
