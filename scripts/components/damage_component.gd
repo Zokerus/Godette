@@ -15,7 +15,7 @@ func _ready() -> void:
 ## Recalculates damage modifiers and all dependent runtime damage values.
 func _on_combat_values_changed() -> void:
 	recalculate_damage_modifiers()
-	#recalculate_weapon_damage()
+	recalculate_weapon_damage()
 
 
 ## Recalculates all cached damage modifiers from character attributes, equipment and buffs.

@@ -49,7 +49,6 @@ func _recalculate_equipment_defense() -> void:
 	var equipment := equipment_component.get_equipped_items()
 	for item in equipment:
 		for defense in item.get_defense():
-			add_category_resistance(defense.category, defense.amount)
 			_apply_defense_data(defense)
 
 
