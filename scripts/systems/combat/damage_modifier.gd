@@ -6,7 +6,7 @@ enum Scope {
 	TYPE
 }
 
-@export var scope: Scope
-@export var category: DamageTypes.Category
-@export var type: DamageTypes.Type
-@export var amount: float = 0.0
+var scope: Scope
+var category: DamageTypes.Category
+var type: DamageTypes.Type
+var amount: float = 0.0
