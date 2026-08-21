@@ -1,5 +1,5 @@
 class_name DamageModifier
-extends RefCounted
+extends Resource
 
 enum Scope {
 	CATEGORY,

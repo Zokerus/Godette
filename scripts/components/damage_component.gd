@@ -3,16 +3,19 @@ extends Node
 
 @export var character: CharacterContext
 @export var equipment_component: EquipmentComponent
-## Store the active weapon inside here?
 
 var category_modifiers: Dictionary = {}
 var type_modifiers: Dictionary = {}
 
 
 func _ready() -> void:
-	equipment_component.equipment_changed.connect(recalculate_damage)
-	#buff_component.buffs_changed.connect(recalculate_damage)
-	#attributes.attributes_changed.connect(recalculate_damage)
+	equipment_component.equipment_changed.connect(_on_combat_values_changed)
+
+
+## Recalculates damage modifiers and all dependent runtime damage values.
+func _on_combat_values_changed() -> void:
+	recalculate_damage_modifiers()
+	#recalculate_weapon_damage()
 
 
 ## Recalculates all cached damage modifiers from character attributes, equipment and buffs.
@@ -25,62 +28,33 @@ func recalculate_damage_modifiers() -> void:
 	_recalculate_buff_modifiers()
 
 
-## Recalculates the weapon's runtime damage from its base data and character modifiers.
-func recalculate_damage() -> void:
+## Recalculates the active weapon's cached runtime damage.
+func recalculate_weapon_damage() -> void:
 	var weapon := equipment_component.get_active_weapon()
-	if weapon == null: ##TODO Set damage to zero, but fpr the time being fine
+	if weapon == null:
 		return
+		
 	weapon.cached_damage.clear()
 
 	for damage in weapon.damage_data:
-		var damage_instance := DamageInstance.new()
-
-		damage_instance.category = damage.category
-		damage_instance.type = damage.type
-		damage_instance.amount = 10.0 #calculate_damage(damage, null)
-
-		weapon.cached_damage.append(damage_instance)
+		weapon.cached_damage.append(calculate_damage(damage))
 	
 ## Creates a runtime damage instance using cached category and type modifiers.
 func calculate_damage(damage_data: DamageData) -> DamageInstance:
-	var category_modifier: float = category_modifiers.get(
-		damage_data.category,
-		0.0
-	)
-
-	var type_modifier: float = type_modifiers.get(
-		damage_data.type,
-		0.0
-	)
-
+	assert(DamageTypes.is_valid_type(damage_data.category, damage_data.type))
+	
+	var category_modifier: float = category_modifiers.get( damage_data.category, 0.0)
+	var type_modifier: float = type_modifiers.get(damage_data.type, 0.0)
+	
 	var damage_instance := DamageInstance.new()
 	damage_instance.category = damage_data.category
 	damage_instance.type = damage_data.type
-	damage_instance.amount = damage_data.amount * (
-		1.0 + category_modifier + type_modifier
-	)
-
+	damage_instance.amount = damage_data.amount * (1.0 + category_modifier + type_modifier)
+	
 	return damage_instance
 
 
-## Builds runtime damage for a spell from cached weapon damage and spell base data.
-func calculate_spell_damage(spell_damage: DamageData, cached_damage: Array[DamageInstance]) -> float:
-	var modifier: float = 0.0
-	
-	for damage in cached_damage:
-		if damage.category == spell_damage.category:
-			modifier += damage.amount
-			
-		if damage.type == spell_damage.type:
-			modifier += damage.amount
-			
-	return spell_damage.amount * (1.0 + (modifier/100.0))
-
-
-
-
-
-## Builds a damage package by combining cached weapon damage with spell damage.
+## Builds a damage package from spell base damage using cached damage modifiers.
 func build_spell_package(spell_damage: Array[DamageData]) -> DamagePackage:
 	var package := DamagePackage.new()
 
