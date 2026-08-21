@@ -21,6 +21,7 @@ enum ActionType {
 @export var magicComponent: MagicComponent
 @export var healthComponent: HealthComponent
 @export var defenseComponent: DefenseComponent
+@export var equipmentComponent: EquipmentComponent
 @export_category("Cooldown Settings")
 @export var attackCooldown: float = 1.2
 @export var blockCooldown: float = 1.5
@@ -121,7 +122,7 @@ func handle_secondary_combat_action(start_action: bool) -> void:
 
 ## Resolves an incoming damage packet and triggers the corresponding hit reaction.
 func getHit(hitType: StringName, damage: DamagePackage) -> void:
-	var final_damage := DamageResolver.resolve_damage(damage, defenseComponent)
+	var final_damage := DamageResolver.resolve_damage(damage, defenseComponent, get_active_block_defense())
 	
 	
 	if healthComponent != null:
@@ -129,6 +130,19 @@ func getHit(hitType: StringName, damage: DamagePackage) -> void:
 	
 	cancelCurrentAction()
 	character.rig.playReaction(hitType)
+
+
+## Returns active shield block defense while the character is defending.
+func get_active_block_defense() -> Array[DefenseData]:
+	if !isDefending:
+		return []
+
+	var shield : Shield = equipmentComponent.get_active_shield()
+
+	if shield == null:
+		return []
+
+	return shield.block_defense
 
 
 func cancelCurrentAction() -> void:
@@ -157,8 +171,8 @@ func updateCombatVisuals(delta: float, movementSpeedRatio: float) -> void:
 	character.rig.defend(delta, isDefending, movementSpeedRatio)
 
 
-func _damage_calculation(damage: DamagePackage, shield: DefenseData)-> float:
-	return 0
+#func _damage_calculation(damage: DamagePackage, shield: DefenseData)-> float:
+	#return 0
 
 
 func _on_cool_down_timer_timeout() -> void:
@@ -169,7 +183,3 @@ func _on_action_timer_timeout() -> void:
 	match currentActionType:
 		ActionType.BLOCK:
 			stopDefend()
-
-
-##TODO put damage_resolver in own class
-## 

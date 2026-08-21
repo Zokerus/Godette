@@ -7,6 +7,7 @@ signal equipment_changed ##may be not relevant
 
 var equipment_slots: Array[EquipmentSlot] = []
 var main_hand_slot: EquipmentSlot
+var off_hand_slot: EquipmentSlot
 
 
 func _ready() -> void:
@@ -16,6 +17,7 @@ func _ready() -> void:
 	
 	initialize_equipment_slots() # connect signals and add slot to slot array
 	main_hand_slot = get_equipment_slot(EquipmentSlot.SlotType.MAIN_HAND)
+	off_hand_slot = get_equipment_slot(EquipmentSlot.SlotType.OFF_HAND)
 	call_deferred("_on_equipment_slot_changed")
 
 
@@ -71,3 +73,13 @@ func get_active_weapon()-> BaseWeapon:
 		return null
 		
 	return main_hand_slot.get_equipped_item() as BaseWeapon
+
+
+##Return active weapon on main hand slot
+func get_active_shield()-> Shield:
+	if off_hand_slot == null:
+		return null
+	if off_hand_slot.get_equipped_item() is not Shield:
+		return null
+		
+	return off_hand_slot.get_equipped_item() as Shield

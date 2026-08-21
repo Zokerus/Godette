@@ -32,10 +32,11 @@ debug_enabled = true
 [node name="PrepareTimer" type="Timer" parent="Timers" unique_id=1581307022]
 one_shot = true
 
-[node name="CombatComponent" parent="." unique_id=361524145 node_paths=PackedStringArray("character", "healthComponent", "defenseComponent") instance=ExtResource("4_o5uld")]
+[node name="CombatComponent" parent="." unique_id=361524145 node_paths=PackedStringArray("character", "healthComponent", "defenseComponent", "equipmentComponent") instance=ExtResource("4_o5uld")]
 character = NodePath("../CharacterContext")
 healthComponent = NodePath("../HealthComponent")
 defenseComponent = NodePath("../DefenseComponent")
+equipmentComponent = NodePath("../EquipmentComponent")
 
 [node name="HealthComponent" parent="." unique_id=220650441 node_paths=PackedStringArray("character") instance=ExtResource("6_ebm38")]
 character = NodePath("../CharacterContext")
