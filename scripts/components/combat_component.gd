@@ -131,7 +131,7 @@ func getHit(hitType: StringName, damage: DamagePackage) -> void:
 		character.rig.playReaction(&"BlockHit")
 	else:
 		cancelCurrentAction()
-		character.rig.playReaction(&"Hit")
+		character.rig.playReaction(hitType)
 
 
 ## Returns active shield block defense while the character is defending.
