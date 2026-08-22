@@ -8,11 +8,9 @@ const MAX_RESISTANCE: float = 0.9
 ## Resolves all damage instances against the target's cached (active and passive) defenses.
 static func resolve_damage(package: DamagePackage, defense: DefenseComponent, block_defense: Array[DefenseData] = []) -> DamageResult:
 	var result:= DamageResult.new()
-	result.was_blocked = false
 	
 	for damage in package.damage_instances:
-		var temp = DamageResult.new()
-		temp = _resolve_damage_instance(damage, defense, block_defense)
+		var temp := _resolve_damage_instance(damage, defense, block_defense)
 		result.final_damage += temp.final_damage
 		result.was_blocked = result.was_blocked or temp.was_blocked
 	
@@ -31,8 +29,8 @@ static func _resolve_damage_instance(damage: DamageInstance, defense: DefenseCom
 	var block_resistance = _get_block_resistance(damage, block_defense)
 	block_resistance = clampf(block_resistance, 0.0, 1.0)
 	remaining_damage *= (1.0 - block_resistance)
-	if remaining_damage < damage.amount:
-		result.was_blocked = result.was_blocked or true
+	if block_resistance > 0.0:
+		result.was_blocked = true
 	
 	# 2. Passive defense
 	var resistance := defense.get_category_resistance(damage.category)
