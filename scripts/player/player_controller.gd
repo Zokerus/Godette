@@ -41,6 +41,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if Input.is_action_just_pressed("ui_pause"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		
+	if Input.is_action_just_pressed("ui_journal"):
+		_die()
 
 
 func _physics_process(delta: float) -> void:
@@ -187,6 +190,7 @@ func _die()-> void:
 	died.emit()
 	combatComponent.cancelCurrentAction()
 	velocity = Vector3.ZERO
+	character.rig.playDeath()
 	set_collision_layer_value(2, false)
 
 
