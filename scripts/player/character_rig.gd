@@ -17,9 +17,11 @@ var currentAttackAnimation: String = ""
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/MovementStateMachine/playback"]
 @onready var attackStateMachine: AnimationNodeStateMachinePlayback = animation_tree["parameters/AttackStateMachine/playback"]
 @onready var magicStateMachine: AnimationNodeStateMachinePlayback = animation_tree["parameters/MagicStateMachine/playback"]
+@onready var deathStateMachine: AnimationNodeStateMachinePlayback = animation_tree["parameters/DeathStateMachine/playback"]
 
 
-
+func _ready() -> void:
+	animation_tree.set("parameters/DeathTransition/transition_request", "Normal")
 
 
 func travel(animation_name: String)-> void:
@@ -64,3 +66,18 @@ func playReaction(reaction: StringName) -> void:
 
 	animation_tree.set("parameters/HitTransition/transition_request", str(reaction))
 	animation_tree.set("parameters/ReactionOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+
+## Plays the death animation and clears active combat animation states.
+func playDeath() -> void:
+	# Stop OneShots / combat states if necessary
+	animation_tree.set("parameters/ReactionOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+	animation_tree.set("parameters/FullBodyActionOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+	animation_tree.set("parameters/UpperBodyActionOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+	
+	# Play death
+	
+	if (randi() % 2) == 0:
+		deathStateMachine.travel("Death_A")
+	else:
+		deathStateMachine.travel("Death_B")
+	animation_tree.set("parameters/DeathTransition/transition_request", "Dead")

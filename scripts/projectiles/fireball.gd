@@ -26,6 +26,6 @@ func _on_body_entered(body: Node3D) -> void:
 		return
 	var combat_component := body.get_node_or_null("CombatComponent") as CombatComponent
 	if combat_component != null:
-		combat_component.getHit(&"LightHit", damage_package)
+		combat_component.getHit(&"Hit", damage_package)
 	
 	queue_free()

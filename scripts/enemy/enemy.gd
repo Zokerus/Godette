@@ -36,6 +36,29 @@ var is_dead: bool = false
 func _ready() -> void:
 	pointOfOrigin = global_position
 
+
+## Processes vision, combat visuals, and state behavior while the enemy is alive.
+func _alive_physics_process(delta: float)-> void:
+	vision_component.updateVision()
+	combat_component.updateCombatVisuals(delta, movementSpeedRatio)
+	
+	match state_component.currentState:
+		EnemyState.IDLE:
+			handle_idle(delta)
+		
+		EnemyState.CHASE:
+			handle_chase(delta)
+		
+		EnemyState.ATTACK_PREPARE:
+			handle_attack_prepare(delta)
+		
+		EnemyState.SEARCH:
+			handle_search(delta)
+			
+		EnemyState.BACK_TO_ORIGIN:
+			handle_walk_back(delta)
+
+
 ## Applies gravity independently from the enemy's alive state.
 func _apply_gravity(delta: float)-> void:
 	# Add the gravity.
@@ -211,7 +234,7 @@ func _on_health_component_died() -> void:
 	die()
 
 
-## Stops all enemy systems and removes the character from the scene.
+## Stops all active enemy behavior and enters the death state.ne.
 func die() -> void:
 	if is_dead:
 		return
@@ -226,10 +249,13 @@ func die() -> void:
 	vision_component.set_physics_process(false)
 	
 	prepare_timer.stop()
-
+	
 	navigation_agent_3d.target_position = global_position
 	velocity = Vector3.ZERO
-
+	
+	state_component.change_state(EnemyState.DEAD)
+	character.rig.playDeath()
+	
 	_disable_character_collisions()
 
 	#queue_free()
