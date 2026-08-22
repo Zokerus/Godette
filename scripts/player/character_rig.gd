@@ -56,8 +56,11 @@ func castSpell(spellName: String) -> void:
 	animation_tree.set("parameters/ActionTransition/transition_request", "Magic")
 	animation_tree.set("parameters/UpperBodyActionOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
-func playReaction(_hitType: StringName) -> void:
-	#TODO use HIT animation name
+
+## Plays a character reaction animation through the shared reaction OneShot.
+func playReaction(reaction: StringName) -> void:
 	animation_tree.set("parameters/UpperBodyActionOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 	animation_tree.set("parameters/FullBodyActionOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+
+	animation_tree.set("parameters/HitTransition/transition_request", str(reaction))
 	animation_tree.set("parameters/ReactionOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)

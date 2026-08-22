@@ -124,12 +124,14 @@ func handle_secondary_combat_action(start_action: bool) -> void:
 func getHit(hitType: StringName, damage: DamagePackage) -> void:
 	var final_damage := DamageResolver.resolve_damage(damage, defenseComponent, get_active_block_defense())
 	
-	
-	if healthComponent != null:
+	if healthComponent != null and final_damage > 0.0:
 		healthComponent.take_damage(final_damage)
 	
-	cancelCurrentAction()
-	character.rig.playReaction(hitType)
+	if isDefending:
+		character.rig.playReaction(&"BlockHit")
+	else:
+		cancelCurrentAction()
+		character.rig.playReaction(&"Hit")
 
 
 ## Returns active shield block defense while the character is defending.
