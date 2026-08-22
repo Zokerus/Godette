@@ -122,12 +122,12 @@ func handle_secondary_combat_action(start_action: bool) -> void:
 
 ## Resolves an incoming damage packet and triggers the corresponding hit reaction.
 func getHit(hitType: StringName, damage: DamagePackage) -> void:
-	var final_damage := DamageResolver.resolve_damage(damage, defenseComponent, get_active_block_defense())
+	var damage_result := DamageResolver.resolve_damage(damage, defenseComponent, get_active_block_defense())
 	
-	if healthComponent != null and final_damage > 0.0:
-		healthComponent.take_damage(final_damage)
+	if healthComponent != null and damage_result.final_damage > 0.0:
+		healthComponent.take_damage(damage_result.final_damage)
 	
-	if isDefending:
+	if damage_result.was_blocked:
 		character.rig.playReaction(&"BlockHit")
 	else:
 		cancelCurrentAction()

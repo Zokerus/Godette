@@ -7,12 +7,18 @@
 [ext_resource type="Resource" uid="uid://bv0exrw8wlv51" path="res://resources/items/shield/shield.tres" id="4_f21y2"]
 [ext_resource type="Resource" uid="uid://dfmtyed4p6qvq" path="res://resources/items/shield/actShield.tres" id="4_h80t3"]
 
+[sub_resource type="Resource" id="Resource_f21y2"]
+script = ExtResource("3_r18t1")
+amount = 0.2
+category = 1
+metadata/_custom_type_script = "uid://c1d1gaupjmacw"
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2chnb"]
 albedo_texture = ExtResource("2_lcipn")
 
 [node name="Shield_Round" unique_id=1058619000 instance=ExtResource("1_jtdak")]
 script = ExtResource("2_2chnb")
-block_defense = Array[ExtResource("3_r18t1")]([ExtResource("4_h80t3")])
+block_defense = Array[ExtResource("3_r18t1")]([ExtResource("4_h80t3"), SubResource("Resource_f21y2")])
 defense_data = Array[ExtResource("3_r18t1")]([ExtResource("4_f21y2")])
 
 [node name="shield_round" parent="." index="0" unique_id=955677753]
