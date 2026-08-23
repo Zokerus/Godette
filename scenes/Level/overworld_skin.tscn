@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cewk71jw2t7u6"]
+
+[ext_resource type="PackedScene" uid="uid://c6ncxlekg2her" path="res://assets/world/overworld_environment.glb" id="1_eu8xr"]
+
+[node name="overworld_environment" unique_id=1642482313 instance=ExtResource("1_eu8xr")]
