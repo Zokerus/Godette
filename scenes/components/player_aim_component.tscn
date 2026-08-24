@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bab641hhvojnr"]
+
+[ext_resource type="Script" uid="uid://bvvtl41cig34s" path="res://scripts/components/player_aim_component.gd" id="1_f54hx"]
+
+[node name="PlayerAimComponent" type="Node" unique_id=1432734417]
+script = ExtResource("1_f54hx")

@@ -2,10 +2,15 @@ class_name MagicComponent
 extends Node
 
 @export var combatComponent: CombatComponent
+@export var equipmentComponent: EquipmentComponent
+@export var damageComponent: DamageComponent
+@export var aimComponent: AimComponent
 @export var character: CharacterContext
 @export var attackSet: AttackSetData
 
-func cast_spell(attackName: StringName) -> void:
+@export var fireball: PackedScene
+
+func cast_spell(_attackName: StringName) -> void:
 	if combatComponent == null or character.rig == null:
 		return
 	
@@ -21,6 +26,40 @@ func cast_spell(attackName: StringName) -> void:
 func finish_spell()-> void:
 	combatComponent.finishAction()
 
+## Shoot a firebal after spellcast "shoot"
+func shoot_fireball()-> void:
+	var weapon := equipmentComponent.get_active_weapon()
+
+	if weapon == null:
+		push_warning("MagicComponent: No active weapon equipped.")
+		return
+	
+	if weapon is not MagicWeapon:
+		push_warning("MagicComponent: Active weapon has no projectile spawn point.")
+		return
+	
+	if fireball == null:
+		push_error("MagicComponent: Fireball scene is missing.")
+		return
+	
+	var magic_weapon := weapon as MagicWeapon
+	var spawn_transform := magic_weapon.get_projectile_spawn_transform()
+
+	var projectile := ProjectileSpawner.spawn_projectile(fireball, spawn_transform) as Fireball
+	projectile.damage_package = damageComponent.build_spell_package(projectile.damage_data)
+	projectile.initialize(get_parent(), spawn_transform.origin, aimComponent.get_aim_direction(spawn_transform.origin))
+
+
+## Handles aiming while the player uses a ranged or magic weapon.
+func handle_aim_secondary(start_action: bool) -> void:
+	aimComponent.set_aiming(start_action)
+
+
 
 func _on_animation_event_relay_component_animation_event_received(event: AnimationEventRelay.AnimationEvents) -> void:
-	finish_spell()
+	match event:
+		AnimationEventRelay.AnimationEvents.ATTACK_FINISHED:
+			finish_spell()
+			
+		AnimationEventRelay.AnimationEvents.SPAWN_MAGIC_SPELL:
+			shoot_fireball()

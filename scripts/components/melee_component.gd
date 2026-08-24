@@ -2,11 +2,13 @@ class_name MeleeComponent
 extends Node
 
 @export var combatComponent: CombatComponent
+@export var equipmentComponent: EquipmentComponent
 @export var character: CharacterContext
 @export var attackSet: AttackSetData
 @export var comboWindowTime := 0.5
 @export var activateCombo: bool = false
 
+var activeWeapon: BaseWeapon
 var comboWindowOpen := false
 var currentComboIndex := 0
 var lastAttack : StringName
@@ -80,6 +82,7 @@ func openComboWindow() -> void:
 
 
 func finishAttack()-> void:
+	_set_weapon_hitbox(false)
 	combatComponent.finishAction()
 
 
@@ -90,12 +93,28 @@ func cancelAttack() -> void:
 	finishAttack()
 
 
+func _set_weapon_hitbox(state: bool)-> void:
+	activeWeapon = equipmentComponent.get_active_weapon()
+	if activeWeapon and activeWeapon is MeleeWeapon:
+		var weapon = activeWeapon as MeleeWeapon
+		if state:
+			weapon.enable_hitbox()
+		else:
+			weapon.disable_hitbox()
+
+
 func _on_animation_event_relay_component_animation_event_received(event: AnimationEventRelay.AnimationEvents) -> void:
 	match event:
 		AnimationEventRelay.AnimationEvents.COMBO_WINDOW_OPEN:
 			openComboWindow()
 		AnimationEventRelay.AnimationEvents.ATTACK_FINISHED:
 			finishAttack()
+			
+		AnimationEventRelay.AnimationEvents.ACTIVATE_WEAPON_HITBOX:
+			_set_weapon_hitbox(true)
+			
+		AnimationEventRelay.AnimationEvents.DEACTIVATE_WEAPON_HITBOX:
+			_set_weapon_hitbox(false)
 
 
 func _on_combo_timer_timeout() -> void:

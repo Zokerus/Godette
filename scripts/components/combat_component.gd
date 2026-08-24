@@ -19,6 +19,9 @@ enum ActionType {
 @export var meleeComponent: MeleeComponent
 @export var rangeComponent: Node
 @export var magicComponent: MagicComponent
+@export var healthComponent: HealthComponent
+@export var defenseComponent: DefenseComponent
+@export var equipmentComponent: EquipmentComponent
 @export_category("Cooldown Settings")
 @export var attackCooldown: float = 1.2
 @export var blockCooldown: float = 1.5
@@ -100,9 +103,48 @@ func attack(attackName: StringName, manual: bool = false) -> void:
 				magicComponent.cast_spell(&"Shoot")
 
 
-func getHit(hitType: StringName) -> void:
-	cancelCurrentAction()
-	character.rig.playReaction(hitType)
+## Handles the secondary combat input according to the active combat mode.
+func handle_secondary_combat_action(start_action: bool) -> void:
+	match activeCombatMode:
+		CombatComponent.CombatMode.MELEE:
+			if start_action:
+				startDefend(true)
+			else:
+				stopDefend()
+
+		CombatComponent.CombatMode.MAGIC:
+			magicComponent.handle_aim_secondary(start_action)
+
+		CombatComponent.CombatMode.RANGED:
+			pass
+			#_handle_aim_secondary()
+
+
+## Resolves an incoming damage packet and triggers the corresponding hit reaction.
+func getHit(hitType: StringName, damage: DamagePackage) -> void:
+	var damage_result := DamageResolver.resolve_damage(damage, defenseComponent, get_active_block_defense())
+	
+	if healthComponent != null and damage_result.final_damage > 0.0:
+		healthComponent.take_damage(damage_result.final_damage)
+	
+	if damage_result.was_blocked:
+		character.rig.playReaction(&"BlockHit")
+	else:
+		cancelCurrentAction()
+		character.rig.playReaction(hitType)
+
+
+## Returns active shield block defense while the character is defending.
+func get_active_block_defense() -> Array[DefenseData]:
+	if !isDefending:
+		return []
+
+	var shield : Shield = equipmentComponent.get_active_shield()
+
+	if shield == null:
+		return []
+
+	return shield.block_defense
 
 
 func cancelCurrentAction() -> void:
@@ -129,6 +171,10 @@ func updateCombatVisuals(delta: float, movementSpeedRatio: float) -> void:
 		return
 	
 	character.rig.defend(delta, isDefending, movementSpeedRatio)
+
+
+#func _damage_calculation(damage: DamagePackage, shield: DefenseData)-> float:
+	#return 0
 
 
 func _on_cool_down_timer_timeout() -> void:

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://6o2e0vhlw5m8"]
 
 [ext_resource type="PackedScene" uid="uid://cds4uy0satc0w" path="res://scenes/player/player.tscn" id="1_lt47i"]
+[ext_resource type="Script" uid="uid://bxg2vk5r0twso" path="res://scripts/world/test_map.gd" id="1_s30w4"]
 [ext_resource type="PackedScene" uid="uid://7pdx1qmhod8v" path="res://scenes/Enemy/skeleton_minion.tscn" id="2_x4yjv"]
 [ext_resource type="PackedScene" uid="uid://bjq4pqjba4d07" path="res://scenes/Enemy/skeleton_warrior.tscn" id="3_010cr"]
 [ext_resource type="PackedScene" uid="uid://cv08nnl3s6jpu" path="res://scenes/world/TestWorld.tscn" id="3_vlyuc"]
@@ -20,6 +21,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [node name="TestMap" type="Node3D" unique_id=647804400]
+script = ExtResource("1_s30w4")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1931958491]
 environment = SubResource("Environment_010cr")
@@ -44,3 +46,5 @@ blockChancePerSecond = 0.8
 transform = Transform3D(-0.8660254, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660254, 16, 0, -7.9529295)
 
 [node name="NavigationRegion3D" parent="." unique_id=1238533947 instance=ExtResource("3_vlyuc")]
+
+[node name="Projectiles" type="Node" parent="." unique_id=521187938]

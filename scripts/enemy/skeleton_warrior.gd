@@ -8,28 +8,12 @@ extends Enemy
 
 
 func _physics_process(delta: float) -> void:
-	vision_component.updateVision()
-	combat_component.updateCombatVisuals(delta, movementSpeedRatio)
+	_apply_gravity(delta)
 	
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-	else:
-		velocity.y = 0.0
+	if state_component.currentState != EnemyState.DEAD:
+		_alive_physics_process(delta)
+	move_and_slide()
 	
-	match state_component.currentState:
-		EnemyState.IDLE:
-			handle_idle(delta)
-		
-		EnemyState.CHASE:
-			handle_chase(delta)
-		
-		EnemyState.ATTACK_PREPARE:
-			handle_attack_prepare(delta)
-		
-		EnemyState.SEARCH:
-			handle_search(delta)
-
 
 func handle_chase(delta: float) -> void:
 	#If target is lost or gone, go back to IDLE state

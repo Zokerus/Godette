@@ -6,13 +6,22 @@ var blockLegsBlend := 0.0
 var is_attacking: bool = false
 var currentAttackAnimation: String = ""
 
-@export var right_hand_slot: BoneAttachment3D
+@export var right_hand_slot: BoneAttachment3D #TODO might be 
 @export var left_hand_slot: BoneAttachment3D
+@export var main_hand_item_slot: EquipmentSlot
+@export var off_hand_item_slot: EquipmentSlot
+
+@export var weapons: Array[PackedScene] 
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/MovementStateMachine/playback"]
 @onready var attackStateMachine: AnimationNodeStateMachinePlayback = animation_tree["parameters/AttackStateMachine/playback"]
 @onready var magicStateMachine: AnimationNodeStateMachinePlayback = animation_tree["parameters/MagicStateMachine/playback"]
+@onready var deathStateMachine: AnimationNodeStateMachinePlayback = animation_tree["parameters/DeathStateMachine/playback"]
+
+
+func _ready() -> void:
+	animation_tree.set("parameters/DeathTransition/transition_request", "Normal")
 
 
 func travel(animation_name: String)-> void:
@@ -38,16 +47,37 @@ func defend(delta: float, is_defending: bool, speedRatio: float)-> void:
 	animation_tree.set("parameters/ShieldBlendLowerBody/blend_amount", blockLegsBlend)
 
 
-func switchWeapons(weapon: bool)-> void:
-	right_hand_slot.get_child(0).visible = weapon
-	right_hand_slot.get_child(1).visible = !weapon
+func switchWeapons(weapon: bool)-> BaseWeapon:
+	main_hand_item_slot.remove_child(main_hand_item_slot.get_child(0))
+	main_hand_item_slot.add_child(weapons[int(!weapon)].instantiate())
+	
+	return main_hand_item_slot.get_child(0)
 
 func castSpell(spellName: String) -> void:
 	magicStateMachine.travel(spellName)
 	animation_tree.set("parameters/ActionTransition/transition_request", "Magic")
 	animation_tree.set("parameters/UpperBodyActionOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
-func playReaction(_hitType: StringName) -> void:
+
+## Plays a character reaction animation through the shared reaction OneShot.
+func playReaction(reaction: StringName) -> void:
 	animation_tree.set("parameters/UpperBodyActionOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 	animation_tree.set("parameters/FullBodyActionOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+
+	animation_tree.set("parameters/HitTransition/transition_request", str(reaction))
 	animation_tree.set("parameters/ReactionOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+
+## Plays the death animation and clears active combat animation states.
+func playDeath() -> void:
+	# Stop OneShots / combat states if necessary
+	animation_tree.set("parameters/ReactionOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+	animation_tree.set("parameters/FullBodyActionOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+	animation_tree.set("parameters/UpperBodyActionOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+	
+	# Play death
+	
+	if (randi() % 2) == 0:
+		deathStateMachine.travel("Death_A")
+	else:
+		deathStateMachine.travel("Death_B")
+	animation_tree.set("parameters/DeathTransition/transition_request", "Dead")

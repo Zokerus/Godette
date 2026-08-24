@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dun40ipe1pssc"]
+
+[ext_resource type="Script" uid="uid://h246wtvcme4x" path="res://scripts/components/equipment_slot.gd" id="1_n1nyd"]
+
+[node name="EquipmentSlot" type="Node3D" unique_id=427131920]
+script = ExtResource("1_n1nyd")

@@ -1,0 +1,2 @@
+class_name Sword_1H
+extends MeleeWeapon

@@ -4,12 +4,6 @@
 
 [node name="CombatComponent" type="Node" unique_id=361524145]
 script = ExtResource("1_fbogt")
-activeCooldown = null
-attackCooldown = null
-blockCooldown = null
-blockCooldownVariance = null
-blockDuration = null
-blockDurationVariance = null
 
 [node name="ActionTimer" type="Timer" parent="." unique_id=1930055230]
 

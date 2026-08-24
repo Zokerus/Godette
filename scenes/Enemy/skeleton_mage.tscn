@@ -3,12 +3,18 @@
 [ext_resource type="PackedScene" uid="uid://b13q7nyhqaqx7" path="res://scenes/Enemy/enemy.tscn" id="1_662sf"]
 [ext_resource type="PackedScene" uid="uid://bhicaingbcwxh" path="res://scenes/character/skeleton_mage_rig.tscn" id="2_dwp6k"]
 [ext_resource type="Script" uid="uid://cy17fhotv470g" path="res://scripts/enemy/skeleton_mage.gd" id="2_law0u"]
+[ext_resource type="Resource" uid="uid://b7j4ttv1ekyda" path="res://resources/character/skeleton_mage.tres" id="3_bwj8a"]
 [ext_resource type="PackedScene" uid="uid://dak6o8c5ivdi" path="res://scenes/components/magic_component.tscn" id="4_law0u"]
+[ext_resource type="Script" uid="uid://d1kluquwmvb5p" path="res://scripts/resources/damage_data.gd" id="5_nswjs"]
+[ext_resource type="PackedScene" uid="uid://76ojsj30gq1e" path="res://scenes/projectiles/fireball.tscn" id="6_nswjs"]
+[ext_resource type="PackedScene" uid="uid://cvoy05871smvd" path="res://scenes/components/npc_aim_component.tscn" id="7_u188r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_662sf"]
 height = 2.2
 
 [node name="SkeletonMage" unique_id=1630115397 instance=ExtResource("1_662sf")]
+collision_layer = 4
+collision_mask = 31
 script = ExtResource("2_law0u")
 attackRange = 6.0
 
@@ -17,57 +23,71 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 shape = SubResource("CapsuleShape3D_662sf")
 
 [node name="CharacterContext" parent="." index="1" unique_id=44747306 node_paths=PackedStringArray("rig")]
+attributes = ExtResource("3_bwj8a")
 rig = NodePath("../RigYawPivot/Skeleton_Mage_Rig")
 
 [node name="Skeleton_Mage_Rig" parent="RigYawPivot" parent_id_path=PackedInt32Array(2124500958) index="0" unique_id=1623801086 instance=ExtResource("2_dwp6k")]
 
-[node name="GeneralSkeleton" parent="RigYawPivot/Skeleton_Mage_Rig/Rig_Medium" parent_id_path=PackedInt32Array(1623801086, 129866238) index="0" unique_id=202050622]
-bones/1/position = Vector3(0, 0.3916032, 0)
-bones/1/rotation = Quaternion(0.00031660555, 0.04315775, 1.3679379e-05, 0.99906826)
-bones/2/rotation = Quaternion(0.99727046, -0.029502833, 0.031513274, 0.059901662)
-bones/3/rotation = Quaternion(0.27599317, -6.74643e-08, 1.9549125e-07, 0.9611596)
-bones/4/rotation = Quaternion(-0.5601248, 0.11450031, -0.0087952325, 0.82040995)
-bones/6/rotation = Quaternion(0.9922783, 0.058126498, 0.07046198, 0.083906636)
-bones/7/rotation = Quaternion(0.26493242, 6.4612394e-08, -1.8082441e-07, 0.964267)
-bones/8/rotation = Quaternion(-0.531259, -0.11431671, 0.04199127, 0.8384106)
-bones/9/rotation = Quaternion(1.2614089e-05, 0.92025596, -0.39131713, -2.7906483e-06)
-bones/10/rotation = Quaternion(0.00058370124, 1.7736677e-09, 5.052385e-05, 0.9999998)
-bones/11/rotation = Quaternion(0.0044930144, 6.5515904e-09, 0.00038890532, 0.9999899)
-bones/12/rotation = Quaternion(-0.56080663, 0.046369866, 0.73663014, 0.3751291)
-bones/13/rotation = Quaternion(9.979141e-09, 5.2505623e-08, 0.37709016, 0.9261766)
-bones/15/rotation = Quaternion(-0.21234411, 0.3839058, -0.13986513, 0.8876735)
-bones/16/rotation = Quaternion(0.00011534798, -0.000115358955, 0.70668334, 0.70752996)
-bones/17/rotation = Quaternion(-0.0045054154, -0.031341437, -0.0002480304, 0.9994986)
-bones/18/rotation = Quaternion(-0.5338134, -0.11630622, -0.77146155, 0.32613376)
-bones/19/rotation = Quaternion(6.665654e-09, -6.672646e-08, -0.35927245, 0.9332327)
-bones/21/rotation = Quaternion(-0.22202364, -0.3456814, 0.18428127, 0.8928888)
-bones/22/rotation = Quaternion(0.00011534798, 0.000115358955, -0.70668334, 0.70752996)
+[node name="GeneralSkeleton" parent="RigYawPivot/Skeleton_Mage_Rig/Rig_Medium" parent_id_path=PackedInt32Array(1623801086, 520515365) index="0" unique_id=726891699]
+bones/1/position = Vector3(0, 0.39123338, 0)
+bones/1/rotation = Quaternion(0.00057080854, 0.043157745, 2.46605e-05, 0.99906814)
+bones/2/rotation = Quaternion(0.99717253, -0.02958755, 0.031483695, 0.061484534)
+bones/3/rotation = Quaternion(0.2796721, -6.565642e-08, 1.9649907e-07, 0.9600956)
+bones/4/rotation = Quaternion(-0.5621372, 0.11447636, -0.009106805, 0.81903243)
+bones/6/rotation = Quaternion(0.9921377, 0.058088314, 0.07051881, 0.085531704)
+bones/7/rotation = Quaternion(0.26865977, 6.509815e-08, -1.842246e-07, 0.96323526)
+bones/8/rotation = Quaternion(-0.5333056, -0.114210196, 0.04233672, 0.83710736)
+bones/9/rotation = Quaternion(1.04061755e-05, 0.9202525, -0.39132527, -2.2849779e-06)
+bones/10/rotation = Quaternion(0.0010523554, 3.197741e-09, 9.108948e-05, 0.99999946)
+bones/11/rotation = Quaternion(0.004078194, 5.8401186e-09, 0.0003529994, 0.99999166)
+bones/12/rotation = Quaternion(-0.561043, 0.045756772, 0.7362314, 0.3756333)
+bones/13/rotation = Quaternion(1.27312205e-08, 5.7925114e-08, 0.37766555, 0.9259421)
+bones/15/rotation = Quaternion(-0.2122692, 0.38373548, -0.13955016, 0.8878145)
+bones/16/rotation = Quaternion(0.00020796804, -0.00020797092, 0.7063431, 0.7078696)
+bones/17/rotation = Quaternion(-0.005737162, -0.031341236, -0.00031583957, 0.9994923)
+bones/18/rotation = Quaternion(-0.53407574, -0.115685664, -0.77108943, 0.3268043)
+bones/19/rotation = Quaternion(4.5513526e-09, -6.544286e-08, -0.3601677, 0.9328876)
+bones/21/rotation = Quaternion(-0.2219227, -0.3455626, 0.18399875, 0.8930182)
+bones/22/rotation = Quaternion(0.00020796804, 0.00020797092, -0.7063431, 0.7078696)
 
-[node name="head" parent="RigYawPivot/Skeleton_Mage_Rig/Rig_Medium/GeneralSkeleton" index="0" unique_id=1680680647]
-transform = Transform3D(0.99972045, -1.2223609e-09, 0.023646593, 4.258228e-05, 0.99999833, -0.0018002177, -0.023646556, 0.0018007206, 0.99971884, -4.2647623e-09, 1.2273488, 0.003708469)
+[node name="head" parent="RigYawPivot/Skeleton_Mage_Rig/Rig_Medium/GeneralSkeleton" index="0" unique_id=1688780854]
+transform = Transform3D(0.9997204, -1.2805685e-09, 0.023646593, -1.1712546e-06, 0.99999994, 4.9577095e-05, -0.023646597, -4.9591064e-05, 0.9997204, -4.284548e-09, 1.2269757, 0.0045156004)
 
 [node name="RightHandSlot" parent="RigYawPivot/Skeleton_Mage_Rig/Rig_Medium/GeneralSkeleton" index="9" unique_id=2016600244]
-transform = Transform3D(0.00014828029, -0.26245615, -0.9649441, -0.99999845, -0.0010594119, 0.00013565287, -0.001058187, 0.9649426, -0.26245615, -0.4240276, 0.535207, 0.08188804)
+transform = Transform3D(8.75456e-05, -0.26262248, -0.9648989, -0.999996, -0.002326754, 0.0005436411, -0.002388264, 0.96489507, -0.26262167, -0.4240747, 0.53490317, 0.08173525)
+
+[node name="wand" parent="RigYawPivot/Skeleton_Mage_Rig/Rig_Medium/GeneralSkeleton/RightHandSlot/MainHandSlot" parent_id_path=PackedInt32Array(1623801086, 427131920) index="0" unique_id=170926748]
+damage_data = Array[ExtResource("5_nswjs")]([])
 
 [node name="LeftHandSlot" parent="RigYawPivot/Skeleton_Mage_Rig/Rig_Medium/GeneralSkeleton" index="10" unique_id=1889684894]
-transform = Transform3D(-0.00012749917, 0.26265046, 0.96489125, 0.99999833, -0.0012427856, 0.00047113764, 0.0013232643, 0.9648897, -0.26265028, 0.4254898, 0.53792274, 0.08683686)
+transform = Transform3D(-0.00014746428, 0.26261467, 0.9649008, 0.99999654, -0.0022492986, 0.0007656985, 0.0023718292, 0.9648974, -0.2626139, 0.42548838, 0.5376329, 0.0867707)
 
 [node name="VisionComponent" parent="." index="5" unique_id=1623844984 node_paths=PackedStringArray("rig_yaw_pivot")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0)
 rig_yaw_pivot = NodePath("../RigYawPivot")
 
-[node name="CombatComponent" parent="." index="7" unique_id=361524145 node_paths=PackedStringArray("character", "magicComponent")]
+[node name="CombatComponent" parent="." index="7" unique_id=361524145 node_paths=PackedStringArray("magicComponent")]
 activeCombatMode = 2
-character = NodePath("../CharacterContext")
 magicComponent = NodePath("../MagicComponent")
 
-[node name="MagicComponent" parent="." index="8" unique_id=2114964570 node_paths=PackedStringArray("combatComponent", "character") instance=ExtResource("4_law0u")]
+[node name="MagicComponent" parent="." index="8" unique_id=2114964570 node_paths=PackedStringArray("combatComponent", "equipmentComponent", "damageComponent", "aimComponent", "character") instance=ExtResource("4_law0u")]
 combatComponent = NodePath("../CombatComponent")
+equipmentComponent = NodePath("../EquipmentComponent")
+damageComponent = NodePath("../DamageComponent")
+aimComponent = NodePath("../NPCAimComponent")
 character = NodePath("../CharacterContext")
+fireball = ExtResource("6_nswjs")
+
+[node name="NPCAimComponent" parent="." index="9" unique_id=1260803487 node_paths=PackedStringArray("vision_component") instance=ExtResource("7_u188r")]
+vision_component = NodePath("../VisionComponent")
+
+[node name="EquipmentComponent" parent="." index="13" unique_id=117660128 node_paths=PackedStringArray("character_rig")]
+character_rig = NodePath("../RigYawPivot/Skeleton_Mage_Rig")
 
 [connection signal="animationEventReceived" from="RigYawPivot/Skeleton_Mage_Rig/AnimationEventRelayComponent" to="." method="_on_animation_event_relay_component_animation_event_received"]
 [connection signal="animationEventReceived" from="RigYawPivot/Skeleton_Mage_Rig/AnimationEventRelayComponent" to="MagicComponent" method="_on_animation_event_relay_component_animation_event_received"]
 [connection signal="state_changed" from="StateComponent" to="." method="_on_state_component_state_changed"]
+[connection signal="target_died" from="VisionComponent" to="." method="_on_vision_component_target_died"]
 [connection signal="target_identified" from="VisionComponent" to="." method="_on_vision_component_target_identified"]
 [connection signal="target_lost" from="VisionComponent" to="." method="_on_vision_component_target_lost"]
 [connection signal="timeout" from="Timers/PrepareTimer" to="." method="_on_prepare_timer_timeout"]

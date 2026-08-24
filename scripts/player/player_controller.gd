@@ -1,13 +1,14 @@
 extends CharacterBody3D
 class_name PlayerController
 
+signal died()
+
 const JUMP_VELOCITY = 4.5
 
 #Stores the x/y direction the player is trying to look in
 var mouseLookDelta := Vector2.ZERO
 var isJumpPreparing: bool = false
 var ignoreGroundAnimationUntilAirborne: bool = false
-var defend: bool = false
 var movementSpeedRatio : float
 var weaponSelection: bool = true
 var movementSpeedModifier: float = 1.0
@@ -23,13 +24,15 @@ var movementSpeedModifier: float = 1.0
 @export var character: CharacterContext
 
 @onready var combatComponent: CombatComponent = $CombatComponent
-@onready var meleeComponent: MeleeComponent = $MeleeComponent
 @onready var rig_yaw_pivot: Node3D = $RigYawPivot
 @onready var camera_yaw_pivot: Node3D = $CameraYawPivot
 @onready var camera_pitch_pivot: Node3D = $CameraYawPivot/CameraPitchPivot
 
+var is_dead: bool = false
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	#character.active_weapon.recalculate_damage(character)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -38,16 +41,21 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if Input.is_action_just_pressed("ui_pause"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		
+	if Input.is_action_just_pressed("ui_journal"):
+		_die()
 
 
 func _physics_process(delta: float) -> void:
 	handle_camera_rotation(delta)
-	var direction := get_movement_direction()
-	handle_movement(direction, delta)
-	handle_jump(delta)
 	handle_fall(delta)
-	ability_logic(delta)
-	update_combat_visuals(delta)
+	
+	if !is_dead:
+		var direction := get_movement_direction()
+		handle_movement(direction, delta)
+		handle_jump(delta)
+		ability_logic(delta)
+		update_combat_visuals(delta)
 
 	move_and_slide()
 
@@ -139,31 +147,26 @@ func handle_fall(delta: float) -> void:
 		if velocity.y <= 0 or tempVelocity != Vector3.ZERO:
 			character.rig.travel("Fall")
 
-func ability_logic(delta: float) -> void:
+func ability_logic(_delta: float) -> void:
 	#actual attack
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("primary_combat"):
 		combatComponent.attack(&"Chop", true)
 	
-	#defend
-	if Input.is_action_pressed("block"):
-		defend = combatComponent.startDefend(true)
+	#secondary combat action
+	if Input.is_action_pressed("secondary_combat"):
+		combatComponent.handle_secondary_combat_action(true)
 	else:
-		combatComponent.stopDefend()
-		defend = false
+		combatComponent.handle_secondary_combat_action(false)
 	
 	#switch weapon
-	if Input.is_action_just_pressed("weapon_switch"):
+	if Input.is_action_just_pressed("weapon_switch") and !combatComponent.isDefending:
 		weaponSelection = !weaponSelection
-		character.rig.switchWeapons(weaponSelection)
+		character.active_weapon = character.rig.switchWeapons(weaponSelection)
+		#TODO base decision on weapon type (combat_mode)
 		if weaponSelection:
 			combatComponent.activeCombatMode = CombatComponent.CombatMode.MELEE
 		else:
 			combatComponent.activeCombatMode = CombatComponent.CombatMode.MAGIC
-	
-	#if Input.is_action_just_pressed("ui_accept"):
-		#combatComponent.getHit(&"LightHit")
-		#changeSpeedModifier(0.0, 0.3, 0.8)
-
 
 func update_combat_visuals(delta: float) -> void:
 	combatComponent.updateCombatVisuals(delta, movementSpeedRatio)
@@ -178,3 +181,19 @@ func changeSpeedModifier(value: float, start_duration: float, end_duration: floa
 	var tween = create_tween()
 	tween.tween_property(self, "movementSpeedModifier", value, start_duration)
 	tween.tween_property(self, "movementSpeedModifier", 1.0, end_duration)
+
+## Stops player input, movement, combat, and target detection after death.
+func _die()-> void:
+	if is_dead:
+		return
+	is_dead = true
+	died.emit()
+	combatComponent.cancelCurrentAction()
+	velocity = Vector3.ZERO
+	character.rig.playDeath()
+	set_collision_layer_value(2, false)
+
+
+func _on_health_component_died() -> void:
+	print("Player died!")
+	_die()

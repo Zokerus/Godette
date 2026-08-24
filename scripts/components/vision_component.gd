@@ -3,6 +3,7 @@ extends Node3D
 
 signal target_identified(targetObject: Node3D)
 signal target_lost()
+signal target_died()
 
 @export var excludeParent: bool = true
 @export var detectionRange: float = 10.0
@@ -12,6 +13,7 @@ signal target_lost()
 
 var visibleTarget: Node3D = null
 var candidates: Array[Node3D] = []
+var target_died_callback: Callable
 
 @onready var detection_area_3d: Area3D = $DetectionArea3D
 @onready var vision_ray_cast_3d: RayCast3D = $VisionRayCast3D
@@ -37,10 +39,10 @@ func updateVision() -> void:
 	
 	if newTarget != visibleTarget:
 		if newTarget != null:
-			target_identified.emit(newTarget)
-			visibleTarget = newTarget
+			_set_visible_target(newTarget)
 		else:
 			target_lost.emit()
+			_clear_target_connection()
 			visibleTarget = null
 
 
@@ -70,6 +72,48 @@ func _canSeeTarget(target: Node3D) -> bool:
 			return false
 	else:
 		return false
+
+## Registers a newly visible target and observes its lifetime.
+func _set_visible_target(new_target: Node3D)-> void:
+	_clear_target_connection()
+	
+	if new_target == null:
+		return
+	
+	visibleTarget = new_target
+	if visibleTarget.has_signal("died"):
+		target_died_callback = _on_target_died.bind(visibleTarget)
+		visibleTarget.connect("died", target_died_callback)
+		
+	target_identified.emit(visibleTarget)
+
+
+## Disconnects the currently observed target signal.
+func _clear_target_connection()-> void:
+	if ( visibleTarget != null and is_instance_valid(visibleTarget) 
+	and target_died_callback.is_valid() and visibleTarget.is_connected("died", target_died_callback)):
+		visibleTarget.disconnect("died", target_died_callback)
+	
+	target_died_callback = Callable()
+
+
+## Clears the current target when that character dies.
+func _on_target_died(dead_target: Node3D) -> void:
+	if dead_target != visibleTarget:
+		return
+
+	_clear_visible_target()
+
+
+## Removes the current target and notifies the AI.
+func _clear_visible_target() -> void:
+	var previous_target := visibleTarget
+
+	_clear_target_connection()
+	visibleTarget = null
+	candidates.erase(previous_target)
+
+	target_died.emit()
 
 
 func _on_detection_area_3d_body_entered(body: Node3D) -> void:
