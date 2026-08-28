@@ -5,7 +5,7 @@ uniform sampler2D gras_texture;
 uniform sampler2D dirt_texture;
 uniform sampler2D rock_texture;
 
-uniform float min_rock_slope: hint_range(0.0, 1.0) = 0.5;
+uniform float min_rock_slope: hint_range(0.0, 1.0) = 0.633;
 uniform float max_grass_slope: hint_range(0.0, 1.0) = 0.9;
 
 

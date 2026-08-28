@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbopprgpy6pdk"
-path.s3tc="res://.godot/imported/nagon_texture.png-122ed822048c729b54f5b5692279c5d5.s3tc.ctex"
+uid="uid://bty8jkn6ty4sr"
+path.s3tc="res://.godot/imported/overworld_environment_terrain.png-d9e5bf61778084ac7c0b0aece4ac491e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "d6f5a5606c744d0efdebe31f68a52e97"
+}
 
 [deps]
 
-source_file="res://assets/world/textures/nagon_texture.png"
-dest_files=["res://.godot/imported/nagon_texture.png-122ed822048c729b54f5b5692279c5d5.s3tc.ctex"]
+source_file="res://assets/textures/overworld_environment_terrain.png"
+dest_files=["res://.godot/imported/overworld_environment_terrain.png-d9e5bf61778084ac7c0b0aece4ac491e.s3tc.ctex"]
 
 [params]
 

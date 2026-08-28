@@ -18,6 +18,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.054096, -46.32579, 216.67
 mesh = SubResource("PlaneMesh_yt0ak")
 
 [node name="Player" parent="." index="5" unique_id=1161970832 instance=ExtResource("3_373mm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.782228, -68.808685)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -209.71333, -35.834133, 156.92194)
 
-[node name="OverworldSkin" parent="." index="6" unique_id=2069791934 instance=ExtResource("2_het3u")]
+[node name="OverworldSkin" parent="." index="6" unique_id=362067930 instance=ExtResource("2_het3u")]
