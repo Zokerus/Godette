@@ -4,9 +4,20 @@
 [ext_resource type="PackedScene" uid="uid://cewk71jw2t7u6" path="res://scenes/Level/overworld_skin.tscn" id="2_het3u"]
 [ext_resource type="PackedScene" uid="uid://cds4uy0satc0w" path="res://scenes/player/player.tscn" id="3_373mm"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_67rky"]
+albedo_color = Color(0.18169275, 0.45852238, 0.99999887, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yt0ak"]
+material = SubResource("StandardMaterial3D_67rky")
+size = Vector2(600, 200)
+
 [node name="Overworld" unique_id=153729091 instance=ExtResource("1_pwl2g")]
 
-[node name="overworld_environment" parent="." index="5" unique_id=1642482313 instance=ExtResource("2_het3u")]
+[node name="Water" type="MeshInstance3D" parent="Environment" parent_id_path=PackedInt32Array(1296986820) index="0" unique_id=605823475]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.054096, -46.32579, 216.6709)
+mesh = SubResource("PlaneMesh_yt0ak")
 
-[node name="Player" parent="." index="6" unique_id=1161970832 instance=ExtResource("3_373mm")]
+[node name="Player" parent="." index="5" unique_id=1161970832 instance=ExtResource("3_373mm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.782228, -68.808685)
+
+[node name="OverworldSkin" parent="." index="6" unique_id=2069791934 instance=ExtResource("2_het3u")]

@@ -1,5 +1,23 @@
 [gd_scene format=3 uid="uid://cewk71jw2t7u6"]
 
-[ext_resource type="PackedScene" uid="uid://c6ncxlekg2her" path="res://assets/world/overworld_environment.glb" id="1_eu8xr"]
+[ext_resource type="PackedScene" uid="uid://dalkfqs86u6xo" path="res://assets/world/overworld_environment.blend" id="1_eu8xr"]
+[ext_resource type="Shader" uid="uid://dmg8d1tpk2mew" path="res://shader/Level/overworld_skin.gdshader" id="2_ui64p"]
+[ext_resource type="Texture2D" uid="uid://c51j0l5adq1qs" path="res://assets/textures/sand.png" id="3_tjpab"]
+[ext_resource type="Texture2D" uid="uid://co161kbqtkh2c" path="res://assets/textures/gras.png" id="4_a8stk"]
+[ext_resource type="Texture2D" uid="uid://c33wdbpcxfvpb" path="res://assets/textures/stones.png" id="5_kwlio"]
+[ext_resource type="Texture2D" uid="uid://b8vsotp2771lw" path="res://assets/textures/terrain.png" id="6_sqb2u"]
 
-[node name="overworld_environment" unique_id=1642482313 instance=ExtResource("1_eu8xr")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oyb64"]
+render_priority = 0
+shader = ExtResource("2_ui64p")
+shader_parameter/terrain_mask = ExtResource("6_sqb2u")
+shader_parameter/gras_texture = ExtResource("4_a8stk")
+shader_parameter/dirt_texture = ExtResource("3_tjpab")
+shader_parameter/rock_texture = ExtResource("5_kwlio")
+shader_parameter/min_rock_slope = 0.6330000300675
+shader_parameter/max_grass_slope = 0.9
+
+[node name="OverworldSkin" unique_id=2069791934 instance=ExtResource("1_eu8xr")]
+
+[node name="Floor" parent="." index="0" unique_id=899699448]
+material_override = SubResource("ShaderMaterial_oyb64")
