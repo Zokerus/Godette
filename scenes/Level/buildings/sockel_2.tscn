@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ccj25l0ikq2et"]
+
+[ext_resource type="PackedScene" uid="uid://bbjoidhpx15h4" path="res://assets/buildings/Sockel_2.glb" id="1_oxpld"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fbr2t"]
+size = Vector3(8.4, 2.1, 7)
+
+[node name="Sockel_2" unique_id=433338659 instance=ExtResource("1_oxpld")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Sockel" parent_id_path=PackedInt32Array(1162902860) index="0" unique_id=1565835624]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01113081, -4.712245, 0.0381763)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sockel/StaticBody3D" index="0" unique_id=1602988390]
+shape = SubResource("BoxShape3D_fbr2t")

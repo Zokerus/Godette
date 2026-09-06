@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8vsotp2771lw"
-path.s3tc="res://.godot/imported/terrain.png-fcd94e7ae2a20ac965534eefd2b9285c.s3tc.ctex"
+uid="uid://chr5fusfdu7ew"
+path.s3tc="res://.godot/imported/hexagons_medieval.png-66d98540325e78a8f057b14c32fc4c4e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/terrain.png"
-dest_files=["res://.godot/imported/terrain.png-fcd94e7ae2a20ac965534eefd2b9285c.s3tc.ctex"]
+source_file="res://assets/buildings/hexagons_medieval.png"
+dest_files=["res://.godot/imported/hexagons_medieval.png-66d98540325e78a8f057b14c32fc4c4e.s3tc.ctex"]
 
 [params]
 

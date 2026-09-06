@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://jgyvq4hu4hoa"]
+
+[ext_resource type="PackedScene" uid="uid://ctbfbg5ssspmh" path="res://assets/buildings/fence_wood_straight.gltf" id="1_pyxtd"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8ilah"]
+points = PackedVector3Array(-9.999996, -0.5001271, -5.7735057, -10.499996, -0.5001271, -5.4852824, -9.999996, 4.999461, -5.7735057, -9.500094, -0.5001271, -5.4852824, -10.499996, 3.9996831, -5.4852824, -10.499996, -0.5001271, 5.4841485, -9.499996, 3.9996831, -4.500803, -9.500094, 3.9996831, -5.4852824, -10.000094, 4.999461, -4.500803, -9.999996, 4.999461, 5.773502, -9.499996, -0.5001271, -4.500803, -10.499996, 3.9996831, 5.4841485, -9.999996, -0.5001271, 5.773502, -9.499996, 3.9996831, 4.4996696, -10.000094, 4.999461, 4.4996696, -9.500094, 3.9996831, 5.4841485, -9.499996, -0.5001271, 4.4996696, -9.500094, -0.5001271, 5.4841485)
+
+[node name="fence_wood_straight" unique_id=1603454536 instance=ExtResource("1_pyxtd")]
+
+[node name="fence_wood_straight" parent="." index="0" unique_id=1314477697]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="fence_wood_straight" index="0" unique_id=1096557544]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="fence_wood_straight/StaticBody3D" index="0" unique_id=929609784]
+shape = SubResource("ConvexPolygonShape3D_8ilah")

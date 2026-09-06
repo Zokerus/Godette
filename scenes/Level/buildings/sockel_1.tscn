@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://l7bsvkjbhx17"]
+
+[ext_resource type="PackedScene" uid="uid://dnrfmchmvcj5u" path="res://assets/buildings/Sockel_1.glb" id="1_ben8l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u06og"]
+size = Vector3(8.4, 0.52502155, 7)
+
+[node name="Sockel_1" unique_id=239526593 instance=ExtResource("1_ben8l")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Sockel_001" parent_id_path=PackedInt32Array(1099075691) index="0" unique_id=1552412910]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sockel_001/StaticBody3D" index="0" unique_id=960976523]
+shape = SubResource("BoxShape3D_u06og")
