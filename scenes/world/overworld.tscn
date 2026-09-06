@@ -20,6 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://clbdjl5nvxau6" path="res://scenes/Level/buildings/building_stage_a.tscn" id="18_mupvu"]
 [ext_resource type="PackedScene" uid="uid://jgyvq4hu4hoa" path="res://scenes/Level/buildings/fence_wood_straight.tscn" id="19_nwxhm"]
 [ext_resource type="PackedScene" uid="uid://b4te3420paax8" path="res://scenes/Level/buildings/fence_wood_straight_gate.tscn" id="20_nmeri"]
+[ext_resource type="PackedScene" uid="uid://futy72e35bvq" path="res://scenes/Level/buildings/bridge.tscn" id="21_mupvu"]
+[ext_resource type="PackedScene" uid="uid://ce6ecfg65hgx8" path="res://scenes/Level/buildings/lantern.tscn" id="22_h7ehk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_67rky"]
 albedo_color = Color(0.18169275, 0.45852238, 0.99999887, 1)
@@ -47,95 +49,95 @@ mesh = SubResource("PlaneMesh_yt0ak")
 
 [node name="Village" type="Node3D" parent="Environment" parent_id_path=PackedInt32Array(1296986820) index="1" unique_id=1915069884]
 
-[node name="building_lumbermill" type="Node3D" parent="Environment/Village" index="0" unique_id=998713369 instance=ExtResource("13_yfnw3")]
+[node name="building_lumbermill" parent="Environment/Village" index="0" unique_id=998713369 instance=ExtResource("13_yfnw3")]
 transform = Transform3D(-0.8337975, 0, -0.5520703, 0, 1, 0, 0.5520703, 0, -0.8337975, -202.49046, -40.60185, 191.53079)
 metadata/asset_placer_res_id = "uid://dh8ldyde74fj8"
 
-[node name="building_home_A" type="Node3D" parent="Environment/Village" index="1" unique_id=1408947283 instance=ExtResource("14_mrb77")]
+[node name="building_home_A" parent="Environment/Village" index="1" unique_id=1408947283 instance=ExtResource("14_mrb77")]
 transform = Transform3D(0.10968716, 0, 0.99396616, 0, 1, 0, -0.99396616, 0, 0.10968716, -233.15527, -33.879017, 156.22733)
 metadata/asset_placer_res_id = "uid://dgi7ohl4xksi2"
 
-[node name="building_home_A (1)" type="Node3D" parent="Environment/Village" index="2" unique_id=93354625 instance=ExtResource("14_mrb77")]
+[node name="building_home_A (1)" parent="Environment/Village" index="2" unique_id=93354625 instance=ExtResource("14_mrb77")]
 transform = Transform3D(-0.27518904, 0, 0.96139014, 0, 1, 0, -0.96139014, 0, -0.27518904, -233.29814, -36.077248, 178.99294)
 metadata/asset_placer_res_id = "uid://dgi7ohl4xksi2"
 
-[node name="building_home_A (2)" type="Node3D" parent="Environment/Village" index="3" unique_id=149689873 instance=ExtResource("14_mrb77")]
+[node name="building_home_A (2)" parent="Environment/Village" index="3" unique_id=149689873 instance=ExtResource("14_mrb77")]
 transform = Transform3D(0.5001858, 0, 0.86591816, 0, 1, 0, -0.86591816, 0, 0.5001858, -248.09026, -38.132328, 189.62773)
 metadata/asset_placer_res_id = "uid://dgi7ohl4xksi2"
 
-[node name="building_home_A (3)" type="Node3D" parent="Environment/Village" index="4" unique_id=536971254 instance=ExtResource("14_mrb77")]
+[node name="building_home_A (3)" parent="Environment/Village" index="4" unique_id=536971254 instance=ExtResource("14_mrb77")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -182.72015, -42.928787, 185.16734)
 metadata/asset_placer_res_id = "uid://dgi7ohl4xksi2"
 
-[node name="building_home_B" type="Node3D" parent="Environment/Village" index="5" unique_id=1387629097 instance=ExtResource("15_hu3i1")]
+[node name="building_home_B" parent="Environment/Village" index="5" unique_id=1387629097 instance=ExtResource("15_hu3i1")]
 transform = Transform3D(0.13948202, 0, 0.9902246, 0, 1, 0, -0.9902246, 0, 0.13948202, -246.13728, -44.519867, 205.25594)
 metadata/asset_placer_res_id = "uid://bpmogqrb63bck"
 
-[node name="building_stage_B" type="Node3D" parent="Environment/Village" index="6" unique_id=75744967 instance=ExtResource("16_nwxhm")]
+[node name="building_stage_B" parent="Environment/Village" index="6" unique_id=75744967 instance=ExtResource("16_nwxhm")]
 transform = Transform3D(-0.6715875, 0, 0.74092513, 0, 1, 0, -0.74092513, 0, -0.6715875, -244.80089, -36.0912, 170.8314)
 metadata/asset_placer_res_id = "uid://c44mbrsagxrxg"
 
-[node name="building_stage_C" type="Node3D" parent="Environment/Village" index="7" unique_id=790094650 instance=ExtResource("17_nmeri")]
+[node name="building_stage_C" parent="Environment/Village" index="7" unique_id=790094650 instance=ExtResource("17_nmeri")]
 transform = Transform3D(-0.85271573, 0, -0.5223752, 0, 1, 0, 0.5223752, 0, -0.85271573, -193.62994, -38.70764, 169.3807)
 metadata/asset_placer_res_id = "uid://kpxbxfvrey3x"
 
-[node name="building_stage_A" type="Node3D" parent="Environment/Village" index="8" unique_id=1459976804 instance=ExtResource("18_mupvu")]
+[node name="building_stage_A" parent="Environment/Village" index="8" unique_id=1459976804 instance=ExtResource("18_mupvu")]
 transform = Transform3D(1, 0, 0, 0, 0.97062784, -0.24058586, 0, 0.24058586, 0.97062784, -206.13196, -37.494118, 172.34769)
 metadata/asset_placer_res_id = "uid://clbdjl5nvxau6"
 
-[node name="building_stage_A (1)" type="Node3D" parent="Environment/Village" index="9" unique_id=1006849759 instance=ExtResource("18_mupvu")]
+[node name="building_stage_A (1)" parent="Environment/Village" index="9" unique_id=1006849759 instance=ExtResource("18_mupvu")]
 transform = Transform3D(0.77596736, 0, 0.63077307, 0, 1, 0, -0.63077307, 0, 0.77596736, -190.49846, -32.904182, 119.8711)
 metadata/asset_placer_res_id = "uid://clbdjl5nvxau6"
 
-[node name="fence_wood_straight" type="Node3D" parent="Environment/Village" index="10" unique_id=1603454536 instance=ExtResource("19_nwxhm")]
+[node name="fence_wood_straight" parent="Environment/Village" index="10" unique_id=1603454536 instance=ExtResource("19_nwxhm")]
 transform = Transform3D(0.9920819, -0.04467508, -0.117378116, 0, 0.9345947, -0.3557144, 0.12559253, 0.35289785, 0.92719454, -168.93668, -40.720146, 181.72179)
 metadata/asset_placer_res_id = "uid://jgyvq4hu4hoa"
 
-[node name="fence_wood_straight (1)" type="Node3D" parent="Environment/Village" index="11" unique_id=1820736550 instance=ExtResource("19_nwxhm")]
+[node name="fence_wood_straight (1)" parent="Environment/Village" index="11" unique_id=1820736550 instance=ExtResource("19_nwxhm")]
 transform = Transform3D(0.98346084, -0.06556217, -0.16883828, 0, 0.93218577, -0.3619803, 0.18112084, 0.35599345, 0.9167682, -170.59503, -44.94026, 192.32745)
 metadata/asset_placer_res_id = "uid://jgyvq4hu4hoa"
 
-[node name="fence_wood_straight (2)" type="Node3D" parent="Environment/Village" index="12" unique_id=1146820876 instance=ExtResource("19_nwxhm")]
+[node name="fence_wood_straight (2)" parent="Environment/Village" index="12" unique_id=1146820876 instance=ExtResource("19_nwxhm")]
 transform = Transform3D(0.9997365, 0, -0.02295542, 0, 1, 0, 0.02295542, 0, 0.9997365, -165.82968, -34.926537, 155.00517)
 metadata/asset_placer_res_id = "uid://jgyvq4hu4hoa"
 
-[node name="fence_wood_straight (3)" type="Node3D" parent="Environment/Village" index="13" unique_id=595132475 instance=ExtResource("19_nwxhm")]
+[node name="fence_wood_straight (3)" parent="Environment/Village" index="13" unique_id=595132475 instance=ExtResource("19_nwxhm")]
 transform = Transform3D(0.9780308, 0, 0.2084605, 0, 1, 0, -0.2084605, 0, 0.9780308, -166.8405, -33.895752, 143.64516)
 metadata/asset_placer_res_id = "uid://jgyvq4hu4hoa"
 
-[node name="fence_wood_straight (4)" type="Node3D" parent="Environment/Village" index="14" unique_id=1362091309 instance=ExtResource("19_nwxhm")]
+[node name="fence_wood_straight (4)" parent="Environment/Village" index="14" unique_id=1362091309 instance=ExtResource("19_nwxhm")]
 transform = Transform3D(0.9449307, 0, 0.3272706, 0, 1, 0, -0.3272706, 0, 0.9449307, -169.90297, -33.17279, 132.56609)
 metadata/asset_placer_res_id = "uid://jgyvq4hu4hoa"
 
-[node name="fence_wood_straight (5)" type="Node3D" parent="Environment/Village" index="15" unique_id=2108220794 instance=ExtResource("19_nwxhm")]
+[node name="fence_wood_straight (5)" parent="Environment/Village" index="15" unique_id=2108220794 instance=ExtResource("19_nwxhm")]
 transform = Transform3D(0.4892594, 0, 0.8721384, 0, 1, 0, -0.8721384, 0, 0.4892594, -184.18262, -32.77813, 115.5219)
 metadata/asset_placer_res_id = "uid://jgyvq4hu4hoa"
 
-[node name="fence_wood_straight (6)" type="Node3D" parent="Environment/Village" index="16" unique_id=1833900098 instance=ExtResource("19_nwxhm")]
+[node name="fence_wood_straight (6)" parent="Environment/Village" index="16" unique_id=1833900098 instance=ExtResource("19_nwxhm")]
 transform = Transform3D(0.43908408, 0, 0.89844596, 0, 1, 0, -0.89844596, 0, 0.43908408, -194.23094, -32.75849, 110.26933)
 metadata/asset_placer_res_id = "uid://jgyvq4hu4hoa"
 
-[node name="fence_wood_straight_gate" type="Node3D" parent="Environment/Village" index="17" unique_id=44123413 instance=ExtResource("20_nmeri")]
+[node name="fence_wood_straight_gate" parent="Environment/Village" index="17" unique_id=44123413 instance=ExtResource("20_nmeri")]
 transform = Transform3D(0.7682444, 0, 0.6401567, 0, 1, 0, -0.6401567, 0, 0.7682444, -175.46677, -32.800224, 122.66686)
 metadata/asset_placer_res_id = "uid://b4te3420paax8"
 
-[node name="building_church" type="Node3D" parent="Environment/Village" index="18" unique_id=1232553626 instance=ExtResource("6_s753n")]
+[node name="building_church" parent="Environment/Village" index="18" unique_id=1232553626 instance=ExtResource("6_s753n")]
 transform = Transform3D(0.84925145, 0, 0.5279886, 0, 1, 0, -0.5279886, 0, 0.84925145, -219.61972, -34.03611, 139.01552)
 metadata/asset_placer_res_id = "uid://b8gvqudkflgvt"
 
-[node name="building_well" type="Node3D" parent="Environment/Village" index="19" unique_id=1062957470 instance=ExtResource("7_ap4hg")]
+[node name="building_well" parent="Environment/Village" index="19" unique_id=1062957470 instance=ExtResource("7_ap4hg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -209.3771, -36.256523, 157.6177)
 metadata/asset_placer_res_id = "uid://bluxg2sx05jwe"
 
-[node name="building_market" type="Node3D" parent="Environment/Village" index="20" unique_id=799501518 instance=ExtResource("10_7ppl7")]
+[node name="building_market" parent="Environment/Village" index="20" unique_id=799501518 instance=ExtResource("10_7ppl7")]
 transform = Transform3D(0.67616284, 0, -0.7367522, 0, 1, 0, 0.7367522, 0, 0.67616284, -189.26006, -34.71365, 146.58781)
 metadata/asset_placer_res_id = "uid://bu2lwhqw2xhdi"
 
-[node name="building_blacksmith" type="Node3D" parent="Environment/Village" index="21" unique_id=1873527422 instance=ExtResource("11_xwc2a")]
+[node name="building_blacksmith" parent="Environment/Village" index="21" unique_id=1873527422 instance=ExtResource("11_xwc2a")]
 transform = Transform3D(0.98376244, 0, 0.17947564, 0, 1, 0, -0.17947564, 0, 0.98376244, -205.72195, -32.89296, 122.411125)
 metadata/asset_placer_res_id = "uid://cmtxnb47dp8iu"
 
-[node name="building_watermill" type="Node3D" parent="Environment/Village" index="22" unique_id=1223951660 instance=ExtResource("12_xwc2a")]
+[node name="building_watermill" parent="Environment/Village" index="22" unique_id=1223951660 instance=ExtResource("12_xwc2a")]
 transform = Transform3D(-0.91225696, 0, -0.40961838, 0, 1, 0, 0.40961838, 0, -0.91225696, -226.336, -45.085346, 217.89801)
 metadata/asset_placer_res_id = "uid://be1xrqe0gk4cp"
 
@@ -144,3 +146,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -217.48306, -35.388725, 156.9
 
 [node name="OverworldSkin" parent="." index="6" unique_id=362067930 instance=ExtResource("2_het3u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04598999, 0, 0)
+
+[node name="bridge" type="Node3D" parent="." index="7" unique_id=253876189 instance=ExtResource("21_mupvu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88.77541, -39.4907, 251.58804)
+metadata/asset_placer_res_id = "uid://futy72e35bvq"
+
+[node name="lantern" type="Node3D" parent="." index="8" unique_id=1979102586 instance=ExtResource("22_h7ehk")]
+transform = Transform3D(0.20728835, 0, 0.9782799, 0, 1, 0, -0.9782799, 0, 0.20728835, 74.825, -39.044834, 229.50465)
+metadata/asset_placer_res_id = "uid://ce6ecfg65hgx8"
+
+[node name="lantern (1)" type="Node3D" parent="." index="9" unique_id=1498752234 instance=ExtResource("22_h7ehk")]
+transform = Transform3D(0.23069416, 0, 0.97302634, 0, 1, 0, -0.97302634, 0, 0.23069416, 79.97883, -40.021805, 227.00903)
+metadata/asset_placer_res_id = "uid://ce6ecfg65hgx8"
+
+[node name="lantern (2)" type="Node3D" parent="." index="10" unique_id=1202087942 instance=ExtResource("22_h7ehk")]
+transform = Transform3D(-0.25996652, 0, -0.96561766, 0, 1, 0, 0.96561766, 0, -0.25996652, 102.87628, -38.869354, 273.35144)
+metadata/asset_placer_res_id = "uid://ce6ecfg65hgx8"
+
+[node name="lantern (3)" type="Node3D" parent="." index="11" unique_id=363188712 instance=ExtResource("22_h7ehk")]
+transform = Transform3D(-0.12263443, 0, -0.9924519, 0, 1, 0, 0.9924519, 0, -0.12263443, 97.44448, -38.937466, 276.0971)
+metadata/asset_placer_res_id = "uid://ce6ecfg65hgx8"
+
+[node name="lantern (4)" type="Node3D" parent="." index="12" unique_id=1256884611 instance=ExtResource("22_h7ehk")]
+transform = Transform3D(-0.7025861, 0, -0.71159875, 0, 1, 0, 0.71159875, 0, -0.7025861, -168.98695, -36.030586, 164.28836)
+metadata/asset_placer_res_id = "uid://ce6ecfg65hgx8"
