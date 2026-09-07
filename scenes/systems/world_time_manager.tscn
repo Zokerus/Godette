@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dwuyao5q3dn2o"]
+
+[ext_resource type="Script" uid="uid://wnulut28502l" path="res://scripts/systems/world_time_manager.gd" id="1_yw21w"]
+
+[node name="WorldTimeManager" type="Node" unique_id=1425778709]
+script = ExtResource("1_yw21w")
