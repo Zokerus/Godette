@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://biqpf1wngsok8"]
+
+[ext_resource type="Script" uid="uid://3uoa5sfxa1yx" path="res://scripts/systems/environment_controller.gd" id="1_6fj6n"]
+
+[node name="EnvironmentController" type="Node" unique_id=363274146]
+script = ExtResource("1_6fj6n")

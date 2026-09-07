@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cv08nnl3s6jpu" path="res://scenes/world/TestWorld.tscn" id="3_vlyuc"]
 [ext_resource type="PackedScene" uid="uid://dwuyao5q3dn2o" path="res://scenes/systems/world_time_manager.tscn" id="3_x5v0o"]
 [ext_resource type="PackedScene" uid="uid://c0lvvak6mur12" path="res://scenes/Enemy/skeleton_mage.tscn" id="4_jjb5g"]
+[ext_resource type="PackedScene" uid="uid://biqpf1wngsok8" path="res://scenes/systems/environment_controller.tscn" id="4_t3c8w"]
 
 [node name="TestMap" type="Node3D" unique_id=647804400]
 script = ExtResource("1_s30w4")
@@ -15,13 +16,22 @@ script = ExtResource("1_s30w4")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1104330694]
 environment = ExtResource("2_35yuq")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1093820969]
-transform = Transform3D(-0.84998757, -0.32921436, 0.4112653, 0.16589488, 0.57368803, 0.80209786, -0.50000006, 0.75, -0.4330127, 0, 0, 0)
+[node name="SunOrbit" type="Node3D" parent="." unique_id=2106623706]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SunOrbit" unique_id=1093820969]
+transform = Transform3D(0.9659258, -0.2332159, 0.11223922, 0, 0.43365905, 0.90107703, -0.25881904, -0.87037355, 0.41888246, 0, 0, 0)
 shadow_enabled = true
 
 [node name="WorldSystems" type="Node" parent="." unique_id=1334584268]
 
 [node name="WorldTimeManager" parent="WorldSystems" unique_id=1425778709 instance=ExtResource("3_x5v0o")]
+world_time_scale = 30.0
+
+[node name="EnvironmentController" parent="WorldSystems" unique_id=363274146 node_paths=PackedStringArray("world_time", "world_environment", "sun_orbit", "sun") instance=ExtResource("4_t3c8w")]
+world_time = NodePath("../WorldTimeManager")
+world_environment = NodePath("../../WorldEnvironment")
+sun_orbit = NodePath("../../SunOrbit")
+sun = NodePath("../../SunOrbit/DirectionalLight3D")
 
 [node name="Player" parent="." unique_id=1161970832 instance=ExtResource("1_lt47i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.081)

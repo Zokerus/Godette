@@ -210,6 +210,9 @@ radius = 40.0
 [node name="Overworld" unique_id=153729091 instance=ExtResource("1_pwl2g")]
 script = ExtResource("2_o3ojk")
 
+[node name="DirectionalLight3D" parent="." index="0" unique_id=1471611767]
+transform = Transform3D(0.9659258, -0.23321593, 0.112239234, 0, 0.4336591, 0.90107715, -0.25881904, -0.87037367, 0.41888252, 0, 0, 0)
+
 [node name="SkeletonMinion" parent="Enemies" parent_id_path=PackedInt32Array(2051890138) index="0" unique_id=1630115397 instance=ExtResource("2_espw7")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -123.5211, -33.80729, 185.32375)
 
