@@ -2,82 +2,21 @@
 
 [ext_resource type="PackedScene" uid="uid://cds4uy0satc0w" path="res://scenes/player/player.tscn" id="1_lt47i"]
 [ext_resource type="Script" uid="uid://bxg2vk5r0twso" path="res://scripts/world/test_map.gd" id="1_s30w4"]
-[ext_resource type="Shader" uid="uid://capmkjdw23cob" path="res://shader/Sky/stylized_sky.gdshader" id="2_35yuq"]
+[ext_resource type="Environment" uid="uid://wdsqtaeq6lql" path="res://shader/Sky/night.tres" id="2_35yuq"]
 [ext_resource type="PackedScene" uid="uid://7pdx1qmhod8v" path="res://scenes/Enemy/skeleton_minion.tscn" id="2_x4yjv"]
 [ext_resource type="PackedScene" uid="uid://bjq4pqjba4d07" path="res://scenes/Enemy/skeleton_warrior.tscn" id="3_010cr"]
 [ext_resource type="PackedScene" uid="uid://cv08nnl3s6jpu" path="res://scenes/world/TestWorld.tscn" id="3_vlyuc"]
-[ext_resource type="Texture2D" uid="uid://25kgtliw4cbq" path="res://assets/textures/sun.png" id="3_x5v0o"]
 [ext_resource type="PackedScene" uid="uid://c0lvvak6mur12" path="res://scenes/Enemy/skeleton_mage.tscn" id="4_jjb5g"]
-
-[sub_resource type="Curve" id="Curve_3upr8"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.12742384, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.7464789), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_olfbh"]
-curve = SubResource("Curve_3upr8")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_grnja"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_skm46"]
-noise = SubResource("FastNoiseLite_grnja")
-seamless = true
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_t3c8w"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_x5v0o"]
-noise = SubResource("FastNoiseLite_t3c8w")
-seamless = true
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_86lwx"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q0slc"]
-noise = SubResource("FastNoiseLite_86lwx")
-seamless = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5eb7k"]
-shader = ExtResource("2_35yuq")
-shader_parameter/cloud_shape_sampler = SubResource("NoiseTexture2D_x5v0o")
-shader_parameter/cloud_noise_sampler = SubResource("NoiseTexture2D_skm46")
-shader_parameter/cloud_curves = SubResource("CurveTexture_olfbh")
-shader_parameter/clouds_samples = 32
-shader_parameter/shadow_sample = 4
-shader_parameter/clouds_density = 0.40000000596048
-shader_parameter/clouds_scale = 1.0
-shader_parameter/clouds_smoothness = 0.029999999329440002
-shader_parameter/clouds_light_color = Color(1, 1, 1, 1)
-shader_parameter/clouds_shadow_intensity = 1.0
-shader_parameter/high_clouds_sampler = SubResource("NoiseTexture2D_q0slc")
-shader_parameter/high_clouds_density = 0.20000000298024
-shader_parameter/top_color = Color(0.34901962, 0.5882353, 1, 1)
-shader_parameter/bottom_color = Color(0, 0.32941177, 0.96862745, 1)
-shader_parameter/sun_scatter = Color(0.29803923, 0.29803923, 0.29803923, 1)
-shader_parameter/astro_tint = Color(0.90588236, 0.7882353, 0.627451, 1)
-shader_parameter/astro_sampler = ExtResource("3_x5v0o")
-shader_parameter/astro_scale = 3.0000000447036004
-shader_parameter/astro_intensity = 3.0
-shader_parameter/stars_intensity = 0.0
-shader_parameter/shooting_stars_intensity = 0.0
-shader_parameter/shooting_star_tint = Color(0, 0, 0, 1)
-
-[sub_resource type="Sky" id="Sky_vlyuc"]
-sky_material = SubResource("ShaderMaterial_5eb7k")
-
-[sub_resource type="Environment" id="Environment_010cr"]
-background_mode = 2
-sky = SubResource("Sky_vlyuc")
-tonemap_mode = 2
-glow_enabled = true
-adjustment_enabled = true
-adjustment_saturation = 1.5
 
 [node name="TestMap" type="Node3D" unique_id=647804400]
 script = ExtResource("1_s30w4")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1931958491]
-environment = SubResource("Environment_010cr")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1104330694]
+environment = ExtResource("2_35yuq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1093820969]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_energy = 0.259
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=1161970832 instance=ExtResource("1_lt47i")]
