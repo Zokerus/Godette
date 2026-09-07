@@ -27,12 +27,21 @@ uniform vec3 top_color : source_color = vec3(1.0);
 uniform vec3 bottom_color : source_color = vec3(1.0);
 uniform vec3 sun_scatter : source_color = vec3(1.0);
 
-group_uniforms astro;
+group_uniforms sun;
 
-uniform vec3 astro_tint : source_color;
-uniform sampler2D astro_sampler : repeat_disable, filter_linear_mipmap;
-uniform float astro_scale : hint_range(0.1, 10.0, 0.1) = 1.0;
-uniform float astro_intensity : hint_range(1.0, 3.0, 0.1) = 1.0;
+uniform vec3 sun_tint : source_color;
+uniform sampler2D sun_sampler : repeat_disable, filter_linear_mipmap;
+uniform float sun_scale : hint_range(0.1, 10.0, 0.1) = 3.0;
+uniform float sun_intensity : hint_range(1.0, 3.0, 0.1) = 1.0;
+uniform float sun_visibility: hint_range(0.0, 1.0, 0.01) = 1.0;
+
+group_uniforms moon;
+
+uniform vec3 moon_tint : source_color;
+uniform sampler2D moon_sampler : repeat_disable, filter_linear_mipmap;
+uniform float moon_scale : hint_range(0.1, 10.0, 0.1) = 6.0;
+uniform float moon_intensity : hint_range(1.0, 3.0, 0.1) = 1.0;
+uniform float moon_visibility: hint_range(0.0, 1.0, 0.01) = 0.0;
 
 group_uniforms stars;
 
@@ -173,13 +182,24 @@ void sky() {
 	float horizon_mask = abs(EYEDIR.y);
 	float bottom_mask = smoothstep(0.5, 0.45, SKY_COORDS.y);
 	
-	vec3 dir = direction_to_matrix(LIGHT0_DIRECTION) * EYEDIR;
-	vec2 astro_uv = (-(dir.xy / dir.z) * astro_scale) + vec2(0.5);
-	float astro_mask = ceil(
-		clamp(astro_uv.x * (1.0 - astro_uv.x), 0.0, 1.0) *
-		clamp(astro_uv.y * (1.0 - astro_uv.y), 0.0, 1.0)
-		) * ceil(dir.z);
-	vec4 astro_color = texture(astro_sampler, astro_uv);
+	//sun
+	vec3 sun_dir = direction_to_matrix(LIGHT0_DIRECTION) * EYEDIR;
+	vec2 sun_uv = (-(sun_dir.xy / sun_dir.z) * sun_scale) + vec2(0.5);
+	float sun_mask = ceil(
+		clamp(sun_uv.x * (1.0 - sun_uv.x), 0.0, 1.0) *
+		clamp(sun_uv.y * (1.0 - sun_uv.y), 0.0, 1.0)
+		) * ceil(sun_dir.z);
+	vec4 sun_color = texture(sun_sampler, sun_uv);
+	
+	// Moon
+	vec3 moon_direction = -LIGHT0_DIRECTION;
+	vec3 moon_dir = direction_to_matrix(moon_direction) * EYEDIR;
+	vec2 moon_uv = (-(moon_dir.xy / moon_dir.z) * moon_scale)+ vec2(0.5);
+	float moon_mask = ceil(
+		clamp(moon_uv.x * (1.0 - moon_uv.x), 0.0, 1.0) *
+		clamp(moon_uv.y * (1.0 - moon_uv.y), 0.0, 1.0)
+	) * ceil(moon_dir.z);
+	vec4 moon_color = texture(moon_sampler, moon_uv);
 	
 	// Sky color
 	
@@ -200,9 +220,13 @@ void sky() {
 		sky_color += get_shooting_star(EYEDIR) * shooting_stars_intensity * shooting_star_tint;
 	}
 	
-	// Add astro
+	// Add sun
 	
-	sky_color = mix(sky_color, astro_color.rgb * astro_intensity * astro_tint, astro_color.a * astro_mask * bottom_mask);
+	sky_color = mix(sky_color, sun_color.rgb * sun_intensity * sun_tint, sun_color.a * sun_mask * bottom_mask * sun_visibility);
+	
+	// Add moon
+	
+	sky_color = mix(sky_color, moon_color.rgb * moon_intensity * moon_tint, moon_color.a * moon_mask * bottom_mask * moon_visibility);
 	
 	// Add high clouds
 	
