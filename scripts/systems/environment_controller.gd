@@ -15,6 +15,7 @@ extends Node
 @export var day_bottom_color := Color(0.0, 0.329, 0.969)
 @export var day_sun_scatter := Color(0.298, 0.298, 0.298)
 
+
 @export_category("Night Sky")
 @export var night_top_color := Color(0.027, 0.102, 0.251)
 @export var night_bottom_color := Color(0.027, 0.102, 0.251)
