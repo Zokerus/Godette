@@ -4,3 +4,11 @@
 
 [node name="EnvironmentController" type="Node" unique_id=363274146]
 script = ExtResource("1_6fj6n")
+noon_sun_rotation = null
+day_top_color = null
+day_bottom_color = null
+day_sun_scatter = null
+night_top_color = null
+night_bottom_color = null
+night_sun_scatter = null
+night_stars_intensity = null
