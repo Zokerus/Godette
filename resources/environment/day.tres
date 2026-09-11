@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnvironmentState" format=3 uid="uid://7plnlfgbq7ht"]
+
+[ext_resource type="Script" uid="uid://5058dc3rel0q" path="res://scripts/resources/environment_state.gd" id="1_tixo1"]
+
+[resource]
+script = ExtResource("1_tixo1")
+sun_tint = Color(0.99160606, 1, 0.4961443, 1)
+adjustment_saturation = 1.5
+metadata/_custom_type_script = "uid://5058dc3rel0q"
